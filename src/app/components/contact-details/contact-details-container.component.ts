@@ -34,6 +34,7 @@ export class ContactDetailsContainerComponent implements OnInit {
     const r = confirm('Are you sure?');
     if (r) {
       this.store.dispatch(new fromContacts.Delete(this.contact));
+      this.router.navigate(['/contacts']);
     }
   }
 

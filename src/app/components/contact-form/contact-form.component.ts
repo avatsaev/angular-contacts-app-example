@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Contact} from '../../models/contact';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -23,7 +22,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
 
   form: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, private router: Router) {
+  constructor(public formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       'id': [this.contact.id],
       'name': [this.contact.name, Validators.required],

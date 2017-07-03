@@ -30,7 +30,6 @@ export class ContactEditComponent implements OnInit {
       this.store.dispatch(new fromContacts.Load(+params['contactId']));
     })
 
-
   }
 
   submitted(contact: Contact) {
