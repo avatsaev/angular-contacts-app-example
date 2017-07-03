@@ -1,12 +1,14 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Contact} from '../../models/contact';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.sass']
+  styleUrls: ['./contact-form.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactFormComponent implements OnInit, OnChanges {
 
@@ -21,7 +23,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
 
   form: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, private router: Router) {
     this.form = this.formBuilder.group({
       'id': [this.contact.id],
       'name': [this.contact.name, Validators.required],

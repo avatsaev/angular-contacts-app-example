@@ -26,7 +26,7 @@ export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: from
     }
 
     case fromContacts.LOAD_SUCCESS : {
-      return handleContactUpdate(state, action.payload)
+      return handleContactLoad(state, action.payload)
     }
 
     case fromContacts.CREATE_SUCCESS : {
@@ -42,7 +42,8 @@ export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: from
     }
 
     case fromContacts.SET_CURRENT : {
-      return Object.assign({}, state, {currentContact: action.payload});
+      const contact = getContact(state, action.payload.id);
+      return Object.assign({}, state, {currentContact: contact});
     }
 
     default: {
@@ -53,16 +54,24 @@ export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: from
 }
 
 
-// Action Handlers
+// Action Handlers (all handlers must be pure functions)
 
-export function handleContactCreate(state: ContactsState, payload: Contact): ContactsState {
-  const newState = Object.assign({}, state);
+
+function handleContactLoad(state: ContactsState, payload: Contact): ContactsState {
+
+  const newState = handleContactUpdate(state, payload); // just in case if contact is already present in the list
+  newState.currentContact = getContact(newState, payload.id); // set current contact
+  return newState; // return new contacts state without modifying the input
+}
+
+function handleContactCreate(state: ContactsState, payload: Contact): ContactsState {
+  const newState = Object.assign({}, state); // Clone original state
   newState.contactList.push(payload);
-  return newState;
+  return newState; // return new state without modifying the input
 }
 
 
-export function handleContactUpdate(state: ContactsState, payload: Contact): ContactsState {
+function handleContactUpdate(state: ContactsState, payload: Contact): ContactsState {
 
   const newState = Object.assign({}, state);
 
@@ -70,34 +79,34 @@ export function handleContactUpdate(state: ContactsState, payload: Contact): Con
 
   const index = newState.contactList.indexOf(contact);
 
-  newState.contactList[index] = payload;
+  if (index > -1) { // if contact exists in the list, update the value at the index
+    newState.contactList[index] = payload;
+  } else { // otherwise just push it to the array
+    newState.contactList.push(payload);
+  }
 
   return newState;
 
 }
 
 
-export function handleContactDelete(state: ContactsState, payload: Contact ): ContactsState {
+function handleContactDelete(state: ContactsState, payload: Contact ): ContactsState {
   const newState = Object.assign({}, state);
 
   newState.contactList = newState.contactList.filter( c => c.id !== payload.id);
 
-  return newState;
+  return newState; // return new state without the deleted contact
 }
 
 
-// SELECTORS
+// SELECTORS (all selectors must be pure functions)
 
-export const getContact = (state: ContactsState, contactId: number): Contact => {
-  return state.contactList.filter( c => c.id === contactId)[0];
-};
 
-export const  getAll = (state: ContactsState): Contact[] => {
-  return state.contactList
-};
+// get contact by id
+export const getContact = (state: ContactsState, contactId: number): Contact => state.contactList.filter( c => c.id === contactId)[0];
 
-export const getCurrentContact = (state: ContactsState): Contact => {
-  return state.currentContact;
-};
+export const  getAll = (state: ContactsState): Contact[] => state.contactList;
+
+export const getCurrentContact = (state: ContactsState): Contact => state.currentContact;
 
 ///--------------------

@@ -1,6 +1,24 @@
-<div *ngIf="contact$ | async as contact">
-  <p>Name: {{contact.name}}</p>
-  <p>Email: {{contact.email}}</p>
-  <p>Phone: {{contact.phone}}</p>
+
+
+<div *ngIf="contact">
+
+  <div class="card">
+    <div class="card-header">
+      Contact
+    </div>
+    <div class="card-block">
+      <p>Name: <span class="badge badge-default">{{contact.name}}</span></p>
+      <p>Email:  <span class="badge badge-default">{{contact.email}}</span></p>
+      <p>Phone:  <span class="badge badge-default">{{contact.phone}}</span></p>
+    </div>
+    <div class="card-footer text-muted">
+      <span class="float-md-right ">
+        <button (click)="editContact()" class="btn btn-sm btn-outline-warning"> EDIT</button>
+        <button (click)="deleteContact()"  class="btn btn-sm btn-outline-danger"> DELETE</button>
+      </span>
+
+    </div>
+  </div>
+
 </div>
 

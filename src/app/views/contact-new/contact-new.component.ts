@@ -15,17 +15,12 @@ export class ContactNewComponent implements OnInit {
   constructor(public store: Store<ApplicationState>, private router: Router) { }
 
   ngOnInit() {
-
-    this.store.subscribe(state => {
-      console.log('STATE: ', state);
-    })
   }
 
   submitted(contact: Contact) {
 
-    console.log(contact);
-    this.store.dispatch(new fromContacts.Create(contact))
-
+    this.store.dispatch(new fromContacts.Create(contact));
+    this.router.navigate(['/contacts']);
   }
 
 }

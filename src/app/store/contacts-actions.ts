@@ -46,7 +46,7 @@ export class SetCurrent implements Action {
 
   readonly type = SET_CURRENT;
 
-  constructor(public payload?: Contact) {}
+  constructor(public payload?: Contact | {id: number}) {}
 }
 
 export class Update implements Action {

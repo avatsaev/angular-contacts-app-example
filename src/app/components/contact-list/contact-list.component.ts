@@ -8,8 +8,7 @@ import * as fromContacts from '../../store/contacts-actions'
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./contact-list.component.sass']
 })
 export class ContactListComponent implements OnInit {
 
@@ -20,17 +19,14 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.contacts)
   }
 
 
   showDetails(contact: Contact) {
-    this.store.dispatch(new fromContacts.SetCurrent(contact));
     this.router.navigate(['/contacts', contact.id]);
   }
 
   editContact(contact: Contact) {
-    this.store.dispatch(new fromContacts.SetCurrent(contact));
     this.router.navigate(['/contacts', contact.id, 'edit']);
   }
 
@@ -40,7 +36,6 @@ export class ContactListComponent implements OnInit {
 
     const r = confirm('Are you sure?');
     if (r) {
-
       this.store.dispatch(new fromContacts.Delete(contact));
     }
   }

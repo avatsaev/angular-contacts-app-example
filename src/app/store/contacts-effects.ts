@@ -11,16 +11,13 @@ import {Contact} from '../models/contact';
 @Injectable()
 export class ContactEffects {
 
-  /**
-   * This effect makes use of the `startWith` operator to trigger
-   * the effect immediately on startup.
-   */
   @Effect()
   loadAll$: Observable<Action> = this.actions$
-      .ofType(contactActions.LOAD_ALL)
-      .startWith(new contactActions.LoadAll())
+      .ofType(contactActions.LOAD_ALL) /* When [Contacts] LOAD ALL action is dispatched */
       .switchMap(() =>
-          this.contactsService.index()
+          this.contactsService.index() /* Hit the Contacts Index endpoint of our REST API */
+              /* Dispatch LoadAllSuccess action to the central store with contact list returned by the backend as payload*/
+              /* 'Contacts Reducers' will take care of the rest */
               .map((contacts: Contact[]) => new contactActions.LoadAllSuccess(contacts))
       );
 

@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { ContactsComponent } from './views/contacts/contacts.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
-import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import {
+  ContactDetailsContainerComponent
+} from './components/contact-details/contact-details-container.component';
 import { ContactEditComponent } from './views/contact-edit/contact-edit.component';
 import {HttpModule} from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +22,7 @@ import { reducer } from './store'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactEffects} from './store/contacts-effects';
+import {ContactDetailsComponent} from './views/contact-details/contact-details.component';
 
 
 @NgModule({
@@ -29,6 +32,7 @@ import {ContactEffects} from './store/contacts-effects';
     ContactListComponent,
     ContactFormComponent,
     ContactDetailsComponent,
+    ContactDetailsContainerComponent,
     ContactEditComponent,
     ContactNewComponent,
     ContactsIndexComponent,
@@ -39,9 +43,9 @@ import {ContactEffects} from './store/contacts-effects';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.provideStore(reducer),
+    StoreModule.provideStore(reducer), /* Initialise the Central Store with Application's main reducer*/
+    EffectsModule.run(ContactEffects), /* Start monitoring contacts side effects */
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(ContactEffects),
     NgbModule.forRoot()
   ],
   providers: [ContactsService],
