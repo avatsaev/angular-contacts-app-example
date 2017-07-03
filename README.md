@@ -3,6 +3,8 @@
 
 *Backend is available here: https://github.com/avatsaev/angular-contacts-app-example-api*
 
+This applications uses [@ngrx/store](https://github.com/ngrx/store) to manage application state, and [@ngrx/effects](https://github.com/ngrx/effects) to manange side effects
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
 ![](https://i.imgur.com/FtfRSql.png)
