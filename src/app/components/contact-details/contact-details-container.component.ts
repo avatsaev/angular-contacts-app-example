@@ -8,8 +8,8 @@ import * as fromContacts from '../../store/contacts-actions'
 
 @Component({
   selector: 'app-contact-details-container',
-  templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.sass'],
+  templateUrl: './contact-details-container.component.html',
+  styleUrls: ['./contact-details-container.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactDetailsContainerComponent implements OnInit {

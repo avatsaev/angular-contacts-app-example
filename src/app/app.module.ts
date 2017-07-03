@@ -11,7 +11,6 @@ import {
 } from './components/contact-details/contact-details-container.component';
 import { ContactEditComponent } from './views/contact-edit/contact-edit.component';
 import {HttpModule} from '@angular/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ContactsService} from './services/contacts.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ContactNewComponent } from './views/contact-new/contact-new.component';
@@ -45,8 +44,7 @@ import {ContactDetailsComponent} from './views/contact-details/contact-details.c
     ReactiveFormsModule,
     StoreModule.provideStore(reducer), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.run(ContactEffects), /* Start monitoring contacts side effects */
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    NgbModule.forRoot()
+    StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [ContactsService],
   bootstrap: [AppComponent]
