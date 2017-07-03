@@ -1,5 +1,8 @@
 # Angular CRUD Contacts App Example with NgRx Store and NgRx Effects
 
+
+*Backend is available here: https://github.com/avatsaev/angular-contacts-app-example-api*
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
 ![](https://i.imgur.com/FtfRSql.png)
