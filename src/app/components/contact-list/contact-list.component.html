@@ -1,0 +1,38 @@
+<table *ngIf="contacts; else loading" class="table table-hover">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of contacts">
+    <th scope="row">{{c.id}}</th>
+    <td>{{c.name}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.phone}}</td>
+    <td>
+
+      <button (click)="showDetails(c)" class="btn btn-outline-primary btn-sm">
+        DETAILS
+      </button>
+
+      <button (click)="editContact(c)" class="btn btn-outline-warning btn-sm">
+        EDIT
+      </button>
+
+      <button (click)="deleteContact(c)" class="btn btn-outline-danger btn-sm">
+        DELETE
+      </button>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<ng-template #loading>
+  <span>loading contacts...</span>
+</ng-template>

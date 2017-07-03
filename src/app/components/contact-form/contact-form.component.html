@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+
+  <div class="form-group">
+    <label for="name-input">Name:</label>
+    <input id="name-input" type="text" formControlName="name">
+  </div>
+
+  <div class="form-group">
+    <label for="email-input">Email:</label>
+    <input id="email-input" type="email" formControlName="email">
+  </div>
+
+  <div class="form-group">
+    <label for="phone-input">Phone:</label>
+    <input id="phone-input" type="tel" formControlName="phone">
+  </div>
+
+
+  <div class="form-group">
+    <button
+            (click)="submit()"
+            [disabled]="!form.valid"
+            class="btn btn-success">
+      Submit
+    </button>
+  </div>
+
+</form>
