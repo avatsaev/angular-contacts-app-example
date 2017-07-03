@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 
 ![](https://i.imgur.com/FtfRSql.png)
-![](https://i.imgur.com/t6Pws3c.png)
+![](https://i.imgur.com/GUtoW7j.png)
 ![](https://i.imgur.com/105cDZF.png)
 
 ## Development server
