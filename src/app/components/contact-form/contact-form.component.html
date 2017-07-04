@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form">
+<form (submit)="submit()"  class="form" [formGroup]="form">
 
   <div class="form-group">
     <label for="name-input">Name:</label>
@@ -20,7 +20,7 @@
 
   <div class="form-group">
     <button
-            (click)="submit()"
+            type="submit"
             [disabled]="!form.valid"
             class="btn btn-success">
       Submit
