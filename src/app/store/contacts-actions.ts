@@ -20,7 +20,6 @@ export const UPDATE_SUCCESS = '[Contacts] UPDATE SUCCESS';
 export const DELETE = '[Contacts] DELETE';
 export const DELETE_SUCCESS = '[Contacts] DELETE SUCCESS';
 
-export const SET_CURRENT = '[Contacts] SET CURRENT';
 
 
 export class LoadAll implements Action {
@@ -42,12 +41,6 @@ export class Create implements Action {
   constructor(public payload?: Contact) {}
 }
 
-export class SetCurrent implements Action {
-
-  readonly type = SET_CURRENT;
-
-  constructor(public payload?: Contact | {id: number}) {}
-}
 
 export class Update implements Action {
 
@@ -100,7 +93,7 @@ export class DeleteSuccess implements Action {
 
 
 
-export type Actions =
+export type All =
     LoadAll
     | Load
     | Create
@@ -111,4 +104,3 @@ export type Actions =
     | UpdateSuccess
     | CreateSuccess
     | DeleteSuccess
-    | SetCurrent;

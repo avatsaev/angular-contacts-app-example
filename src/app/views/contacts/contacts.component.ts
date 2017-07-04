@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ContactsService} from '../../services/contacts.service';
-import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../models/contact';
 
 @Component({
   selector: 'app-contacts',
@@ -10,12 +7,8 @@ import {Contact} from '../../models/contact';
 })
 export class ContactsComponent implements OnInit {
 
-  contacts$: Observable<Contact[]>;
+  constructor() { }
 
-  constructor(public contactService: ContactsService) { }
-
-  ngOnInit() {
-    this.contacts$ = this.contactService.index();
-  }
+  ngOnInit() {}
 
 }

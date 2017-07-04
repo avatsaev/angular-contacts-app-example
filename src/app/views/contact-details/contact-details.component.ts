@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ApplicationState} from '../../store/index';
 import {Store} from '@ngrx/store';
-import {ActivatedRoute} from '@angular/router';
-import * as fromContacts from '../../store/contacts-actions'
+import {ActivatedRoute, Router} from '@angular/router';
+import * as contactsActions from '../../store/contacts-actions'
+import * as uiActions from '../../store/ui-actions'
 import {Observable} from 'rxjs/Observable';
 import {Contact} from '../../models/contact';
 import * as fromApplication from '../../store'
@@ -16,7 +17,11 @@ export class ContactDetailsComponent implements OnInit {
 
   contact$: Observable<Contact>;
 
-  constructor(private store: Store<ApplicationState>, private activatedRoute: ActivatedRoute) { }
+  constructor(
+      private store: Store<ApplicationState>,
+      private activatedRoute: ActivatedRoute,
+      private router: Router
+  ) { }
 
   ngOnInit() {
 
@@ -24,9 +29,26 @@ export class ContactDetailsComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       // update our contact from the backend in case it was modified by another client
-      this.store.dispatch(new fromContacts.Load(+params['contactId']));
+      this.store.dispatch(new contactsActions.Load(+params['contactId']));
     })
 
+  }
+
+
+  editContact(contact: Contact) {
+
+    this.store.dispatch(new uiActions.SetCurrentContact(contact));
+
+    this.router.navigate(['/contacts', contact.id, 'edit']);
+
+  }
+
+  deleteContact(contact: Contact) {
+    const r = confirm('Are you sure?');
+    if (r) {
+      this.store.dispatch(new contactsActions.Delete(contact));
+      this.router.navigate(['/contacts']);
+    }
   }
 
 }

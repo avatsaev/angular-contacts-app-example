@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '@ngrx/store';
 
-import * as contactActions from './contacts-actions'
+import * as contactActions from './contacts-actions';
+import * as uiActions from './ui-actions';
 import {ContactsService} from '../services/contacts.service';
 import {Actions, Effect} from '@ngrx/effects';
 import {Contact} from '../models/contact';
 
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class ContactEffects {
@@ -27,8 +29,13 @@ export class ContactEffects {
       .map(action => action.payload)
       .switchMap((id) =>
           this.contactsService.show(id)
-              .map( (contact: Contact) => new contactActions.LoadSuccess(contact))
-      );
+              .mergeMap( (contact: Contact) => {
+                return [
+                    new contactActions.LoadSuccess(contact),
+                    new uiActions.SetCurrentContact(contact)
+                ]
+              })
+      )
 
   @Effect()
   create$: Observable<Action> = this.actions$

@@ -1,1 +1,5 @@
-<app-contact-details-container [contact]="contact$ | async"></app-contact-details-container>
+<app-contact-details-container
+        [contact]="contact$ | async"
+        (onEdit)="editContact($event)"
+        (onDelete)="deleteContact($event)"
+></app-contact-details-container>

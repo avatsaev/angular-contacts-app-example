@@ -3,7 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {Contact} from '../models/contact';
 import {Http} from '@angular/http';
 import {environment} from '../../environments/environment';
-import {retry} from 'rxjs/operator/retry';
+
+import 'rxjs/operator/map'
 
 @Injectable()
 export class ContactsService {

@@ -1,19 +1,16 @@
 import {Contact} from '../models/contact';
 import * as fromContacts from './contacts-actions';
-
-
+import * as _ from 'lodash';
 
 export interface ContactsState {
   contactList: Contact[];
-  currentContact?: Contact;
 }
 
 export const INIT_CONTACTS_STATE: ContactsState = {
   contactList: [],
-  currentContact: undefined
 };
 
-export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: fromContacts.Actions) {
+export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: fromContacts.All) {
 
   switch (action.type) {
 
@@ -41,11 +38,6 @@ export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: from
       return handleContactDelete(state, action.payload);
     }
 
-    case fromContacts.SET_CURRENT : {
-      const contact = getContact(state, action.payload.id);
-      return Object.assign({}, state, {currentContact: contact});
-    }
-
     default: {
       return state;
     }
@@ -59,8 +51,9 @@ export function reducer(state: ContactsState = INIT_CONTACTS_STATE, action: from
 
 function handleContactLoad(state: ContactsState, payload: Contact): ContactsState {
 
-  const newState = handleContactUpdate(state, payload); // just in case if contact is already present in the list
-  newState.currentContact = getContact(newState, payload.id); // set current contact
+  const newState = Object.assign({}, state);
+  newState.contactList = _.unionBy([payload], newState.contactList);
+
   return newState; // return new contacts state without modifying the input
 }
 
@@ -74,16 +67,7 @@ function handleContactCreate(state: ContactsState, payload: Contact): ContactsSt
 function handleContactUpdate(state: ContactsState, payload: Contact): ContactsState {
 
   const newState = Object.assign({}, state);
-
-  const contact = getContact(newState, payload.id);
-
-  const index = newState.contactList.indexOf(contact);
-
-  if (index > -1) { // if contact exists in the list, update the value at the index
-    newState.contactList[index] = payload;
-  } else { // otherwise just push it to the array
-    newState.contactList.push(payload);
-  }
+  newState.contactList = _.unionBy([payload], newState.contactList, 'id');
 
   return newState;
 
@@ -92,9 +76,7 @@ function handleContactUpdate(state: ContactsState, payload: Contact): ContactsSt
 
 function handleContactDelete(state: ContactsState, payload: Contact ): ContactsState {
   const newState = Object.assign({}, state);
-
   newState.contactList = newState.contactList.filter( c => c.id !== payload.id);
-
   return newState; // return new state without the deleted contact
 }
 
@@ -103,10 +85,7 @@ function handleContactDelete(state: ContactsState, payload: Contact ): ContactsS
 
 
 // get contact by id
-export const getContact = (state: ContactsState, contactId: number): Contact => state.contactList.filter( c => c.id === contactId)[0];
-
-export const  getAll = (state: ContactsState): Contact[] => state.contactList;
-
-export const getCurrentContact = (state: ContactsState): Contact => state.currentContact;
+export const getContact = (state: ContactsState, id: number): Contact => _.find(state.contactList, {id});
+export const getAll = (state: ContactsState): Contact[] => state.contactList;
 
 ///--------------------
