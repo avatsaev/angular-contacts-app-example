@@ -7,10 +7,12 @@ import * as uiActions from './ui-actions';
 
 export interface UiState {
   currentContact?: Contact
+  currentContactId: number
 }
 
 export const INIT_UI_STATE: UiState = {
-  currentContact: undefined
+  currentContact: undefined,
+  currentContactId: undefined
 };
 
 
