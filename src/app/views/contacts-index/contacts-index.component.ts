@@ -31,12 +31,12 @@ export class ContactsIndexComponent implements OnInit {
   }
 
   editContact(contact: Contact) {
-    this.store.dispatch(new uiActions.SetCurrentContact(contact));
+    this.store.dispatch(new uiActions.SetCurrentContactId(contact.id));
     this.router.navigate(['/contacts', contact.id, 'edit'])
   }
 
   showContact(contact: Contact) {
-    this.store.dispatch(new uiActions.SetCurrentContact(contact));
+    this.store.dispatch(new uiActions.SetCurrentContactId(contact.id));
     this.router.navigate(['/contacts', contact.id])
   }
 

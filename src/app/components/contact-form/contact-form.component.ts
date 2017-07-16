@@ -36,7 +36,6 @@ export class ContactFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('Form contact: ', this.contact);
     if (this.contact) {
       this.form.patchValue(this.contact);
     }

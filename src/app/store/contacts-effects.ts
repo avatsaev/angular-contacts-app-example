@@ -32,7 +32,7 @@ export class ContactEffects {
               .mergeMap( (contact: Contact) => {
                 return [
                     new contactActions.LoadSuccess(contact),
-                    new uiActions.SetCurrentContact(contact)
+                    new uiActions.SetCurrentContactId(contact.id)
                 ]
               })
       )

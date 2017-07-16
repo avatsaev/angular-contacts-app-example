@@ -1,17 +1,10 @@
-
-
-
-import {Contact} from '../models/contact';
-
 import * as uiActions from './ui-actions';
 
 export interface UiState {
-  currentContact?: Contact
   currentContactId: number
 }
 
 export const INIT_UI_STATE: UiState = {
-  currentContact: undefined,
   currentContactId: undefined
 };
 
@@ -20,8 +13,8 @@ export function reducer(state: UiState = INIT_UI_STATE, {type, payload}: uiActio
 
   switch (type) {
 
-    case uiActions.SET_CURRENT_CONTACT : {
-      return Object.assign({}, state, {currentContact: payload})
+    case uiActions.SET_CURRENT_CONTACT_ID : {
+      return Object.assign({}, state, {currentContactId: payload})
     }
 
     default : {
@@ -33,7 +26,4 @@ export function reducer(state: UiState = INIT_UI_STATE, {type, payload}: uiActio
 
 
 // SELECTORS
-
-
-export const getCurrentContact = (state: UiState) => state.currentContact;
-
+export const getCurrentContactId = (state: UiState) => state.currentContactId;

@@ -85,7 +85,7 @@ function handleContactDelete(state: ContactsState, payload: Contact ): ContactsS
 
 
 // get contact by id
-export const getContact = (state: ContactsState, id: number): Contact => _.find(state.contactList, {id});
+export const getContactById = (state: ContactsState, id: number): Contact => _.find(state.contactList, {id});
 export const getAll = (state: ContactsState): Contact[] => state.contactList;
 
 ///--------------------

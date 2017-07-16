@@ -4,7 +4,7 @@ import {Contact} from '../models/contact';
 import {Http} from '@angular/http';
 import {environment} from '../../environments/environment';
 
-import 'rxjs/operator/map'
+
 
 @Injectable()
 export class ContactsService {

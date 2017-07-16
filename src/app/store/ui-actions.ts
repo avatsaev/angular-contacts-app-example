@@ -1,17 +1,13 @@
-
-
-
-
 import {Action} from '@ngrx/store';
-import {Contact} from '../models/contact';
-
-export const SET_CURRENT_CONTACT = '[UI] Set Current Contact';
-
-export class SetCurrentContact implements Action {
-  readonly type = SET_CURRENT_CONTACT;
 
 
-  constructor(public payload?: Contact) {}
+export const SET_CURRENT_CONTACT_ID = '[UI] Set Current Contact ID';
+
+export class SetCurrentContactId implements Action {
+  readonly type = SET_CURRENT_CONTACT_ID;
+
+
+  constructor(public payload?: number) {}
 }
 
-export type All = SetCurrentContact;
+export type All = SetCurrentContactId;
