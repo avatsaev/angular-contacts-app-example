@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactNewComponent } from './contact-new.component';
+import {ContactFormComponent} from '../../components/contact-form/contact-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {StoreModule} from '@ngrx/store';
+import { reducer } from '../../store';
+import {RouterTestingModule} from '@angular/router/testing';
+
 
 describe('ContactNewComponent', () => {
   let component: ContactNewComponent;
@@ -8,7 +14,9 @@ describe('ContactNewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactNewComponent ]
+      declarations: [ ContactNewComponent, ContactFormComponent ],
+      imports: [ReactiveFormsModule, StoreModule.provideStore(reducer), RouterTestingModule],
+
     })
     .compileComponents();
   }));

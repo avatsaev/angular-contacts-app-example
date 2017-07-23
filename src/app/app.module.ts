@@ -10,7 +10,7 @@ import {
   ContactDetailsContainerComponent
 } from './components/contact-details/contact-details-container.component';
 import { ContactEditComponent } from './views/contact-edit/contact-edit.component';
-import {HttpModule} from '@angular/http';
+
 import {ContactsService} from './services/contacts.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ContactNewComponent } from './views/contact-new/contact-new.component';
@@ -22,6 +22,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactEffects} from './store/contacts-effects';
 import {ContactDetailsComponent} from './views/contact-details/contact-details.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import {ContactDetailsComponent} from './views/contact-details/contact-details.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     StoreModule.provideStore(reducer), /* Initialise the Central Store with Application's main reducer*/
