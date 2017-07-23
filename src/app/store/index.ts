@@ -1,4 +1,4 @@
-import {ActionReducer, combineReducers} from '@ngrx/store';
+import {ActionReducer, ActionReducerMap, combineReducers} from '@ngrx/store';
 
 import { createSelector } from 'reselect';
 
@@ -11,20 +11,16 @@ export interface ApplicationState {
   // more state here
 }
 
-const reducers = {
+export const APP_INIT_STATE: ApplicationState = {
+  contacts: fromContacts.INIT_CONTACTS_STATE,
+  ui: fromUi.INIT_UI_STATE
+}
+
+export const reducers: ActionReducerMap<ApplicationState> = {
   contacts: fromContacts.reducer,
   ui: fromUi.reducer
   // more reducers here
 };
-
-
-// This is useful when we have several types of reducers (other than just contacts)
-export const APPLICATION_REDUCER: ActionReducer<ApplicationState> = combineReducers(reducers);
-
-// Application Store's main reducer is created by combining auxiliary reducers
-export function reducer(state: any, action: any): ApplicationState {
-  return APPLICATION_REDUCER(state, action);
-}
 
 
 /// selectors

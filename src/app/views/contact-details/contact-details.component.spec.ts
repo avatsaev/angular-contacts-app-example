@@ -6,7 +6,11 @@ import {StoreModule} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
-import { reducer } from '../../store';
+import { reducers, APP_INIT_STATE } from '../../store';
+import {ContactEffects} from '../../store/contacts-effects';
+import {Actions} from '@ngrx/effects';
+import {ContactsService} from '../../services/contacts.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 describe('ContactDetailsComponent', () => {
@@ -17,10 +21,14 @@ describe('ContactDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContactDetailsComponent, ContactDetailsContainerComponent],
       imports: [
-        StoreModule.provideStore(reducer),
-        RouterTestingModule
+        StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}),
+        RouterTestingModule,
+        HttpClientModule
       ],
       providers: [
+        ContactEffects,
+        Actions,
+        ContactsService,
         {
           provide: ActivatedRoute,
           useValue: {

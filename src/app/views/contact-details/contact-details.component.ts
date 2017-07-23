@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApplicationState} from '../../store/index';
-import {Dispatcher, Store} from '@ngrx/store';
+import { Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as contactsActions from '../../store/contacts-actions'
 import * as uiActions from '../../store/ui-actions'
 import {Observable} from 'rxjs/Observable';
 import {Contact} from '../../models/contact';
 import * as fromApplication from '../../store';
+import {ContactEffects} from '../../store/contacts-effects';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.sass']
 })
-export class ContactDetailsComponent implements OnInit {
+export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   contact$: Observable<Contact>;
+  redirectSub: Subscription
 
   constructor(
       private store: Store<ApplicationState>,
       private activatedRoute: ActivatedRoute,
       private router: Router,
-      private dispatcher: Dispatcher
+      private contactEffects: ContactEffects
   ) {}
 
   ngOnInit() {
@@ -29,12 +32,9 @@ export class ContactDetailsComponent implements OnInit {
     this.contact$ = this.store.select(fromApplication.getCurrentContact);
 
 
-    // if current contact is successfully deleted, go back to index view
-    this.dispatcher
-      .filter(action =>
-        action.type === contactsActions.DELETE_SUCCESS
-        && action.payload.id === +this.activatedRoute.snapshot.params['contactId']
-      )
+    // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
+    this.redirectSub = this.contactEffects.destroy$
+      .filter((action: contactsActions.DeleteSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
       .subscribe(_ => this.router.navigate(['/contacts']));
 
 
@@ -60,5 +60,10 @@ export class ContactDetailsComponent implements OnInit {
       this.store.dispatch(new contactsActions.Delete(contact));
     }
   }
+
+  ngOnDestroy() {
+    this.redirectSub.unsubscribe();
+  }
+
 
 }

@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Contact} from '../../models/contact';
 import {ApplicationState} from '../../store/index';
-import {Dispatcher, Store} from '@ngrx/store';
+import {ScannedActionsSubject, Store} from '@ngrx/store';
 import * as contactsActions from '../../store/contacts-actions'
-import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {Router} from '@angular/router';
+import {ContactEffects} from '../../store/contacts-effects';
 
 @Component({
   selector: 'app-contact-new',
@@ -18,20 +19,14 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<ApplicationState>,
     private router: Router,
-    private dispatcher: Dispatcher
+    private contactEffects: ContactEffects
   ) { }
 
   ngOnInit() {
-    // When the contact was successfully created, redirect to details view
-    this.redirectSub = this.dispatcher
-      .filter(action => action.type === contactsActions.CREATE_SUCCESS)
-      .subscribe(action => this.router.navigate(['/contacts']));
-
-
-
+    this.redirectSub = this.contactEffects.create$.subscribe(action => this.router.navigate(['/contacts']));
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.redirectSub.unsubscribe();
   }
 

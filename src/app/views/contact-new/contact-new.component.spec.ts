@@ -4,8 +4,12 @@ import { ContactNewComponent } from './contact-new.component';
 import {ContactFormComponent} from '../../components/contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
-import { reducer } from '../../store';
+import { reducers, APP_INIT_STATE } from '../../store';
 import {RouterTestingModule} from '@angular/router/testing';
+import {ContactsService} from '../../services/contacts.service';
+import {Actions} from '@ngrx/effects';
+import {ContactEffects} from '../../store/contacts-effects';
+import {HttpClientModule} from '@angular/common/http';
 
 
 describe('ContactNewComponent', () => {
@@ -15,7 +19,17 @@ describe('ContactNewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ContactNewComponent, ContactFormComponent ],
-      imports: [ReactiveFormsModule, StoreModule.provideStore(reducer), RouterTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}),
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      providers: [
+        ContactEffects,
+        Actions,
+        ContactsService,
+      ]
 
     })
     .compileComponents();
