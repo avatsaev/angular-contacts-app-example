@@ -19,6 +19,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## JSON server
+
+Run `npm run server` to start json server, which is available at `http://localhost:3000`. For productivity purpose just start `npm run dev` which will start angular and json server concurrently. JSON server accepts all REST Methods and updates data accordingly. More Info at [typicode/json-server](https://github.com/typicode/json-server) 
+
+## Data generation with faker.js
+
+In the directory `server` you will find `index.js` which will generate ten contacts. More Info at [Marak/faker.js](https://github.com/Marak/faker.js)
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
