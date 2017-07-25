@@ -1,13 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApplicationState} from '../../store/index';
-import { Store} from '@ngrx/store';
+import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as contactsActions from '../../store/contacts-actions'
 import * as uiActions from '../../store/ui-actions'
 import {Observable} from 'rxjs/Observable';
 import {Contact} from '../../models/contact';
 import * as fromApplication from '../../store';
-import {ContactEffects} from '../../store/contacts-effects';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
@@ -24,7 +23,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
       private store: Store<ApplicationState>,
       private activatedRoute: ActivatedRoute,
       private router: Router,
-      private contactEffects: ContactEffects
+      private actionsSubject: ActionsSubject
   ) {}
 
   ngOnInit() {
@@ -33,9 +32,10 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
 
     // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
-    this.redirectSub = this.contactEffects.destroy$
-      .filter((action: contactsActions.DeleteSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
-      .subscribe(_ => this.router.navigate(['/contacts']));
+    this.redirectSub = this.actionsSubject
+        .filter(action => action.type === contactsActions.DELETE_SUCCESS)
+        .filter((action: contactsActions.DeleteSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
+        .subscribe(_ => this.router.navigate(['/contacts']));
 
 
     this.activatedRoute.params.subscribe(params => {
