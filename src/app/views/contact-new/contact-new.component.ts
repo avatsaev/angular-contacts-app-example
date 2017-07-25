@@ -23,7 +23,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.redirectSub = this.contactEffects.create$.subscribe(action => this.router.navigate(['/contacts']));
+    this.redirectSub = this.contactEffects.create$.do(_ =>  console.log('creating..')).subscribe(action => this.router.navigate(['/contacts']));
   }
 
   ngOnDestroy() {

@@ -27,12 +27,10 @@ export class ContactsService {
 
   create(contact: Contact): Observable<Contact> {
     return this.http.post<Contact>(`${environment.appApi.baseUrl}/contacts`, contact)
-
   }
 
   update(contact: Contact): Observable<Contact> {
     return this.http.patch<Contact>(`${environment.appApi.baseUrl}/contacts/${contact.id}`, contact)
-
   }
 
 

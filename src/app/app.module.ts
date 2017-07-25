@@ -9,7 +9,7 @@ import { ContactNewComponent } from './views/contact-new/contact-new.component';
 import { ContactsIndexComponent } from './views/contacts-index/contacts-index.component';
 
 
-import { reducers, APP_INIT_STATE } from './store'
+import { reducers} from './store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {ContactEffects} from './store/contacts-effects';
 import {ContactDetailsComponent} from './views/contact-details/contact-details.component';
@@ -32,7 +32,7 @@ import {environment} from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}), /* Initialise the Central Store with Application's main reducer*/
+    StoreModule.forRoot(reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([ContactEffects]), /* Start monitoring app's side effects */
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
   ],

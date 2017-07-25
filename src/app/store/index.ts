@@ -1,6 +1,4 @@
-import {ActionReducer, ActionReducerMap, combineReducers} from '@ngrx/store';
-
-import { createSelector } from 'reselect';
+import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
 
 import * as fromContacts from './contacts-reducer';
 import * as fromUi from './ui-reducer';
@@ -9,11 +7,6 @@ export interface ApplicationState {
   contacts: fromContacts.ContactsState
   ui: fromUi.UiState
   // more state here
-}
-
-export const APP_INIT_STATE: ApplicationState = {
-  contacts: fromContacts.INIT_CONTACTS_STATE,
-  ui: fromUi.INIT_UI_STATE
 }
 
 export const reducers: ActionReducerMap<ApplicationState> = {
@@ -26,8 +19,8 @@ export const reducers: ActionReducerMap<ApplicationState> = {
 /// selectors
 
 // Contacts state main selector
-export const getContactsState = (state: ApplicationState): fromContacts.ContactsState => state.contacts;
-export const getUiState = (state: ApplicationState): fromUi.UiState => state.ui;
+export const getContactsState = createFeatureSelector<fromContacts.ContactsState>('contacts');
+export const getUiState = createFeatureSelector<fromUi.UiState>('ui');
 
 
 // createSelector from Reselect library:
