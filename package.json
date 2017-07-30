@@ -8,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "json-server --watch server/index.js",
+    "dev": "concurrently --kill-others \"npm run server\" \"npm run start\""
   },
   "private": true,
   "dependencies": {
@@ -40,8 +42,11 @@
     "@types/lodash": "~4.14.68",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.0.1",
+    "concurrently": "^3.5.0",
+    "faker": "^4.1.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
+    "json-server": "^0.11.2",
     "karma": "~1.7.0",
     "karma-chrome-launcher": "~2.1.1",
     "karma-cli": "~1.0.1",
