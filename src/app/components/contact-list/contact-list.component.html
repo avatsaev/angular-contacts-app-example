@@ -16,17 +16,22 @@
     <td>{{c.phone}}</td>
     <td>
 
-      <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
-        DETAILS
-      </button>
+      <span class="float-right">
 
-      <button (click)="editContact(c)" class="btn btn-outline-warning mb-1 btn-sm">
-        EDIT
-      </button>
+        <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
+          DETAILS
+        </button>
 
-      <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
-        DELETE
-      </button>
+        <button (click)="editContact(c)" class="btn btn-outline-warning mb-1 btn-sm">
+          EDIT
+        </button>
+
+        <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
+          DELETE
+        </button>
+
+      </span>
+
     </td>
   </tr>
 

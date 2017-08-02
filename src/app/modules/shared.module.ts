@@ -6,23 +6,30 @@ import {ContactDetailsContainerComponent} from '../components/contact-details/co
 import {ContactsService} from '../services/contacts.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {GroupsService} from '../services/groups.service';
+import {RouterModule} from '@angular/router';
+import {ToolbarComponent} from '../components/toolbar/toolbar.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   declarations: [
     ContactListComponent,
     ContactDetailsContainerComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ToolbarComponent
   ],
   exports: [
     ContactListComponent,
     ContactDetailsContainerComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    RouterModule,
+    ToolbarComponent
   ],
-  providers: [ContactsService]
+  providers: [ContactsService, GroupsService]
 })
 export class SharedModule { }

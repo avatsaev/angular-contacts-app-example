@@ -1,12 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../models/contact';
+import {Contact} from '../../../models/contact';
 import {Store, ActionsSubject} from '@ngrx/store';
-import * as fromApplication from '../../store'
-import * as contactsActions from '../../store/contacts-actions'
-import {ApplicationState} from '../../store/';
+
+import {State} from '../store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+
+import * as fromContactsStore from '../store'
+import * as contactsActions from '../store/actions/contacts-actions'
+import * as uiActions from '../../../store/actions/ui-actions';
 
 @Component({
   selector: 'app-contact-edit',
@@ -19,7 +22,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
   constructor(
-      public store: Store<ApplicationState>,
+      public store: Store<State>,
       private activatedRoute: ActivatedRoute,
       private router: Router,
       private actionsSubject: ActionsSubject
@@ -28,7 +31,8 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.contact$ = this.store.select(fromApplication.getCurrentContact);
+    this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
+    this.store.dispatch(new uiActions.SetCurrentTitle('Edit contact'));
 
     // If the update effect fires, we check if the current contact is the one being updated, and redirect to its details
     this.redirectSub = this.actionsSubject
