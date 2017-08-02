@@ -1,13 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ApplicationState} from '../../store/index';
 import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
-import * as contactsActions from '../../store/contacts-actions'
-import * as uiActions from '../../store/ui-actions'
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../models/contact';
-import * as fromApplication from '../../store';
+import {Contact} from '../../../models/contact';
 import {Subscription} from 'rxjs/Subscription';
+
+
+import * as contactsActions from '../store/actions/contacts-actions'
+import * as fromContactsStore from '../store'
+import * as uiActions from '../../../store/actions/ui-actions';
+import * as fromRootStore from '../../../store';
 
 @Component({
   selector: 'app-contact-details',
@@ -17,10 +19,10 @@ import {Subscription} from 'rxjs/Subscription';
 export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   contact$: Observable<Contact>;
-  redirectSub: Subscription
+  redirectSub: Subscription;
 
   constructor(
-      private store: Store<ApplicationState>,
+      private store: Store<fromRootStore.State>,
       private activatedRoute: ActivatedRoute,
       private router: Router,
       private actionsSubject: ActionsSubject
@@ -28,8 +30,8 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.contact$ = this.store.select(fromApplication.getCurrentContact);
-
+    this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
+    this.store.dispatch(new uiActions.SetCurrentTitle('Contact details'));
 
     // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject
@@ -48,7 +50,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   editContact(contact: Contact) {
 
-    this.store.dispatch(new uiActions.SetCurrentContactId(contact.id));
+    this.store.dispatch(new contactsActions.SetCurrentContactId(contact.id));
 
     this.router.navigate(['/contacts', contact.id, 'edit']);
 

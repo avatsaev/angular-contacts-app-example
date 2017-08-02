@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactDetailsComponent } from './contact-details.component';
-import {ContactDetailsContainerComponent} from '../../components/contact-details/contact-details-container.component';
+import {ContactDetailsContainerComponent} from '../../../components/contact-details/contact-details-container.component';
 import {StoreModule} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
-import { reducers, APP_INIT_STATE } from '../../store';
-import {ContactEffects} from '../../store/contacts-effects';
+import { reducers, APP_INIT_STATE } from '../../../store';
+import {ContactsEffects} from '../store/effects/contacts-effects';
 import {Actions} from '@ngrx/effects';
-import {ContactsService} from '../../services/contacts.service';
+import {ContactsService} from '../../../services/contacts.service';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -26,7 +26,7 @@ describe('ContactDetailsComponent', () => {
         HttpClientModule
       ],
       providers: [
-        ContactEffects,
+        ContactsEffects,
         Actions,
         ContactsService,
         {

@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactEditComponent } from './contact-edit.component';
-import {ContactFormComponent} from '../../components/contact-form/contact-form.component';
+import {ContactFormComponent} from '../../../components/contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
-import { reducers, APP_INIT_STATE } from '../../store';
+import { reducers, APP_INIT_STATE } from '../../../store';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 import {Actions} from '@ngrx/effects';
-import {ContactEffects} from '../../store/contacts-effects';
-import {ContactsService} from '../../services/contacts.service';
+import {ContactsEffects} from '../store/effects/contacts-effects';
+import {ContactsService} from '../../../services/contacts.service';
 import {HttpClientModule} from '@angular/common/http';
 
 describe('ContactEditComponent', () => {
@@ -27,7 +27,7 @@ describe('ContactEditComponent', () => {
         HttpClientModule
       ],
       providers: [
-        ContactEffects,
+        ContactsEffects,
         Actions,
         ContactsService,
         {

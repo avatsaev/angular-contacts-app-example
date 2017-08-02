@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Contact} from '../../models/contact';
-import {ApplicationState} from '../../store/index';
+import {Contact} from '../../../models/contact';
+import {RootStore} from '../../../store';
 import {ActionsSubject, Store} from '@ngrx/store';
-import * as contactsActions from '../../store/contacts-actions'
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
+import * as contactsActions from '../store/actions/contacts-actions'
+import * as uiActions from '../../../store/actions/ui-actions';
 
 @Component({
   selector: 'app-contact-new',
@@ -16,12 +17,13 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
   constructor(
-    private store: Store<ApplicationState>,
+    private store: Store<RootStore>,
     private router: Router,
     private actionsSubject: ActionsSubject
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new uiActions.SetCurrentTitle('New contact'));
     this.redirectSub = this.actionsSubject
         .asObservable()
         .filter(action => action.type === contactsActions.CREATE_SUCCESS)
