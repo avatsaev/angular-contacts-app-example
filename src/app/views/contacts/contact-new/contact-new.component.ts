@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Contact} from '../../../models/contact';
-import {RootStore} from '../../../store';
 import {ActionsSubject, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
+
 import * as contactsActions from '../store/actions/contacts-actions'
 import * as uiActions from '../../../store/actions/ui-actions';
+import * as fromRootStore from '../../../store';
 
 @Component({
   selector: 'app-contact-new',
@@ -17,7 +18,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
   constructor(
-    private store: Store<RootStore>,
+    private store: Store<fromRootStore.State>,
     private router: Router,
     private actionsSubject: ActionsSubject
   ) { }
