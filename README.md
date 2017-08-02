@@ -11,7 +11,7 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.3.
 
-![](https://i.imgur.com/FtfRSql.png)
+![](http://i.imgur.com/nkUV9sU.png)
 ![](https://i.imgur.com/GUtoW7j.png)
 ![](https://i.imgur.com/105cDZF.png)
 
