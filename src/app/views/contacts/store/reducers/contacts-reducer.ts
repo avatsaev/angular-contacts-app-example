@@ -95,23 +95,8 @@ function handleContactDelete(state: State, payload: Contact ): State {
 
 // SELECTORS (all selectors must be pure functions)
 
-
-// get contact by id
-
 export const getCurrentContactId = (state: State): number => state.currentContactId;
 export const getAllContacts = (state: State): Contact[] => state.contactList;
 export const getContactById = (contacts: Contact[], id: number): Contact => _.find(contacts, {id});
 export const getCurrentContact = createSelector(getAllContacts, getCurrentContactId, getContactById);
 
-
-
-// // RootStore selectors
-// export const getCurrentRoomId = (state: RootStore): string => state.currentRoomId;
-// export const getAllContacts = (state: RootStore): Room[] => state.roomsList;
-// export const getById = (rooms: Room[], id: string): Room => _.find(rooms, {id});
-//
-// export const getCurrentRoom = createSelector(getAllContacts, getCurrentRoomId, getById);
-
-
-
-/// --------------------

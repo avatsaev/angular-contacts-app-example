@@ -1,19 +1,19 @@
 import * as fromContacts from './reducers/contacts-reducer'
-import * as fromApp from '../../../store'
+import * as fromRootStore from '../../../store'
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface ContactsState {
   contacts: fromContacts.State
 }
 
-export interface State extends fromApp.State {
+// This is a lazy loaded state, so we need to extend from the App Root State
+export interface State extends fromRootStore.State {
   'contacts': ContactsState
 }
 
 export const reducers = {
   contacts: fromContacts.reducer
 };
-
 
 export const getContactsRootState = createFeatureSelector<ContactsState>('contacts');
 
