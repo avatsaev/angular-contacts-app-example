@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 import * as fromRootStore from './store'
@@ -21,10 +21,12 @@ import {Store} from '@ngrx/store';
   
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   currentPageTitle$: Observable<string>;
-  constructor(private store: Store<fromRootStore.State>) {
+  constructor(private store: Store<fromRootStore.State>) {}
+
+  ngOnInit() {
     this.currentPageTitle$ = this.store.select(fromRootStore.getCurrentTitle);
   }
 }
