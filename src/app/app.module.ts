@@ -24,7 +24,7 @@ import * as fromRootStore from './store';
     SharedModule,
     StoreModule.forRoot(fromRootStore.reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
+    StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [],
   bootstrap: [AppComponent]
