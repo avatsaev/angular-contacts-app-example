@@ -99,4 +99,3 @@ export const getCurrentContactId = (state: State): number => state.currentContac
 export const getAllContacts = (state: State): Contact[] => state.contactList;
 export const getContactById = (contacts: Contact[], id: number): Contact => _.find(contacts, {id});
 export const getCurrentContact = createSelector(getAllContacts, getCurrentContactId, getContactById);
-
