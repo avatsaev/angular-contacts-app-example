@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-
 import * as fromRootStore from './store'
-
 import {Store} from '@ngrx/store';
 
 @Component({
@@ -13,18 +11,17 @@ import {Store} from '@ngrx/store';
     <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
 
     <div class="container">
-
-
       <router-outlet></router-outlet>
-
     </div>
   
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   currentPageTitle$: Observable<string>;
-  constructor(private store: Store<fromRootStore.State>) {
+  constructor(private store: Store<fromRootStore.State>) {}
+
+  ngOnInit() {
     this.currentPageTitle$ = this.store.select(fromRootStore.getCurrentTitle);
   }
 }

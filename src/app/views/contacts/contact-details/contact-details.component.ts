@@ -8,7 +8,6 @@ import {Subscription} from 'rxjs/Subscription';
 
 import * as contactsActions from '../store/actions/contacts-actions'
 import * as fromContactsStore from '../store'
-import * as uiActions from '../../../store/actions/ui-actions';
 import * as fromRootStore from '../../../store';
 
 @Component({
@@ -31,7 +30,6 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
-    this.store.dispatch(new uiActions.SetCurrentTitle('Contact details'));
 
     // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject

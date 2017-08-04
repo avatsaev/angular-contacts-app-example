@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {SharedModule} from './modules/shared.module';
-import {environment} from '../environments/environment';
 
 import * as fromRootStore from './store';
 
@@ -24,7 +23,7 @@ import * as fromRootStore from './store';
     SharedModule,
     StoreModule.forRoot(fromRootStore.reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : []
+    StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,7 +20,7 @@ export const UPDATE_SUCCESS = '[Contacts] UPDATE SUCCESS';
 export const DELETE = '[Contacts] DELETE';
 export const DELETE_SUCCESS = '[Contacts] DELETE SUCCESS';
 
-export const SET_CURRENT_CONTACT_ID = '[Contacts] Set Current Contact ID';
+export const SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID';
 
 export class SetCurrentContactId implements Action {
   readonly type = SET_CURRENT_CONTACT_ID;

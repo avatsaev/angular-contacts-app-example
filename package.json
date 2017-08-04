@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "surge-deploy": "ng build --prod && cp dist/index.html dist/200.html && surge --domain angular-contacts-ngrx.surge.sh --project ./dist "
   },
   "private": true,
   "dependencies": {

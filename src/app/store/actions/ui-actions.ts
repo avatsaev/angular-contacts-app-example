@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
 
 
-export const SET_CURRENT_TITLE = '[UI] Set Current TITLE';
+export const SET_CURRENT_TITLE = '[UI] SET CURRENT TITLE';
 
 export class SetCurrentTitle implements Action {
   readonly type = SET_CURRENT_TITLE;
