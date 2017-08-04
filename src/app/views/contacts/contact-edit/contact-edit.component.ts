@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
 
 import * as fromContactsStore from '../store'
 import * as contactsActions from '../store/actions/contacts-actions'
-import * as uiActions from '../../../store/actions/ui-actions';
+
 
 @Component({
   selector: 'app-contact-edit',
@@ -32,7 +32,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
-    this.store.dispatch(new uiActions.SetCurrentTitle('Edit contact'));
 
     // If the update effect fires, we check if the current contact is the one being updated, and redirect to its details
     this.redirectSub = this.actionsSubject
@@ -43,7 +42,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(params => {
       // update our contact from the backend in case it was modified by another client
       this.store.dispatch(new contactsActions.Load(+params['contactId']));
-    })
+    });
 
   }
 

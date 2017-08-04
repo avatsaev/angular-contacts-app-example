@@ -5,7 +5,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
 
 import * as contactsActions from '../store/actions/contacts-actions'
-import * as uiActions from '../../../store/actions/ui-actions';
 import * as fromRootStore from '../../../store';
 
 @Component({
@@ -24,7 +23,6 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new uiActions.SetCurrentTitle('New contact'));
     this.redirectSub = this.actionsSubject
         .asObservable()
         .filter(action => action.type === contactsActions.CREATE_SUCCESS)

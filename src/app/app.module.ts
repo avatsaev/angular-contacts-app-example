@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {SharedModule} from './modules/shared.module';
-import {environment} from '../environments/environment';
 
 import * as fromRootStore from './store';
 

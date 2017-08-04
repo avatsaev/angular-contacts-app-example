@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {GroupsService} from '../services/groups.service';
 import {RouterModule} from '@angular/router';
 import {ToolbarComponent} from '../components/toolbar/toolbar.component';
+import {TitleResolver} from '../resolvers/title.resolver';
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import {ToolbarComponent} from '../components/toolbar/toolbar.component';
     RouterModule,
     ToolbarComponent
   ],
-  providers: [ContactsService, GroupsService]
+  providers: [ContactsService, GroupsService, TitleResolver]
 })
 export class SharedModule { }
