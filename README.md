@@ -19,6 +19,8 @@ You can run the app with docker compose:
 $ docker-compose up
 ```
 
+The app will be available at: http://localhost:8000
+
 ![](http://i.imgur.com/TKWwYgQ.png)
 ![](http://i.imgur.com/GBBXbuu.png)
 ![](http://i.imgur.com/J4inaXx.png)
