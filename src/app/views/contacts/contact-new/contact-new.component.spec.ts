@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactNewComponent } from './contact-new.component';
-import {ContactFormComponent} from '../../../components/contact-form/contact-form.component';
+import {ContactFormComponent} from '../../../core/components/contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import { reducers, APP_INIT_STATE } from '../../../store';
 import {RouterTestingModule} from '@angular/router/testing';
-import {ContactsService} from '../../../services/contacts.service';
+import {ContactsService} from '../../../core/services/contacts.service';
 import {Actions} from '@ngrx/effects';
 import {ContactsEffects} from '../store/effects/contacts-effects';
 import {HttpClientModule} from '@angular/common/http';

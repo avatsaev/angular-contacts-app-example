@@ -5,15 +5,12 @@ import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
-  template: `
-
-
+  template: `      
     <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
 
     <div class="container">
       <router-outlet></router-outlet>
     </div>
-  
   `
 })
 export class AppComponent implements OnInit {

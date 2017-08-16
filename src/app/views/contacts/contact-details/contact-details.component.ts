@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../../models/contact';
+import {Contact} from '../../../core/models/contact';
 import {Subscription} from 'rxjs/Subscription';
 
 

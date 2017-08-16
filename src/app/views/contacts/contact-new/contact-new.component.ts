@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Contact} from '../../../models/contact';
+import {Contact} from '../../../core/models/contact';
 import {ActionsSubject, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
