@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Contact} from '../../../models/contact';
+import {Contact} from '../../../core/models/contact';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
