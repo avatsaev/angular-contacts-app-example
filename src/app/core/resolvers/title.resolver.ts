@@ -3,8 +3,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import * as fromRootStore from '../store'
-import * as uiActions from '../store/actions/ui-actions';
+import * as fromRootStore from '../../store'
+import * as uiActions from '../../store/actions/ui-actions';
 import {Store} from '@ngrx/store';
 
 @Injectable()

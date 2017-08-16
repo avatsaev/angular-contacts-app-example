@@ -11,11 +11,17 @@
 
 This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md) to manage application state, and [@ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md) to manange side effects, It also uses ngrx 4 fractal state management to leverage lazy loading of reducers and effects.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.3
 
-![](http://i.imgur.com/nkUV9sU.png)
-![](https://i.imgur.com/GUtoW7j.png)
-![](https://i.imgur.com/105cDZF.png)
+You can run the app with docker compose:
+
+```
+$ docker-compose up
+```
+
+![](http://i.imgur.com/TKWwYgQ.png)
+![](http://i.imgur.com/GBBXbuu.png)
+![](http://i.imgur.com/J4inaXx.png)
 
 ## Development server
 

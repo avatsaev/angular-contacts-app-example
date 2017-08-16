@@ -5,7 +5,7 @@ import {ContactNewComponent} from './contact-new/contact-new.component';
 import {ContactsIndexComponent} from './contacts-index/contacts-index.component';
 import {ContactDetailsComponent} from './contact-details/contact-details.component';
 import {ContactEditComponent} from './contact-edit/contact-edit.component';
-import {TitleResolver} from '../../resolvers/title.resolver';
+import {TitleResolver} from '../../core/resolvers/title.resolver';
 
 const routes: Routes = [
   {

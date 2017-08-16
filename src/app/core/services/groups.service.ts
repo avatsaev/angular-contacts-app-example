@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Group} from '../models/group';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import * as _ from 'lodash';
 
 @Injectable()

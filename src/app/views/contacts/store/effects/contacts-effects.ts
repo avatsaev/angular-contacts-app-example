@@ -6,8 +6,8 @@ import * as contactsActions from '../actions/contacts-actions';
 
 import 'rxjs/add/operator/mergeMap';
 import {Actions, Effect} from '@ngrx/effects';
-import {Contact} from '../../../../models/contact';
-import {ContactsService} from '../../../../services/contacts.service';
+import {Contact} from '../../../../core/models/contact';
+import {ContactsService} from '../../../../core/services/contacts.service';
 
 
 @Injectable()

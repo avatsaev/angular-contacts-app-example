@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../../models/contact';
+import {Contact} from '../../../core/models/contact';
 import {Store, ActionsSubject} from '@ngrx/store';
 
 import {State} from '../store';
