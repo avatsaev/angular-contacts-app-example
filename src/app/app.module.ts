@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {SharedModule} from './modules/shared.module';
+import {SharedModule} from './core/modules/shared.module';
 
-import * as fromRootStore from './store';
+import * as fromRoot from '@app-root-store';
 
 
 
@@ -21,7 +21,7 @@ import * as fromRootStore from './store';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(fromRootStore.reducers), /* Initialise the Central Store with Application's main reducer*/
+    StoreModule.forRoot(fromRoot.reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],

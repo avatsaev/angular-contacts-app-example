@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {Contact} from '../../models/contact';
+import { Contact } from '@app-core/models';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 

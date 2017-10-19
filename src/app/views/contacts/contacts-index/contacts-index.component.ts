@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Contact} from '../../../core/models/contact';
+import { Contact } from '@app-core/models';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import * as fromContactsStore from '../store'
-import * as contactsActions from '../store/actions/contacts-actions';
-import * as fromRootStore from '../../../store';
+import * as fromContacts from '@app-contacts-store'
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import * as fromRoot from '@app-root-store';
 
 
 @Component({
@@ -18,12 +18,12 @@ export class ContactsIndexComponent implements OnInit {
 
   contacts$: Observable<Contact[]>;
 
-  constructor(public store: Store<fromRootStore.State>, private router: Router, private actR: ActivatedRoute) { }
+  constructor(public store: Store<fromRoot.State>, private router: Router, private actR: ActivatedRoute) { }
 
   ngOnInit() {
     // getAllContacts selector from the main store allows us to monitor changes only on contact list from the main state
     // without monitoring the rest of the state
-    this.contacts$ = this.store.select(fromContactsStore.getAllContacts);
+    this.contacts$ = this.store.select(fromContacts.getAllContacts);
     this.store.dispatch(new contactsActions.LoadAll());
   }
 

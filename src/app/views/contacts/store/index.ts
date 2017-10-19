@@ -1,5 +1,5 @@
 import * as fromContacts from './reducers/contacts-reducer'
-import * as fromRootStore from '../../../store'
+import * as fromRoot from '@app-root-store';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface ContactsState {
@@ -7,7 +7,7 @@ export interface ContactsState {
 }
 
 // This is a lazy loaded state, so we need to extend from the App Root State
-export interface State extends fromRootStore.State {
+export interface State extends fromRoot.State {
   'contacts': ContactsState
 }
 

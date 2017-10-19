@@ -2,13 +2,13 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../../core/models/contact';
+import { Contact } from '@app-core/models';
 import {Subscription} from 'rxjs/Subscription';
 
 
-import * as contactsActions from '../store/actions/contacts-actions'
-import * as fromContactsStore from '../store'
-import * as fromRootStore from '../../../store';
+import * as fromContacts from '@app-contacts-store'
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import * as fromRoot from '@app-root-store';
 
 @Component({
   selector: 'app-contact-details',
@@ -21,7 +21,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
   constructor(
-      private store: Store<fromRootStore.State>,
+      private store: Store<fromRoot.State>,
       private activatedRoute: ActivatedRoute,
       private router: Router,
       private actionsSubject: ActionsSubject
@@ -29,7 +29,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
+    this.contact$ = this.store.select(fromContacts.getCurrentContact);
 
     // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject

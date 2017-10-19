@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Contact} from '../../models/contact';
+import { Contact } from '@app-core/models';
 
 
 @Component({

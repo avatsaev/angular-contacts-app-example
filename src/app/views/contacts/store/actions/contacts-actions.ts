@@ -2,7 +2,7 @@
 
 
 import {Action} from '@ngrx/store';
-import {Contact} from '../../../../core/models/contact';
+import { Contact } from '@app-core/models';
 
 
 export const LOAD_ALL = '[Contacts] LOAD ALL';

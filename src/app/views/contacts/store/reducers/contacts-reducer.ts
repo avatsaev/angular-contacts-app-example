@@ -1,5 +1,5 @@
-import {Contact} from '../../../../core/models/contact';
-import * as contactsActions from '../actions/contacts-actions';
+import { Contact } from '@app-core/models';
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
 import * as _ from 'lodash';
 import {createSelector} from '@ngrx/store';
 

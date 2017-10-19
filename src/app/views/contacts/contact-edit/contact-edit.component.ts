@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Contact} from '../../../core/models/contact';
+import { Contact } from '@app-core/models';
 import {Store, ActionsSubject} from '@ngrx/store';
 
 import {State} from '../store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
-import * as fromContactsStore from '../store'
-import * as contactsActions from '../store/actions/contacts-actions'
+import * as fromContacts from '@app-contacts-store'
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
 
 
 @Component({
@@ -31,7 +31,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.contact$ = this.store.select(fromContactsStore.getCurrentContact);
+    this.contact$ = this.store.select(fromContacts.getCurrentContact);
 
     // If the update effect fires, we check if the current contact is the one being updated, and redirect to its details
     this.redirectSub = this.actionsSubject

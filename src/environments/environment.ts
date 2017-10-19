@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   appApi: {
-    baseUrl: 'http://localhost:8080/api/'
+    baseUrl: 'https://angular-contacts-ngrx.herokuapp.com/api/'
   }
 };

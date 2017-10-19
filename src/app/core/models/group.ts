@@ -1,4 +1,4 @@
-import {Contact} from './contact';
+import { Contact } from '@app-core/models';
 
 export interface Group {
   id?: number;
