@@ -15,6 +15,8 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 
 [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity) is released and available on NPM, @ngrx/entity helps to reduce boilerplate and [manipulate data](https://i.imgur.com/2IGdFRB.jpg) in a fast and easy fasion, you can find @ngrx/entity implementation in Contacts Reducer.
 
+
+## Get started 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8
 
 You can run the app with docker compose:
