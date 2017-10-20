@@ -26,7 +26,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
     this.redirectSub = this.actionsSubject
         .asObservable()
         .filter(action => action.type === contactsActions.CREATE_SUCCESS)
-        .subscribe((action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.payload.id]));
+        .subscribe((action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.contact.id]));
 
   }
 

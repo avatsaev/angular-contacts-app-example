@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'new',
         component: ContactNewComponent,
-        data: {title: 'New contact'},
+        data: {title: 'New id'},
         resolve: {title: TitleResolver}
       },
       {
@@ -33,7 +33,7 @@ const routes: Routes = [
       {
         path: ':contactId/edit',
         component: ContactEditComponent,
-        data: {title: 'Edit contact'},
+        data: {title: 'Edit id'},
         resolve: {title: TitleResolver}
       }
     ]

@@ -24,7 +24,7 @@ export const SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID';
 
 export class SetCurrentContactId implements Action {
   readonly type = SET_CURRENT_CONTACT_ID;
-  constructor(public payload?: number) {}
+  constructor(public id: number) {}
 }
 
 export class LoadAll implements Action {
@@ -33,48 +33,49 @@ export class LoadAll implements Action {
 
 export class Load implements Action {
   readonly type = LOAD;
-  constructor(public payload?: number) {}
+  constructor(public id: number) {}
 }
 
 export class Create implements Action {
   readonly type = CREATE;
-  constructor(public payload?: Contact) {}
+  constructor(public contact: Contact) {}
 }
 
 
 export class Update implements Action {
   readonly type = UPDATE;
-  constructor(public payload?: Contact) {}
+  constructor(public contact: Contact) {}
 }
 
 export class Delete implements Action {
   readonly type = DELETE;
-  constructor(public payload?: Contact) {}
+  constructor(public id: number) {}
 }
 
 export class LoadAllSuccess implements Action {
   readonly type = LOAD_ALL_SUCCESS;
-  constructor(public payload?: Contact[]) {}
+  constructor(public contacts: Contact[]) {}
 }
 
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public contact: Contact) {}
 }
 
 export class CreateSuccess implements Action {
   readonly type = CREATE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public contact: Contact) {}
 }
 
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public id: string,
+              public changes: Partial<Contact>) {}
 }
 
 export class DeleteSuccess implements Action {
   readonly type = DELETE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public contact: Contact) {}
 }
 
 export type All =

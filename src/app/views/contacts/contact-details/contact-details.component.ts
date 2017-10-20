@@ -31,15 +31,15 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
     this.contact$ = this.store.select(fromContacts.getCurrentContact);
 
-    // If the destroy effect fires, we check if the current contact is the one being viewed, and redirect to index
+    // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject
         .filter(action => action.type === contactsActions.DELETE_SUCCESS)
-        .filter((action: contactsActions.DeleteSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
+        .filter((action: contactsActions.DeleteSuccess) => action.contact.id === +this.activatedRoute.snapshot.params['contactId'])
         .subscribe(_ => this.router.navigate(['/contacts']));
 
 
     this.activatedRoute.params.subscribe(params => {
-      // update our contact from the backend in case it was modified by another client
+      // update our id from the backend in case it was modified by another client
       this.store.dispatch(new contactsActions.Load(+params['contactId']));
     })
 

@@ -21,7 +21,7 @@ export function reducer(state: State = INIT_CONTACTS_STATE, action: contactsActi
       return Object.assign(
             {},
             state,
-            {currentContactId: action.payload}
+            {currentContactId: action.id}
           )
     }
 
@@ -30,12 +30,12 @@ export function reducer(state: State = INIT_CONTACTS_STATE, action: contactsActi
       return Object.assign(
         {},
         state,
-        {contactList: action.payload}
+        {contactList: action}
       )
     }
 
     case contactsActions.LOAD_SUCCESS : {
-      return handleContactLoad(state, action.payload)
+      return handleContactLoad(state, action.contacts)
     }
 
     case contactsActions.CREATE_SUCCESS : {
@@ -89,7 +89,7 @@ function handleContactUpdate(state: State, payload: Contact): State {
 function handleContactDelete(state: State, payload: Contact ): State {
   const newState = Object.assign({}, state);
   newState.contactList = newState.contactList.filter( c => c.id !== payload.id);
-  return newState; // return new state without the deleted contact
+  return newState; // return new state without the deleted id
 }
 
 
