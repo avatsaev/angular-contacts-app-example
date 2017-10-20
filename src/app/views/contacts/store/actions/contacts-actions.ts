@@ -1,6 +1,3 @@
-
-
-
 import {Action} from '@ngrx/store';
 import { Contact } from '@app-core/models';
 
@@ -24,57 +21,58 @@ export const SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID';
 
 export class SetCurrentContactId implements Action {
   readonly type = SET_CURRENT_CONTACT_ID;
-  constructor(public payload?: number) {}
+  constructor(public payload: number) {}
 }
 
 export class LoadAll implements Action {
   readonly type = LOAD_ALL;
+  constructor(public payload = null) {}
 }
 
 export class Load implements Action {
   readonly type = LOAD;
-  constructor(public payload?: number) {}
+  constructor(public payload: number) {}
 }
 
 export class Create implements Action {
   readonly type = CREATE;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: Contact) {}
 }
 
 
 export class Update implements Action {
   readonly type = UPDATE;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: Contact) {}
 }
 
 export class Delete implements Action {
   readonly type = DELETE;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: number) {}
 }
 
 export class LoadAllSuccess implements Action {
   readonly type = LOAD_ALL_SUCCESS;
-  constructor(public payload?: Contact[]) {}
+  constructor(public payload: Contact[]) {}
 }
 
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: Contact) {}
 }
 
 export class CreateSuccess implements Action {
   readonly type = CREATE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: Contact) {}
 }
 
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: Contact) {}
 }
 
 export class DeleteSuccess implements Action {
   readonly type = DELETE_SUCCESS;
-  constructor(public payload?: Contact) {}
+  constructor(public payload: number) {}
 }
 
 export type All =

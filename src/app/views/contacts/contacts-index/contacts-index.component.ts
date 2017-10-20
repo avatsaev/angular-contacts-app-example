@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
@@ -12,7 +12,8 @@ import * as fromRoot from '@app-root-store';
 @Component({
   selector: 'app-contacts-index',
   templateUrl: './contacts-index.component.html',
-  styleUrls: ['./contacts-index.component.sass']
+  styleUrls: ['./contacts-index.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactsIndexComponent implements OnInit {
 
@@ -21,7 +22,7 @@ export class ContactsIndexComponent implements OnInit {
   constructor(public store: Store<fromRoot.State>, private router: Router, private actR: ActivatedRoute) { }
 
   ngOnInit() {
-    // getAllContacts selector from the main store allows us to monitor changes only on contact list from the main state
+    // getAllContacts selector from the main store allows us to monitor changes only on id list from the main state
     // without monitoring the rest of the state
     this.contacts$ = this.store.select(fromContacts.getAllContacts);
     this.store.dispatch(new contactsActions.LoadAll());
@@ -40,7 +41,7 @@ export class ContactsIndexComponent implements OnInit {
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
-      this.store.dispatch(new contactsActions.Delete(contact));
+      this.store.dispatch(new contactsActions.Delete(contact.id));
     }
   }
 

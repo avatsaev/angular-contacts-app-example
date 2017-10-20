@@ -8,7 +8,7 @@ export interface ContactsState {
 
 // This is a lazy loaded state, so we need to extend from the App Root State
 export interface State extends fromRoot.State {
-  'contacts': ContactsState
+  contacts: ContactsState
 }
 
 export const reducers = {
@@ -19,16 +19,21 @@ export const getContactsRootState = createFeatureSelector<ContactsState>('contac
 
 export const getContactsState = createSelector(
     getContactsRootState,
-    (state: ContactsState) => state.contacts
+    state => state.contacts
 );
 
-
-export const getAllContacts = createSelector(
-    getContactsState,
-    fromContacts.getAllContacts
+export const getSelectedContactId = createSelector(
+  getContactsState,
+  fromContacts.getCurrentContactId
 );
+
+export const {
+  selectAll: getAllContacts,
+  selectEntities: getContactEntities
+} = fromContacts.contactsAdapter.getSelectors(getContactsState);
 
 export const getCurrentContact = createSelector(
-    getContactsState,
-    fromContacts.getCurrentContact
+  getContactEntities,
+  getSelectedContactId,
+  (entities, id) => id && entities[id]
 );

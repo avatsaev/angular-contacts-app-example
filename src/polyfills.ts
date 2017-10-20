@@ -44,7 +44,7 @@ import 'core-js/es7/reflect';
 
 /**
  * Required to support Web Animations `@angular/animation`.
- * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
+ * Needed for: ContactsActions but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
@@ -63,7 +63,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 /**
  * Date, currency, decimal and percent pipes.
- * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
+ * Needed for: ContactsActions but Chrome, Firefox, Edge, IE11 and Safari 10
  */
 // import 'intl';  // Run `npm install --save intl`.
 /**

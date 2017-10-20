@@ -5,7 +5,7 @@ import {ContactDetailsComponent} from './contact-details/contact-details.compone
 import {ContactEditComponent} from './contact-edit/contact-edit.component';
 import {ContactNewComponent} from './contact-new/contact-new.component';
 import {ContactsIndexComponent} from './contacts-index/contacts-index.component';
-import {SharedModule} from '../../core/modules/shared.module';
+import {SharedModule} from '@app-core/modules/shared.module';
 import {ContactsRoutingModule} from './contacts-routing.module';
 import {StoreModule} from '@ngrx/store';
 import * as fromContacts from './store'
@@ -18,7 +18,7 @@ import {ContactsEffects} from './store/effects/contacts-effects';
     SharedModule,
     ContactsRoutingModule,
     StoreModule.forFeature('contacts', fromContacts.reducers),
-      EffectsModule.forFeature([ContactsEffects])
+    EffectsModule.forFeature([ContactsEffects])
   ],
   declarations: [
     ContactsComponent,
