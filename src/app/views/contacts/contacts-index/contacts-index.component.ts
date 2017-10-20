@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
@@ -12,7 +12,8 @@ import * as fromRoot from '@app-root-store';
 @Component({
   selector: 'app-contacts-index',
   templateUrl: './contacts-index.component.html',
-  styleUrls: ['./contacts-index.component.sass']
+  styleUrls: ['./contacts-index.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactsIndexComponent implements OnInit {
 

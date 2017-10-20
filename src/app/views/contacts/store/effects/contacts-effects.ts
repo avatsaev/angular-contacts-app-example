@@ -4,11 +4,14 @@ import {Action} from '@ngrx/store';
 
 import * as contactsActions from '../actions/contacts-actions';
 
-import 'rxjs/add/operator/mergeMap';
+
 import {Actions, Effect} from '@ngrx/effects';
 import { Contact } from '@app-core/models';
 import {ContactsService} from '@app-core/services/contacts.service';
 
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class ContactsEffects {
@@ -27,7 +30,7 @@ export class ContactsEffects {
   @Effect()
   load$: Observable<Action> = this.actions$
       .ofType(contactsActions.LOAD)
-      .map( (action: contactsActions.Load ) => action.id)
+      .map( (action: contactsActions.Load ) => action.payload)
       .switchMap((id) =>
           this.contactsService.show(id)
               .mergeMap( (contact: Contact) => {
@@ -41,26 +44,34 @@ export class ContactsEffects {
   @Effect()
   create$: Observable<Action> = this.actions$
       .ofType(contactsActions.CREATE)
-      .map((action: contactsActions.Create) => action.contact)
+      .map((action: contactsActions.Create) => action.payload)
       .switchMap((contact) =>
           this.contactsService.create(contact)
               .map( (createdContact: Contact) => new contactsActions.CreateSuccess(createdContact))
+              .catch(err => {
+                alert(err['error']['error']['message']);
+                return Observable.empty()
+              })
       );
 
   @Effect()
   update$: Observable<Action> = this.actions$
       .ofType(contactsActions.UPDATE)
-      .map((action: contactsActions.Update) => action.contact)
+      .map((action: contactsActions.Update) => action.payload)
       .switchMap((contact) =>
           this.contactsService.update(contact)
               .map( (updatedContact: Contact) => new contactsActions.UpdateSuccess(updatedContact))
+              .catch(err => {
+                alert(err['error']['error']['message']);
+                return Observable.empty()
+              })
       );
 
 
   @Effect()
   destroy$: Observable<Action> = this.actions$
       .ofType(contactsActions.DELETE)
-      .map((action: contactsActions.Delete) => action.id)
+      .map((action: contactsActions.Delete) => action.payload)
       .switchMap((id: number) =>
           this.contactsService.destroy(id)
               .map( () => new contactsActions.DeleteSuccess(id))

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {ActionsSubject, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/Subscription';
@@ -10,7 +10,8 @@ import * as fromRoot from '@app-root-store';
 @Component({
   selector: 'app-contact-new',
   templateUrl: './contact-new.component.html',
-  styleUrls: ['./contact-new.component.sass']
+  styleUrls: ['./contact-new.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactNewComponent implements OnInit, OnDestroy {
 
@@ -26,7 +27,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
     this.redirectSub = this.actionsSubject
         .asObservable()
         .filter(action => action.type === contactsActions.CREATE_SUCCESS)
-        .subscribe((action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.contact.id]));
+        .subscribe((action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.payload.id]));
 
   }
 

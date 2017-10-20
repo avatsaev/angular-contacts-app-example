@@ -1,10 +1,12 @@
 import { Contact } from '@app-core/models';
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
-import {createSelector} from '@ngrx/store';
 import {EntityState, createEntityAdapter} from '@ngrx/entity';
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
 
-
-const contactsAdapter = createEntityAdapter<Contact>();
+// This adapter will allow is to manipulate contacts (mostly CRUD operations)
+export const contactsAdapter = createEntityAdapter<Contact>({
+  selectId: (contact: Contact) => contact.id,
+  sortComparer: false
+});
 
 // -----------------------------------------
 // The shape of EntityState
@@ -20,42 +22,44 @@ export interface State extends EntityState<Contact>{
   currentContactId?: number
 }
 
-export const INIT_STATE: State = {
-  ...contactsAdapter.getInitialState(),
+export const INIT_STATE: State = contactsAdapter.getInitialState({
   currentContactId: undefined
-} as State;
+});
 
 
 
-export function reducer(state: State = INIT_STATE, action) {
+export function reducer(
+  state: State = INIT_STATE,
+  {type, payload}: contactsActions.All
+){
 
-  switch (action.type) {
+  switch (type) {
 
     case contactsActions.SET_CURRENT_CONTACT_ID : {
-      return {...state, currentContactId: action.id}
+      return {...state, currentContactId: payload}
     }
 
 
     case contactsActions.LOAD_ALL_SUCCESS : {
-      return {...state, ...contactsAdapter.addAll(action.contacts, state)}
+      return {...state, ...contactsAdapter.addAll(payload as Contact[], state)}
     }
 
     case contactsActions.LOAD_SUCCESS || contactsActions.CREATE_SUCCESS : {
-      return {...state, ...contactsAdapter.addOne(action.contact, state)}
+      return {...state, ...contactsAdapter.addOne(payload as Contact, state)}
     }
 
     case contactsActions.UPDATE_SUCCESS : {
       return {
         ...state,
         ...contactsAdapter.updateOne({
-          id: action.id,
-          changes: action.changes
+          id: payload.id,
+          changes: payload
         }, state)
       }
     }
 
     case contactsActions.DELETE_SUCCESS : {
-      return {...state, ...contactsAdapter.removeOne(action.id, state)}
+      return {...state, ...contactsAdapter.removeOne(payload, state)}
     }
 
     default: {
@@ -65,18 +69,4 @@ export function reducer(state: State = INIT_STATE, action) {
   }
 }
 
-
-export const {
-  selectEntities,
-  selectAll,
-} = contactsAdapter.getSelectors();
-
-export const getCurrentContactId = (state: State): number => state.currentContactId;
-
-export const getCurrentContact = createSelector(
-  selectEntities,
-  getCurrentContactId,
-  (entities: { [id: number]: Contact}, id: number) => entities[id]
-);
-
-
+export const getCurrentContactId = (state: State) => state.currentContactId;

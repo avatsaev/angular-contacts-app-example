@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
@@ -13,7 +13,8 @@ import * as fromRoot from '@app-root-store';
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.sass']
+  styleUrls: ['./contact-details.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactDetailsComponent implements OnInit, OnDestroy {
 
@@ -34,7 +35,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
     // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject
         .filter(action => action.type === contactsActions.DELETE_SUCCESS)
-        .filter((action: contactsActions.DeleteSuccess) => action.id === +this.activatedRoute.snapshot.params['contactId'])
+        .filter((action: contactsActions.DeleteSuccess) => action.payload === +this.activatedRoute.snapshot.params['contactId'])
         .subscribe(_ => this.router.navigate(['/contacts']));
 
 
