@@ -15,6 +15,8 @@ export class ContactListComponent implements OnInit {
   @Output() onShow = new EventEmitter<Contact>();
   @Output() onDelete = new EventEmitter<Contact>();
 
+  contactsTrackByFn = (index: number, contact: Contact) => contact.id;
+
   constructor() {}
 
   ngOnInit() {}
