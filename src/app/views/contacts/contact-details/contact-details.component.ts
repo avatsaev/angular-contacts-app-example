@@ -34,7 +34,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
     // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject
         .filter(action => action.type === contactsActions.DELETE_SUCCESS)
-        .filter((action: contactsActions.DeleteSuccess) => action.contact.id === +this.activatedRoute.snapshot.params['contactId'])
+        .filter((action: contactsActions.DeleteSuccess) => action.id === +this.activatedRoute.snapshot.params['contactId'])
         .subscribe(_ => this.router.navigate(['/contacts']));
 
 
@@ -57,7 +57,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
-      this.store.dispatch(new contactsActions.Delete(contact));
+      this.store.dispatch(new contactsActions.Delete(contact.id));
     }
   }
 

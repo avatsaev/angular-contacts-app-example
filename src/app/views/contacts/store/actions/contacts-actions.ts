@@ -69,13 +69,12 @@ export class CreateSuccess implements Action {
 
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
-  constructor(public id: string,
-              public changes: Partial<Contact>) {}
+  constructor(public contact: Contact) {}
 }
 
 export class DeleteSuccess implements Action {
   readonly type = DELETE_SUCCESS;
-  constructor(public contact: Contact) {}
+  constructor(public id: number) {}
 }
 
 export type All =

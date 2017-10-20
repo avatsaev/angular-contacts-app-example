@@ -40,7 +40,7 @@ export class ContactsIndexComponent implements OnInit {
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
-      this.store.dispatch(new contactsActions.Delete(contact));
+      this.store.dispatch(new contactsActions.Delete(contact.id));
     }
   }
 

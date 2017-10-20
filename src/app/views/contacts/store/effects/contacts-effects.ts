@@ -61,9 +61,9 @@ export class ContactsEffects {
   destroy$: Observable<Action> = this.actions$
       .ofType(contactsActions.DELETE)
       .map((action: contactsActions.Delete) => action.id)
-      .switchMap((contact) =>
-          this.contactsService.destroy(contact)
-              .map( () => new contactsActions.DeleteSuccess(contact))
+      .switchMap((id: number) =>
+          this.contactsService.destroy(id)
+              .map( () => new contactsActions.DeleteSuccess(id))
       );
 
   constructor(

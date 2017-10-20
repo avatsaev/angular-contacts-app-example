@@ -1,53 +1,61 @@
 import { Contact } from '@app-core/models';
 import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
-import * as _ from 'lodash';
 import {createSelector} from '@ngrx/store';
+import {EntityState, createEntityAdapter} from '@ngrx/entity';
 
-export interface State {
-  contactList: Contact[];
+
+const contactsAdapter = createEntityAdapter<Contact>();
+
+// -----------------------------------------
+// The shape of EntityState
+// ------------------------------------------
+// interface EntityState<Contact> {
+//   ids: string[];
+//   entities: { [id: string]: Contact };
+// }
+// -----------------------------------------
+// -> ids arrays allow us to sort data easily
+// -> entities map allows us to access the data quickly without iterating/filtering though an array of objects
+export interface State extends EntityState<Contact>{
   currentContactId?: number
 }
 
-export const INIT_CONTACTS_STATE: State = {
-  contactList: [],
+export const INIT_STATE: State = {
+  ...contactsAdapter.getInitialState(),
   currentContactId: undefined
-};
+} as State;
 
-export function reducer(state: State = INIT_CONTACTS_STATE, action: contactsActions.All) {
+
+
+export function reducer(state: State = INIT_STATE, action) {
 
   switch (action.type) {
 
     case contactsActions.SET_CURRENT_CONTACT_ID : {
-      return Object.assign(
-            {},
-            state,
-            {currentContactId: action.id}
-          )
+      return {...state, currentContactId: action.id}
     }
 
 
     case contactsActions.LOAD_ALL_SUCCESS : {
-      return Object.assign(
-        {},
-        state,
-        {contactList: action}
-      )
+      return {...state, ...contactsAdapter.addAll(action.contacts, state)}
     }
 
-    case contactsActions.LOAD_SUCCESS : {
-      return handleContactLoad(state, action.contacts)
-    }
-
-    case contactsActions.CREATE_SUCCESS : {
-      return handleContactCreate(state, action.payload);
+    case contactsActions.LOAD_SUCCESS || contactsActions.CREATE_SUCCESS : {
+      return {...state, ...contactsAdapter.addOne(action.contact, state)}
     }
 
     case contactsActions.UPDATE_SUCCESS : {
-      return handleContactUpdate(state, action.payload);
+      return {
+        ...state,
+        ...contactsAdapter.updateOne({
+          id: action.id,
+          changes: action.changes
+        }, state)
+      }
     }
 
     case contactsActions.DELETE_SUCCESS : {
-      return handleContactDelete(state, action.payload);
+      return {...state, ...contactsAdapter.removeOne(action.id, state)}
     }
 
     default: {
@@ -58,44 +66,17 @@ export function reducer(state: State = INIT_CONTACTS_STATE, action: contactsActi
 }
 
 
-// Action Handlers (all handlers must be pure functions)
-
-
-function handleContactLoad(state: State, payload: Contact): State {
-
-  const newState = Object.assign({}, state);
-  newState.contactList = _.unionBy([payload], newState.contactList, 'id');
-
-  return newState; // return new contacts state without modifying the input
-}
-
-function handleContactCreate(state: State, payload: Contact): State {
-  const newState = Object.assign({}, state); // Clone original state
-  newState.contactList = _.unionBy([payload], newState.contactList, 'id');
-  return newState; // return new state without modifying the input
-}
-
-
-function handleContactUpdate(state: State, payload: Contact): State {
-
-  const newState = Object.assign({}, state);
-  newState.contactList = _.unionBy([payload], newState.contactList, 'id');
-
-  return newState;
-
-}
-
-
-function handleContactDelete(state: State, payload: Contact ): State {
-  const newState = Object.assign({}, state);
-  newState.contactList = newState.contactList.filter( c => c.id !== payload.id);
-  return newState; // return new state without the deleted id
-}
-
-
-// SELECTORS (all selectors must be pure functions)
+export const {
+  selectEntities,
+  selectAll,
+} = contactsAdapter.getSelectors();
 
 export const getCurrentContactId = (state: State): number => state.currentContactId;
-export const getAllContacts = (state: State): Contact[] => state.contactList;
-export const getContactById = (contacts: Contact[], id: number): Contact => _.find(contacts, {id});
-export const getCurrentContact = createSelector(getAllContacts, getCurrentContactId, getContactById);
+
+export const getCurrentContact = createSelector(
+  selectEntities,
+  getCurrentContactId,
+  (entities: { [id: number]: Contact}, id: number) => entities[id]
+);
+
+

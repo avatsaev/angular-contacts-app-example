@@ -25,7 +25,7 @@ export const getContactsState = createSelector(
 
 export const getAllContacts = createSelector(
     getContactsState,
-    fromContacts.getAllContacts
+    fromContacts.selectAll
 );
 
 export const getCurrentContact = createSelector(

@@ -34,8 +34,8 @@ export class ContactsService {
   }
 
 
-  destroy(contact: Contact): Observable<Contact> {
-    return this.http.delete<Contact>(`${environment.appApi.baseUrl}/contacts/${contact.id}`)
+  destroy(id: number): Observable<Contact> {
+    return this.http.delete<Contact>(`${environment.appApi.baseUrl}/contacts/${id}`)
   }
 
 }
