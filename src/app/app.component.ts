@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import * as fromRoot from '@app-root-store';
 import {Store} from '@ngrx/store';
@@ -11,7 +11,8 @@ import {Store} from '@ngrx/store';
     <div class="container">
       <router-outlet></router-outlet>
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
