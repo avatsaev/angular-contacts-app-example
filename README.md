@@ -7,7 +7,7 @@
 
 *Backend is available here: https://github.com/avatsaev/angular-contacts-app-example-api*
 
-**DEMO: http://angular-contacts-ngrx.surge.sh (sorry folks, the backend wen't down, no more free Dyno hours left lol)**
+**DEMO: http://angular-contacts-ngrx.surge.sh (sorry folks, the backend went down, no more free Dyno hours left lol)**
 
 This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md) to manage application state, and [@ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md) to manange side effects, It also uses ngrx 4 fractal state management to leverage lazy loading of reducers and effects.
 
