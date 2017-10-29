@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   appApi: {
-    baseUrl: 'https://angular-contacts-ngrx.herokuapp.com/api/'
+    baseUrl: 'http://api.angular-contacts-app.vatsaev.com/api/'
   }
 };
