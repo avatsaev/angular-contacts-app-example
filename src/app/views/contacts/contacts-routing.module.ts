@@ -16,28 +16,31 @@ const routes: Routes = [
         path: '',
         component: ContactsIndexComponent,
         data: {title: 'Contacts index'},
+        pathMatch: 'full',
         resolve: {title: TitleResolver}
       },
       {
         path: 'new',
         component: ContactNewComponent,
         data: {title: 'New contact'},
+        pathMatch: 'full',
         resolve: {title: TitleResolver}
       },
       {
         path: ':contactId',
         component: ContactDetailsComponent,
         data: {title: 'Contact details'},
+        pathMatch: 'full',
         resolve: {title: TitleResolver}
       },
       {
         path: ':contactId/edit',
         component: ContactEditComponent,
         data: {title: 'Edit contact'},
+        pathMatch: 'full',
         resolve: {title: TitleResolver}
       }
     ]
-
   }
 ];
 

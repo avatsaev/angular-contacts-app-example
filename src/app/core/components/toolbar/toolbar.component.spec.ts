@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarComponent } from './toolbar.component';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from '../../../app-routing.module';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -8,7 +11,9 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToolbarComponent ]
+      imports: [AppRoutingModule],
+      declarations: [ ToolbarComponent ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     })
     .compileComponents();
   }));

@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import { Contact } from '@app-core/models';
+import {Update} from '@ngrx/entity/src/models';
 
 
 export const LOAD_ALL = '[Contacts] LOAD ALL';
@@ -11,11 +12,13 @@ export const LOAD_SUCCESS = '[Contacts] LOAD SUCCESS';
 export const CREATE = '[Contacts] CREATE';
 export const CREATE_SUCCESS = '[Contacts] CREATE SUCCESS';
 
-export const UPDATE = '[Contacts] UPDATE';
-export const UPDATE_SUCCESS = '[Contacts] UPDATE SUCCESS';
+export const PATCH = '[Contacts] PATCH';
+export const PATCH_SUCCESS = '[Contacts] PATCH SUCCESS';
 
 export const DELETE = '[Contacts] DELETE';
 export const DELETE_SUCCESS = '[Contacts] DELETE SUCCESS';
+
+export const FAILURE = '[Contacts] FAILURE';
 
 export const SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID';
 
@@ -40,8 +43,8 @@ export class Create implements Action {
 }
 
 
-export class Update implements Action {
-  readonly type = UPDATE;
+export class Patch implements Action {
+  readonly type = PATCH;
   constructor(public payload: Contact) {}
 }
 
@@ -65,9 +68,9 @@ export class CreateSuccess implements Action {
   constructor(public payload: Contact) {}
 }
 
-export class UpdateSuccess implements Action {
-  readonly type = UPDATE_SUCCESS;
-  constructor(public payload: Contact) {}
+export class PatchSuccess implements Action {
+  readonly type = PATCH_SUCCESS;
+  constructor(public payload: Update<Contact>) {}
 }
 
 export class DeleteSuccess implements Action {
@@ -75,15 +78,21 @@ export class DeleteSuccess implements Action {
   constructor(public payload: number) {}
 }
 
+export class Failure implements Action {
+  readonly type = FAILURE;
+  constructor (public payload: {concern: 'CREATE' | 'PATCH', error: any}) {}
+}
+
 export type All =
     | SetCurrentContactId
     | LoadAll
     | Load
     | Create
-    | Update
+    | Patch
     | Delete
     | LoadAllSuccess
     | LoadSuccess
-    | UpdateSuccess
+    | PatchSuccess
     | CreateSuccess
     | DeleteSuccess
+    | Failure

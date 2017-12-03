@@ -36,9 +36,9 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
     // If the update effect fires, we check if the current id is the one being updated, and redirect to its details
     this.redirectSub = this.actionsSubject
-        .filter(action => action.type === contactsActions.UPDATE_SUCCESS)
-        .filter((action: contactsActions.UpdateSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
-        .subscribe((action: contactsActions.UpdateSuccess) => this.router.navigate(['/contacts', action.payload.id]));
+        .filter(action => action.type === contactsActions.PATCH_SUCCESS)
+        .filter((action: contactsActions.PatchSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
+        .subscribe((action: contactsActions.PatchSuccess) => this.router.navigate(['/contacts', action.payload.id]));
 
     this.activatedRoute.params.subscribe(params => {
       // update our id from the backend in case it was modified by another client
@@ -52,7 +52,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   }
 
   submitted(contact: Contact) {
-    this.store.dispatch(new contactsActions.Update(contact));
+    this.store.dispatch(new contactsActions.Patch(contact));
   }
 
 }

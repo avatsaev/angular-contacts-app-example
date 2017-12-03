@@ -50,20 +50,20 @@ export class ContactsEffects {
               .map( (createdContact: Contact) => new contactsActions.CreateSuccess(createdContact))
               .catch(err => {
                 alert(err['error']['error']['message']);
-                return Observable.empty()
+                return Observable.of(new contactsActions.Failure({concern: 'CREATE', error: err}));
               })
       );
 
   @Effect()
   update$: Observable<Action> = this.actions$
-      .ofType(contactsActions.UPDATE)
-      .map((action: contactsActions.Update) => action.payload)
-      .switchMap((contact) =>
+      .ofType(contactsActions.PATCH)
+      .map((action: contactsActions.Patch) => action.payload)
+      .switchMap((contact: Contact) =>
           this.contactsService.update(contact)
-              .map( (updatedContact: Contact) => new contactsActions.UpdateSuccess(updatedContact))
+              .map( (updatedContact: Contact) => new contactsActions.PatchSuccess({id: updatedContact.id, changes: updatedContact}))
               .catch(err => {
                 alert(err['error']['error']['message']);
-                return Observable.empty()
+                return Observable.of(new contactsActions.Failure({concern: 'PATCH', error: err}));
               })
       );
 

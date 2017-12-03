@@ -1,16 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactDetailsComponent } from './contact-details.component';
-import {ContactDetailsContainerComponent} from '../../../core/components/contact-details/contact-details-container.component';
-import {StoreModule} from '@ngrx/store';
+
+import {combineReducers, StoreModule} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
-import { reducers, APP_INIT_STATE } from '../../../store';
+import * as fromContacts from '@app-contacts-store'
 import {ContactsEffects} from '../store/effects/contacts-effects';
 import {Actions} from '@ngrx/effects';
-import {ContactsService} from '../../../core/services/contacts.service';
+import * as fromRoot from '@app-root-store'
+
 import {HttpClientModule} from '@angular/common/http';
+import {ContactDetailsContainerComponent} from '@app-core/components/contact-details/contact-details-container.component';
+import {ContactsService} from '@app-core/services/contacts.service';
 
 
 describe('ContactDetailsComponent', () => {
@@ -21,9 +24,12 @@ describe('ContactDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContactDetailsComponent, ContactDetailsContainerComponent],
       imports: [
-        StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}),
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        StoreModule.forRoot({
+            ...fromRoot.reducers,
+            'contacts': combineReducers(fromContacts.reducers)
+        })
       ],
       providers: [
         ContactsEffects,

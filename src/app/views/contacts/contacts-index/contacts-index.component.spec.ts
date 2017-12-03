@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import * as fromRoot from '@app-root-store'
+import * as fromContacts from '@app-contacts-store'
 import { ContactsIndexComponent } from './contacts-index.component';
-import {ContactListComponent} from '../../../core/components/contact-list/contact-list.component';
-import {StoreModule} from '@ngrx/store';
-import { reducers, APP_INIT_STATE } from '../../../store';
+import {combineReducers, StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
+import {ContactListComponent} from '@app-core/components/contact-list/contact-list.component';
 
 
 describe('ContactsIndexComponent', () => {
@@ -13,8 +13,15 @@ describe('ContactsIndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+
       declarations: [ ContactsIndexComponent, ContactListComponent ],
-      imports: [StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}), RouterTestingModule],
+      imports: [
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          'contacts': combineReducers(fromContacts.reducers)
+        }),
+        RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

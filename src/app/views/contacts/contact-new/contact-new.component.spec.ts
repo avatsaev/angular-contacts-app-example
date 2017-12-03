@@ -1,15 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactNewComponent } from './contact-new.component';
-import {ContactFormComponent} from '../../../core/components/contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {StoreModule} from '@ngrx/store';
-import { reducers, APP_INIT_STATE } from '../../../store';
+import {combineReducers, StoreModule} from '@ngrx/store';
+import * as fromContacts from '@app-contacts-store'
 import {RouterTestingModule} from '@angular/router/testing';
-import {ContactsService} from '../../../core/services/contacts.service';
 import {Actions} from '@ngrx/effects';
 import {ContactsEffects} from '../store/effects/contacts-effects';
 import {HttpClientModule} from '@angular/common/http';
+import {ContactFormComponent} from '@app-core/components/contact-form/contact-form.component';
+import {ContactsService} from '@app-core/services/contacts.service';
+import * as fromRoot from '@app-root-store'
 
 
 describe('ContactNewComponent', () => {
@@ -21,7 +22,10 @@ describe('ContactNewComponent', () => {
       declarations: [ ContactNewComponent, ContactFormComponent ],
       imports: [
         ReactiveFormsModule,
-        StoreModule.forRoot(reducers, {initialState: APP_INIT_STATE}),
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          'contacts': combineReducers(fromContacts.reducers)
+        }),
         RouterTestingModule,
         HttpClientModule
       ],

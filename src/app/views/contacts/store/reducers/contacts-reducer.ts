@@ -1,6 +1,7 @@
 import { Contact } from '@app-core/models';
 import {EntityState, createEntityAdapter} from '@ngrx/entity';
 import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import {Update} from '@ngrx/entity/src/models';
 
 // This adapter will allow is to manipulate contacts (mostly CRUD operations)
 export const contactsAdapter = createEntityAdapter<Contact>({
@@ -18,7 +19,7 @@ export const contactsAdapter = createEntityAdapter<Contact>({
 // -----------------------------------------
 // -> ids arrays allow us to sort data easily
 // -> entities map allows us to access the data quickly without iterating/filtering though an array of objects
-export interface State extends EntityState<Contact>{
+export interface State extends EntityState<Contact> {
   currentContactId?: number
 }
 
@@ -48,18 +49,15 @@ export function reducer(
       return {...state, ...contactsAdapter.addOne(payload as Contact, state)}
     }
 
-    case contactsActions.UPDATE_SUCCESS : {
+    case contactsActions.PATCH_SUCCESS : {
       return {
         ...state,
-        ...contactsAdapter.updateOne({
-          id: payload.id,
-          changes: payload
-        }, state)
+        ...contactsAdapter.updateOne(payload as Update<Contact>, state)
       }
     }
 
     case contactsActions.DELETE_SUCCESS : {
-      return {...state, ...contactsAdapter.removeOne(payload, state)}
+      return {...state, ...contactsAdapter.removeOne(payload as number, state)}
     }
 
     default: {
