@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import * as fromRoot from '@app-root-store';
 import * as uiActions from '../../store/actions/ui-actions';
 import {Store} from '@ngrx/store';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 
@@ -17,7 +18,7 @@ export class TitleResolver implements Resolve<string> {
 
     this.store.dispatch(new uiActions.SetCurrentTitle(route.data['title']));
 
-    return Observable.of(route.data['title']);
+    return of(route.data['title']);
 
   }
 }

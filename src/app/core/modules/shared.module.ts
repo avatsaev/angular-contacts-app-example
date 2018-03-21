@@ -6,7 +6,6 @@ import {ContactDetailsContainerComponent} from '../components/contact-details/co
 import {ContactsService} from '../services/contacts.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {GroupsService} from '../services/groups.service';
 import {RouterModule} from '@angular/router';
 import {ToolbarComponent} from '../components/toolbar/toolbar.component';
 import {TitleResolver} from '../resolvers/title.resolver';
@@ -31,6 +30,6 @@ import {TitleResolver} from '../resolvers/title.resolver';
     RouterModule,
     ToolbarComponent
   ],
-  providers: [ContactsService, GroupsService, TitleResolver]
+  providers: [ContactsService, TitleResolver]
 })
 export class SharedModule { }

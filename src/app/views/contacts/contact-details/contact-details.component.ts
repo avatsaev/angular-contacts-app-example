@@ -9,6 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
 import * as fromContacts from '@app-contacts-store'
 import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
 import * as fromRoot from '@app-root-store';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-details',
@@ -33,10 +34,17 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
     this.contact$ = this.store.select(fromContacts.getCurrentContact);
 
     // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
-    this.redirectSub = this.actionsSubject
-        .filter(action => action.type === contactsActions.DELETE_SUCCESS)
-        .filter((action: contactsActions.DeleteSuccess) => action.payload === +this.activatedRoute.snapshot.params['contactId'])
-        .subscribe(_ => this.router.navigate(['/contacts']));
+    this.redirectSub = this.actionsSubject.pipe(
+        filter(action => action.type === contactsActions.DELETE_SUCCESS),
+        filter((action: contactsActions.DeleteSuccess) =>
+          action.payload === +this.activatedRoute.snapshot.params['contactId'])
+  ).subscribe(_ => this.router.navigate(['/contacts']));
+
+    this.redirectSub = this.actionsSubject.pipe(
+      filter(action => action.type === contactsActions.DELETE_SUCCESS),
+    ).subscribe(
+      _ => this.router.navigate(['/contacts'])
+    );
 
 
     this.activatedRoute.params.subscribe(params => {

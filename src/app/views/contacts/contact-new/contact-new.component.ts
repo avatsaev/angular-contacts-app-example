@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 
 import * as contactsActions from '../store/actions/contacts-actions'
 import * as fromRoot from '@app-root-store';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-new',
@@ -24,10 +25,11 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.redirectSub = this.actionsSubject
-        .asObservable()
-        .filter(action => action.type === contactsActions.CREATE_SUCCESS)
-        .subscribe((action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.payload.id]));
+    this.redirectSub = this.actionsSubject.asObservable().pipe(
+      filter(action => action.type === contactsActions.CREATE_SUCCESS)
+    ).subscribe(
+      (action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.payload.id])
+    );
 
   }
 

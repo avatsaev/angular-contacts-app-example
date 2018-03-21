@@ -32,7 +32,7 @@ export const INIT_STATE: State = contactsAdapter.getInitialState({
 export function reducer(
   state: State = INIT_STATE,
   {type, payload}: contactsActions.All
-){
+) {
 
   switch (type) {
 
