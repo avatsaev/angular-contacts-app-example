@@ -4,7 +4,7 @@
 
 
 <app-contact-list [contacts]="contacts$ | async"
-                  (onShow)="showContact($event)"
-                  (onDelete)="deleteContact($event)"
-                  (onEdit)="editContact($event)"
+                  (show)="showContact($event)"
+                  (remove)="deleteContact($event)"
+                  (edit)="editContact($event)"
 ></app-contact-list>

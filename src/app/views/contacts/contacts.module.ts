@@ -8,7 +8,7 @@ import {ContactsIndexComponent} from './contacts-index/contacts-index.component'
 import {SharedModule} from '@app-core/modules/shared.module';
 import {ContactsRoutingModule} from './contacts-routing.module';
 import {StoreModule} from '@ngrx/store';
-import * as fromContacts from './store'
+import * as fromContacts from './store';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactsEffects} from './store/effects/contacts-effects';
 

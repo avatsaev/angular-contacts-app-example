@@ -1,13 +1,12 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Store, ActionsSubject} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {Observable, Subscription} from 'rxjs';
 import { Contact } from '@app-core/models';
-import {Subscription} from 'rxjs/Subscription';
 
 
-import * as fromContacts from '@app-contacts-store'
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import * as fromContacts from '@app-contacts-store';
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions';
 import * as fromRoot from '@app-root-store';
 import {filter} from 'rxjs/operators';
 
@@ -50,7 +49,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(params => {
       // update our id from the backend in case it was modified by another client
       this.store.dispatch(new contactsActions.Load(+params['contactId']));
-    })
+    });
 
   }
 

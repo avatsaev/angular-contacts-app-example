@@ -3,7 +3,7 @@ import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/sto
 import * as fromUi from './reducers/ui-reducer';
 
 export interface State {
-  ui: fromUi.UiState
+  ui: fromUi.UiState;
   // more state here
 }
 

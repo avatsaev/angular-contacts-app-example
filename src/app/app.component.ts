@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import * as fromRoot from '@app-root-store';
 import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
-  template: `      
+  template: `
     <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
 
     <div class="container">

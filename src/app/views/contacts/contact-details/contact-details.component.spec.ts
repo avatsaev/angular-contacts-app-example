@@ -5,11 +5,11 @@ import { ContactDetailsComponent } from './contact-details.component';
 import {combineReducers, StoreModule} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
-import {Observable} from 'rxjs/Observable';
-import * as fromContacts from '@app-contacts-store'
+import {Observable} from 'rxjs';
+import * as fromContacts from '@app-contacts-store';
 import {ContactsEffects} from '../store/effects/contacts-effects';
 import {Actions} from '@ngrx/effects';
-import * as fromRoot from '@app-root-store'
+import * as fromRoot from '@app-root-store';
 
 import {HttpClientModule} from '@angular/common/http';
 import {ContactDetailsContainerComponent} from '@app-core/components/contact-details/contact-details-container.component';

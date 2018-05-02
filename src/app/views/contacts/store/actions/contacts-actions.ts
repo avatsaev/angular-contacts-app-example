@@ -95,4 +95,4 @@ export type All =
     | PatchSuccess
     | CreateSuccess
     | DeleteSuccess
-    | Failure
+    | Failure;

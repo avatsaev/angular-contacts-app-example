@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import * as fromContacts from '@app-contacts-store'
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import * as fromContacts from '@app-contacts-store';
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions';
 import * as fromRoot from '@app-root-store';
 
 
@@ -30,12 +30,12 @@ export class ContactsIndexComponent implements OnInit {
 
   editContact(contact: Contact) {
     this.store.dispatch(new contactsActions.SetCurrentContactId(contact.id));
-    this.router.navigate(['/contacts', contact.id, 'edit'])
+    this.router.navigate(['/contacts', contact.id, 'edit']);
   }
 
   showContact(contact: Contact) {
     this.store.dispatch(new contactsActions.SetCurrentContactId(contact.id));
-    this.router.navigate(['/contacts', contact.id])
+    this.router.navigate(['/contacts', contact.id]);
   }
 
   deleteContact(contact: Contact) {

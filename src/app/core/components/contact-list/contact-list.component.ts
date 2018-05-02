@@ -11,9 +11,9 @@ export class ContactListComponent implements OnInit {
 
 
   @Input() contacts: Contact[];
-  @Output() onEdit = new EventEmitter<Contact>();
-  @Output() onShow = new EventEmitter<Contact>();
-  @Output() onDelete = new EventEmitter<Contact>();
+  @Output() edit = new EventEmitter<Contact>();
+  @Output() show = new EventEmitter<Contact>();
+  @Output() remove = new EventEmitter<Contact>();
 
   contactsTrackByFn = (index: number, contact: Contact) => contact.id;
 
@@ -23,15 +23,15 @@ export class ContactListComponent implements OnInit {
 
 
   showDetails(contact: Contact) {
-    this.onShow.emit(contact);
+    this.show.emit(contact);
   }
 
   editContact(contact: Contact) {
-    this.onEdit.emit(contact)
+    this.edit.emit(contact);
   }
 
   deleteContact(contact: Contact) {
-    this.onDelete.emit(contact)
+    this.remove.emit(contact);
   }
 
 }

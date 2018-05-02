@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {ActionsSubject, Store} from '@ngrx/store';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
-import * as contactsActions from '../store/actions/contacts-actions'
+import * as contactsActions from '../store/actions/contacts-actions';
 import * as fromRoot from '@app-root-store';
 import {filter} from 'rxjs/operators';
 

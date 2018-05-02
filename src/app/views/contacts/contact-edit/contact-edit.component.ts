@@ -1,14 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable, Subscription} from 'rxjs';
 import { Contact } from '@app-core/models';
 import {Store, ActionsSubject} from '@ngrx/store';
 
 import {State} from '../store';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
 
-import * as fromContacts from '@app-contacts-store'
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions'
+import * as fromContacts from '@app-contacts-store';
+import * as contactsActions from '@app-contacts-store/actions/contacts-actions';
 import {filter} from 'rxjs/operators';
 
 

@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs';
 import {Action} from '@ngrx/store';
 import * as contactsActions from '../actions/contacts-actions';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import { Contact } from '@app-core/models';
 import {ContactsService} from '@app-core/services/contacts.service';
 import {catchError, map, mergeMap, startWith, switchMap} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class ContactsEffects {
