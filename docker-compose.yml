@@ -14,6 +14,7 @@ services:
   angular_contacts_client:
     build:
       context: .
+      dockerfile: Dockerfile
       args:
         NG_PROJECT_NAME: angular-contacts
     ports:
