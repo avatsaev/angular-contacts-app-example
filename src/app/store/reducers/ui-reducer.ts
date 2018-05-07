@@ -1,7 +1,7 @@
 import * as uiActions from '../actions/ui-actions';
 
 export interface UiState {
-  currentTitle: string
+  currentTitle: string;
 }
 
 export const INIT_UI_STATE: UiState = {
@@ -14,7 +14,7 @@ export function reducer(state: UiState = INIT_UI_STATE, {type, payload}: uiActio
   switch (type) {
 
     case uiActions.SET_CURRENT_TITLE : {
-      return Object.assign({}, state, {currentTitle: payload})
+      return Object.assign({}, state, {currentTitle: payload});
     }
 
     default : {

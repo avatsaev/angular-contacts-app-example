@@ -11,11 +11,14 @@
       "check-space"
     ],
     "curly": true,
+    "deprecation": {
+      "severity": "warn"
+    },
     "eofline": true,
     "forin": true,
     "import-blacklist": [
       true,
-      "rxjs"
+      "rxjs/Rx"
     ],
     "import-spacing": true,
     "indent": [
@@ -31,8 +34,14 @@
     "member-access": false,
     "member-ordering": [
       true,
-      "static-before-instance",
-      "variables-before-functions"
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
     ],
     "no-arg": true,
     "no-bitwise": true,
@@ -60,6 +69,7 @@
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
@@ -79,6 +89,7 @@
     ],
     "radix": true,
     "semicolon": [
+      true,
       "always"
     ],
     "triple-equals": [
@@ -95,7 +106,6 @@
         "variable-declaration": "nospace"
       }
     ],
-    "typeof-compare": true,
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -106,18 +116,7 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ],
+    "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -126,9 +125,6 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true,
-    "no-access-missing-member": true,
-    "templates-use-public": true,
-    "invoke-injectable": true
+    "directive-class-suffix": true
   }
 }

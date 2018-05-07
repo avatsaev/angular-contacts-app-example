@@ -11,8 +11,8 @@ import { Contact } from '@app-core/models';
 export class ContactDetailsContainerComponent implements OnInit {
 
   @Input() contact: Contact;
-  @Output() onEdit = new EventEmitter<Contact>();
-  @Output() onDelete = new EventEmitter<Contact>();
+  @Output() edit = new EventEmitter<Contact>();
+  @Output() remove = new EventEmitter<Contact>();
 
   constructor() { }
 

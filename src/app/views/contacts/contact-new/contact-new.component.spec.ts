@@ -3,14 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactNewComponent } from './contact-new.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {combineReducers, StoreModule} from '@ngrx/store';
-import * as fromContacts from '@app-contacts-store'
+import * as fromContacts from '@app-contacts-store';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Actions} from '@ngrx/effects';
 import {ContactsEffects} from '../store/effects/contacts-effects';
 import {HttpClientModule} from '@angular/common/http';
 import {ContactFormComponent} from '@app-core/components/contact-form/contact-form.component';
 import {ContactsService} from '@app-core/services/contacts.service';
-import * as fromRoot from '@app-root-store'
+import * as fromRoot from '@app-root-store';
 
 
 describe('ContactNewComponent', () => {

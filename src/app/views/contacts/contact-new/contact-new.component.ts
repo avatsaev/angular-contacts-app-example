@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {ActionsSubject, Store} from '@ngrx/store';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
-import * as contactsActions from '../store/actions/contacts-actions'
 import * as fromRoot from '@app-root-store';
-import {filter} from 'rxjs/operators';
+import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
+import {ofType} from '@ngrx/effects';
 
 @Component({
   selector: 'app-contact-new',
@@ -26,9 +26,9 @@ export class ContactNewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.redirectSub = this.actionsSubject.asObservable().pipe(
-      filter(action => action.type === contactsActions.CREATE_SUCCESS)
+      ofType(ContactsActionTypes.CREATE_SUCCESS)
     ).subscribe(
-      (action: contactsActions.CreateSuccess) => this.router.navigate(['/contacts', action.payload.id])
+      (action: CreateSuccess) => this.router.navigate(['/contacts', action.payload.id])
     );
 
   }
@@ -38,7 +38,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   }
 
   submitted(contact: Contact) {
-    this.store.dispatch(new contactsActions.Create(contact));
+    this.store.dispatch(new Create(contact));
   }
 
 }

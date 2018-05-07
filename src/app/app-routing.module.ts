@@ -9,7 +9,7 @@ const routes: Routes = [
     redirectTo: '/contacts'
   },
   {
-    path: 'contacts', loadChildren: 'app/views/contacts/contacts.module#ContactsModule',
+    path: 'contacts', loadChildren: 'src/app/views/contacts/contacts.module#ContactsModule',
   }
 ];
 

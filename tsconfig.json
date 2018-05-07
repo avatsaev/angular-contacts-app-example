@@ -1,8 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -13,17 +13,17 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2016",
+      "es2017",
       "dom"
     ],
     "paths": {
-      "@app-core/*": ["app/core/*"],
+      "@app-core/*": ["src/app/core/*"],
 
-      "@app-root-store/*": ["app/store/*"],
-      "@app-root-store": ["app/store/index"],
+      "@app-root-store/*": ["src/app/store/*"],
+      "@app-root-store": ["src/app/store/index"],
 
-      "@app-contacts-store/*": ["app/views/contacts/store/*"],
-      "@app-contacts-store": ["app/views/contacts/store/index"]
+      "@app-contacts-store/*": ["src/app/views/contacts/store/*"],
+      "@app-contacts-store": ["src/app/views/contacts/store/index"]
     }
   }
 }

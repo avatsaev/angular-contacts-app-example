@@ -6,7 +6,7 @@
     Edit Contact
   </div>
   <div class="card-body">
-    <app-contact-form [contact]="contact$ | async" (onSubmit)="submitted($event)"> </app-contact-form>
+    <app-contact-form [contact]="contact$ | async" (save)="submitted($event)"> </app-contact-form>
 
   </div>
 

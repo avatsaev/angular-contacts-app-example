@@ -18,7 +18,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
     phone: ''
   };
 
-  @Output() onSubmit = new EventEmitter<Contact>();
+  @Output() save = new EventEmitter<Contact>();
 
   form: FormGroup;
 
@@ -28,7 +28,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
       'name': [this.contact.name, Validators.required],
       'email': [this.contact.email, Validators.required],
       'phone': [this.contact.phone]
-    })
+    });
   }
 
   ngOnInit() {
@@ -37,13 +37,13 @@ export class ContactFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.contact) {
-      this.form.patchValue(this.contact);
+      this.form.patchValue({...this.contact});
     }
   }
 
   submit() {
     if (this.form.valid) {
-      this.onSubmit.emit(this.form.value);
+      this.save.emit(this.form.value);
     }
 
   }
