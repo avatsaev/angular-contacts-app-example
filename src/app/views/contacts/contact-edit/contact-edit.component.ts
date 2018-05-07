@@ -7,8 +7,9 @@ import {State} from '../store';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import * as fromContacts from '@app-contacts-store';
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions';
+import {ContactsActionTypes, Load, Patch, PatchSuccess} from '@app-contacts-store/actions/contacts-actions';
 import {filter} from 'rxjs/operators';
+import {ofType} from '@ngrx/effects';
 
 
 @Component({
@@ -36,15 +37,15 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
     // If the update effect fires, we check if the current id is the one being updated, and redirect to its details
     this.redirectSub = this.actionsSubject.pipe(
-        filter(action => action.type === contactsActions.PATCH_SUCCESS),
-        filter((action: contactsActions.PatchSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
+        ofType(ContactsActionTypes.PATCH_SUCCESS),
+        filter((action: PatchSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['contactId'])
     ).subscribe(
-      (action: contactsActions.PatchSuccess) => this.router.navigate(['/contacts', action.payload.id])
+      (action: PatchSuccess) => this.router.navigate(['/contacts', action.payload.id])
     );
 
     this.activatedRoute.params.subscribe(params => {
       // update our id from the backend in case it was modified by another client
-      this.store.dispatch(new contactsActions.Load(+params['contactId']));
+      this.store.dispatch(new Load(+params['contactId']));
     });
 
   }
@@ -54,7 +55,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   }
 
   submitted(contact: Contact) {
-    this.store.dispatch(new contactsActions.Patch(contact));
+    this.store.dispatch(new Patch(contact));
   }
 
 }

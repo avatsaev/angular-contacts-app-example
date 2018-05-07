@@ -5,7 +5,7 @@ import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import * as fromContacts from '@app-contacts-store';
-import * as contactsActions from '@app-contacts-store/actions/contacts-actions';
+import {Delete, SetCurrentContactId} from '@app-contacts-store/actions/contacts-actions';
 import * as fromRoot from '@app-root-store';
 
 
@@ -25,23 +25,22 @@ export class ContactsIndexComponent implements OnInit {
     // getAllContacts selector from the main store allows us to monitor changes only on id list from the main state
     // without monitoring the rest of the state
     this.contacts$ = this.store.select(fromContacts.getAllContacts);
-    this.store.dispatch(new contactsActions.LoadAll());
   }
 
   editContact(contact: Contact) {
-    this.store.dispatch(new contactsActions.SetCurrentContactId(contact.id));
+    this.store.dispatch(new SetCurrentContactId(contact.id));
     this.router.navigate(['/contacts', contact.id, 'edit']);
   }
 
   showContact(contact: Contact) {
-    this.store.dispatch(new contactsActions.SetCurrentContactId(contact.id));
+    this.store.dispatch(new SetCurrentContactId(contact.id));
     this.router.navigate(['/contacts', contact.id]);
   }
 
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
-      this.store.dispatch(new contactsActions.Delete(contact.id));
+      this.store.dispatch(new Delete(contact.id));
     }
   }
 

@@ -3,83 +3,88 @@ import { Contact } from '@app-core/models';
 import {Update} from '@ngrx/entity/src/models';
 
 
-export const LOAD_ALL = '[Contacts] LOAD ALL';
-export const LOAD_ALL_SUCCESS = '[Contacts] LOAD ALL SUCCESS';
 
-export const LOAD = '[Contacts] LOAD';
-export const LOAD_SUCCESS = '[Contacts] LOAD SUCCESS';
+export enum ContactsActionTypes {
 
-export const CREATE = '[Contacts] CREATE';
-export const CREATE_SUCCESS = '[Contacts] CREATE SUCCESS';
+  LOAD_ALL = '[Contacts] LOAD ALL',
+  LOAD_ALL_SUCCESS = '[Contacts] LOAD ALL SUCCESS',
 
-export const PATCH = '[Contacts] PATCH';
-export const PATCH_SUCCESS = '[Contacts] PATCH SUCCESS';
+  LOAD = '[Contacts] LOAD',
+  LOAD_SUCCESS = '[Contacts] LOAD SUCCESS',
 
-export const DELETE = '[Contacts] DELETE';
-export const DELETE_SUCCESS = '[Contacts] DELETE SUCCESS';
+  CREATE = '[Contacts] CREATE',
+  CREATE_SUCCESS = '[Contacts] CREATE SUCCESS',
 
-export const FAILURE = '[Contacts] FAILURE';
+  PATCH = '[Contacts] PATCH',
+  PATCH_SUCCESS = '[Contacts] PATCH SUCCESS',
 
-export const SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID';
+  DELETE = '[Contacts] DELETE',
+  DELETE_SUCCESS = '[Contacts] DELETE SUCCESS',
+
+  FAILURE = '[Contacts] FAILURE',
+
+  SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID',
+
+}
 
 export class SetCurrentContactId implements Action {
-  readonly type = SET_CURRENT_CONTACT_ID;
+  readonly type = ContactsActionTypes.SET_CURRENT_CONTACT_ID;
   constructor(public payload: number) {}
 }
 
 export class LoadAll implements Action {
-  readonly type = LOAD_ALL;
+  readonly type = ContactsActionTypes.LOAD_ALL;
   constructor(public payload = null) {}
 }
 
 export class Load implements Action {
-  readonly type = LOAD;
+  readonly type = ContactsActionTypes.LOAD;
   constructor(public payload: number) {}
 }
 
 export class Create implements Action {
-  readonly type = CREATE;
+  readonly type = ContactsActionTypes.CREATE;
   constructor(public payload: Contact) {}
 }
 
 
 export class Patch implements Action {
-  readonly type = PATCH;
+  readonly type = ContactsActionTypes.PATCH;
   constructor(public payload: Contact) {}
 }
 
 export class Delete implements Action {
-  readonly type = DELETE;
+  readonly type = ContactsActionTypes.DELETE;
   constructor(public payload: number) {}
 }
 
 export class LoadAllSuccess implements Action {
-  readonly type = LOAD_ALL_SUCCESS;
+  readonly type = ContactsActionTypes.LOAD_ALL_SUCCESS;
   constructor(public payload: Contact[]) {}
 }
 
 export class LoadSuccess implements Action {
-  readonly type = LOAD_SUCCESS;
+  readonly type = ContactsActionTypes.LOAD_SUCCESS;
   constructor(public payload: Contact) {}
 }
 
 export class CreateSuccess implements Action {
-  readonly type = CREATE_SUCCESS;
+  readonly type = ContactsActionTypes.CREATE_SUCCESS;
   constructor(public payload: Contact) {}
 }
 
 export class PatchSuccess implements Action {
-  readonly type = PATCH_SUCCESS;
+  readonly type = ContactsActionTypes.PATCH_SUCCESS;
   constructor(public payload: Update<Contact>) {}
 }
 
 export class DeleteSuccess implements Action {
-  readonly type = DELETE_SUCCESS;
+  readonly type = ContactsActionTypes.DELETE_SUCCESS;
   constructor(public payload: number) {}
 }
 
 export class Failure implements Action {
-  readonly type = FAILURE;
+  readonly type = ContactsActionTypes.FAILURE;
   constructor (public payload: {concern: 'CREATE' | 'PATCH', error: any}) {}
 }
 
