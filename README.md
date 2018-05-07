@@ -22,7 +22,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 You can run the app with docker compose:
 
 ```
-$ docker-compose up
+$ docker-compose up --build
 ```
 
 The app will be available at: http://localhost:8000
