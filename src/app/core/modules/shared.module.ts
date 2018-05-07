@@ -8,6 +8,7 @@ import {TitleResolver} from '../resolvers/title.resolver';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {FooterComponent} from '@app-core/components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -19,13 +20,15 @@ import {RouterModule} from '@angular/router';
     ContactListComponent,
     ContactDetailsContainerComponent,
     ContactFormComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FooterComponent
   ],
   exports: [
     ContactListComponent,
     ContactDetailsContainerComponent,
     ContactFormComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FooterComponent
   ],
   providers: [ContactsService, TitleResolver]
 })

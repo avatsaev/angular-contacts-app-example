@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint angular-contacts",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "surge -d angular-contacts-ngrx.surge.sh -p dist/angular-contacts",
+    "predeploy": "ng build --prod && cat dist/angular-contacts/index.html > dist/angular-contacts/200.html"
   },
   "private": true,
   "dependencies": {

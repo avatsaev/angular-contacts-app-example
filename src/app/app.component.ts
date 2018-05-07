@@ -10,6 +10,7 @@ import {Store} from '@ngrx/store';
 
     <div class="container">
       <router-outlet></router-outlet>
+      <app-footer></app-footer>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
