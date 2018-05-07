@@ -7,7 +7,9 @@ import * as fromRoot from '@app-root-store';
 import * as uiActions from '../../store/actions/ui-actions';
 import {Store} from '@ngrx/store';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class TitleResolver implements Resolve<string> {
   constructor(private store: Store<fromRoot.State>) {}
