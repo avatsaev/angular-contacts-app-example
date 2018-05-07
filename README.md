@@ -1,4 +1,4 @@
-# Angular CRUD Contacts App Example with NgRx Store and NgRx Effects (Version 4)
+# Angular CRUD Contacts App Example with NgRx Store and NgRx Effects
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
