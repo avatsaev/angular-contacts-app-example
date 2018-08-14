@@ -70,6 +70,24 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": false
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": false
             }
           }
         },
@@ -84,6 +102,9 @@
             },
             "dev": {
               "browserTarget": "angular-contacts:build:dev"
+            },
+            "local": {
+              "browserTarget": "angular-contacts:build:local"
             }
           }
         },

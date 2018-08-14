@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appApi: {
-    baseUrl: 'http://api.angular-contacts-app.vatsaev.com/api/'
+    baseUrl: 'http://localhost:3000'
   }
 };
 

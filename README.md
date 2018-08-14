@@ -25,7 +25,7 @@ You can run the app with docker compose:
 $ docker-compose up --build
 ```
 
-The app will be available at: http://localhost:8000
+The app will be available at: http://localhost:4000
 
 ![](http://i.imgur.com/TKWwYgQ.png)
 ![](http://i.imgur.com/GBBXbuu.png)
