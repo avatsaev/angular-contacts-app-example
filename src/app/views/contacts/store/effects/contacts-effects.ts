@@ -45,14 +45,14 @@ export class ContactsEffects {
 
   @Effect()
   create$: Observable<Action> = this.actions$.pipe(
-      ofType(ContactsActionTypes.CREATE),
-      map((action: Create) => action.payload),
-      switchMap((contact) => this.contactsService.create(contact)),
-      map( (createdContact: Contact) => new CreateSuccess(createdContact)),
-      catchError(err => {
-        alert(err['error']['error']['message']);
-        return of(new Failure({concern: 'CREATE', error: err}));
-      })
+    ofType(ContactsActionTypes.CREATE),
+    map((action: Create) => action.payload),
+    switchMap((contact) => this.contactsService.create(contact)),
+    map( (createdContact: Contact) => new CreateSuccess(createdContact)),
+    catchError(err => {
+      alert(err['error']['error']['message']);
+      return of(new Failure({concern: 'CREATE', error: err}));
+    })
   );
 
   @Effect()

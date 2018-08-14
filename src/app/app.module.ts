@@ -25,7 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     StoreModule.forRoot(fromRoot.reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
     environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

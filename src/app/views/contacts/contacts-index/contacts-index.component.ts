@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Contact } from '@app-core/models';
 import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import * as fromContacts from '@app-contacts-store';
@@ -24,7 +24,9 @@ export class ContactsIndexComponent implements OnInit {
   ngOnInit() {
     // getAllContacts selector from the main store allows us to monitor changes only on id list from the main state
     // without monitoring the rest of the state
-    this.contacts$ = this.store.select(fromContacts.getAllContacts);
+    this.contacts$ = this.store.pipe(
+      select(fromContacts.getAllContacts)
+    );
   }
 
   editContact(contact: Contact) {

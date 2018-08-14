@@ -14,7 +14,7 @@ export function reducer(state: UiState = INIT_UI_STATE, {type, payload}: uiActio
   switch (type) {
 
     case uiActions.SET_CURRENT_TITLE : {
-      return Object.assign({}, state, {currentTitle: payload});
+      return { ...state, currentTitle: payload};
     }
 
     default : {

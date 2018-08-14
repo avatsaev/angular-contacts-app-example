@@ -15,8 +15,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        NG_PROJECT_NAME: angular-contacts
     ports:
       - '8000:80'
     links:

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import { Store, ActionsSubject} from '@ngrx/store';
+import {Store, ActionsSubject, select} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import { Contact } from '@app-core/models';
@@ -37,7 +37,9 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.contact$ = this.store.select(fromContacts.getCurrentContact);
+    this.contact$ = this.store.pipe(
+      select(fromContacts.getCurrentContact)
+    );
 
     // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject.pipe(

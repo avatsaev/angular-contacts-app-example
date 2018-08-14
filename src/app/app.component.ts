@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import * as fromRoot from '@app-root-store';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit() {
-    this.currentPageTitle$ = this.store.select(fromRoot.getCurrentTitle);
+    this.currentPageTitle$ = this.store.pipe(
+      select(fromRoot.getCurrentTitle)
+    );
   }
 }
