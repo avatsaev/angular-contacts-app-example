@@ -1,6 +1,9 @@
 export const environment = {
-  production: true,
+  production: false,
   appApi: {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'http://localhost:3002'
+  },
+  socketConfig: {
+    url: 'http://localhost:3002'
   }
 };
