@@ -12,6 +12,7 @@ import * as fromContacts from './store';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactsEffects} from './store/effects/contacts-effects';
 
+
 @NgModule({
   imports: [
     CommonModule,

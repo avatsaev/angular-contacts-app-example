@@ -23,7 +23,6 @@
     "@angular/http": "6.1.2",
     "@angular/platform-browser": "6.1.2",
     "@angular/platform-browser-dynamic": "6.1.2",
-    "@angular/pwa": "0.7.3",
     "@angular/router": "6.1.2",
     "@ngrx/effects": "6.1.0",
     "@ngrx/entity": "6.1.0",
@@ -32,15 +31,15 @@
     "bootstrap": "4.1.3",
     "core-js": "2.5.7",
     "font-awesome": "^4.7.0",
+    "ngx-socket-io": "^1.1.1",
     "rxjs": "6.2.2",
-    "zone.js": "^0.8.26",
-    "@angular/service-worker": "6.1.2"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/compiler-cli": "6.1.2",
     "@angular-devkit/build-angular": "0.7.3",
     "typescript": "2.9.2",
-    "@angular/cli": "6.1.3",
+    "@angular/cli": "^6.1.4",
     "@angular/language-service": "6.1.2",
     "@types/jasmine": "2.8.8",
     "@types/jasminewd2": "~2.0.3",

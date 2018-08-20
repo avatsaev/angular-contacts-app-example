@@ -25,6 +25,13 @@ export enum ContactsActionTypes {
 
   SET_CURRENT_CONTACT_ID = '[Contacts] SET CURRENT CONTACT ID',
 
+
+  // SERVER SIDE SOCKET ACTIONS
+
+  LIVE_CREATED = '[Contacts] LIVE CREATED',
+  LIVE_UPDATED = '[Contacts] LIVE UPDATED',
+  LIVE_DELETED = '[Contacts] LIVE DELETED',
+
 }
 
 export class SetCurrentContactId implements Action {

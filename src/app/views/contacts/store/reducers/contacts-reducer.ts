@@ -51,10 +51,17 @@ export function reducer(
       return contactsAdapter.addAll(payload, state);
     }
 
-    case ContactsActionTypes.LOAD_SUCCESS || ContactsActionTypes.CREATE_SUCCESS : {
+
+    case ContactsActionTypes.LOAD_SUCCESS : {
       return contactsAdapter.addOne(payload, {
         ...state,
         currentContactId: payload.id
+      });
+    }
+
+    case ContactsActionTypes.CREATE_SUCCESS : {
+      return contactsAdapter.addOne(payload, {
+        ...state
       });
     }
 
