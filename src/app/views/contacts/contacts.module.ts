@@ -11,6 +11,7 @@ import {StoreModule} from '@ngrx/store';
 import * as fromContacts from './store';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactsEffects} from './store/effects/contacts-effects';
+import {ContactsSocketService} from '@app-core/services/contacts-socket.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ContactsEffects} from './store/effects/contacts-effects';
     ContactEditComponent,
     ContactNewComponent,
     ContactsIndexComponent
-  ]
+  ],
+  providers: [ContactsSocketService]
 })
 export class ContactsModule { }

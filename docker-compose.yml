@@ -7,27 +7,25 @@ services:
   db:
     image: postgres:10
     restart: always
+    ports:
+    - 5432
     volumes:
-      - ./data/contacts_db:/contacts_db
+    - ./data/contacts_dev:/contacts_dev
     environment:
-      POSTGRES_USER: contacts_admin
-      POSTGRES_PASSWORD: contacts_admin_pass
+      POSTGRES_USER: contacts_dev
+      POSTGRES_PASSWORD: contacts_dev_pass
       POSTGRES_DB: contacts_dev
-      PGDATA: /contacts_db
+      PGDATA: /contacts_dev
 
   api:
     image: avatsaev/angular-contacts-api:dev
     restart: always
     ports:
-      - 3000:3000
+    - 3000:3000
     depends_on:
-      - db
+    - db
     environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: contacts_admin
-      DB_PASS: contacts_admin_pass
-      DB_NAME: contacts_dev
+      DB_MASTER_URL: postgres://contacts_dev:contacts_dev_pass@db/contacts_dev
 
   client:
     build:
