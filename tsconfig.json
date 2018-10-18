@@ -18,7 +18,7 @@
     ],
     "paths": {
       "@app-core/*": ["src/app/core/*"],
-
+      "@angular/*": ["node_modules/@angular/*"],
       "@app-root-store/*": ["src/app/store/*"],
       "@app-root-store": ["src/app/store/index"],
 
