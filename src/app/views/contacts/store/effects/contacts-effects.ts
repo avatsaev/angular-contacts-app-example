@@ -51,7 +51,7 @@ export class ContactsEffects {
     switchMap((contact) => this.contactsService.create(contact)),
     map( (createdContact: Contact) => new CreateSuccess(createdContact)),
     catchError(err => {
-      alert(err['error']['error']['message']);
+      alert(err['message']);
       return of(new Failure({concern: 'CREATE', error: err}));
     })
   );
@@ -66,7 +66,7 @@ export class ContactsEffects {
       changes: updatedContact
     })),
     catchError(err => {
-      alert(err['error']['error']['message']);
+      alert(err['message']);
       return of(new Failure({concern: 'PATCH', error: err}));
     })
   );
