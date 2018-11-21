@@ -9,7 +9,7 @@
 
 **DEMO: http://angular-contacts-ngrx.surge.sh**
 
-This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md) to manage application state, and [@ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md) to manange side effects, It also uses ngrx 4 fractal state management to leverage lazy loading of reducers and effects.
+This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md) to manage application state, and [@ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md) to manange side effects (http+sockets), It also uses ngrx 4 fractal state management to leverage lazy loading of reducers and effects.
 
 ### New:
 
