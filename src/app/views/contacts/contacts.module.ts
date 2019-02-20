@@ -5,13 +5,14 @@ import {ContactDetailsComponent} from './contact-details/contact-details.compone
 import {ContactEditComponent} from './contact-edit/contact-edit.component';
 import {ContactNewComponent} from './contact-new/contact-new.component';
 import {ContactsIndexComponent} from './contacts-index/contacts-index.component';
-import {SharedModule} from '@app-core/modules/shared.module';
+import {SharedModule} from '@app/core/modules/shared.module';
 import {ContactsRoutingModule} from './contacts-routing.module';
 import {StoreModule} from '@ngrx/store';
-import * as fromContacts from './store';
 import {EffectsModule} from '@ngrx/effects';
-import {ContactsEffects} from './store/effects/contacts-effects';
-import {ContactsSocketService} from '@app-core/services/contacts-socket.service';
+import {ContactsEffects} from './store/contacts-effects';
+import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
+import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {reducers} from '@app/contacts-store';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import {ContactsSocketService} from '@app-core/services/contacts-socket.service'
     CommonModule,
     SharedModule,
     ContactsRoutingModule,
-    StoreModule.forFeature('contacts', fromContacts.reducers),
+    StoreModule.forFeature('contacts', reducers),
     EffectsModule.forFeature([ContactsEffects])
   ],
   declarations: [
@@ -29,6 +30,6 @@ import {ContactsSocketService} from '@app-core/services/contacts-socket.service'
     ContactNewComponent,
     ContactsIndexComponent
   ],
-  providers: [ContactsSocketService]
+  providers: [ContactsSocketService, ContactsStoreFacade]
 })
 export class ContactsModule { }

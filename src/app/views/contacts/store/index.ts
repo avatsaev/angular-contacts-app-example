@@ -1,5 +1,5 @@
-import * as fromContacts from './reducers/contacts-reducer';
-import * as fromRoot from '@app-root-store';
+import * as fromContacts from './contacts-reducer';
+import * as fromRoot from '@app/root-store';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface ContactsState {
@@ -15,22 +15,28 @@ export const reducers = {
   contacts: fromContacts.reducer
 };
 
-export const getContactsRootState = createFeatureSelector<ContactsState>('contacts');
 
-export const getContactsState = createSelector(
-    getContactsRootState,
-    state => state.contacts
+/**
+ * The createFeatureSelector function selects a piece of state from the root of the state object.
+ * This is used for selecting feature states that are loaded eagerly or lazily.
+ */
+
+export const getContactsState = createFeatureSelector<State, ContactsState>('contacts');
+
+export const getContactsEntitiesState = createSelector(
+  getContactsState,
+  state => state.contacts
 );
 
 export const getSelectedContactId = createSelector(
-  getContactsState,
+  getContactsEntitiesState,
   fromContacts.getCurrentContactId
 );
 
 export const {
   selectAll: getAllContacts,
   selectEntities: getContactEntities
-} = fromContacts.contactsAdapter.getSelectors(getContactsState);
+} = fromContacts.contactsAdapter.getSelectors(getContactsEntitiesState);
 
 export const getCurrentContact = createSelector(
   getContactEntities,

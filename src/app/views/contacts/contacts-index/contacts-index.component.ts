@@ -1,12 +1,7 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { Contact } from '@app-core/models';
-import {Observable} from 'rxjs';
-import {select, Store} from '@ngrx/store';
-import {ActivatedRoute, Router} from '@angular/router';
-
-import * as fromContacts from '@app-contacts-store';
-import {Delete, SetCurrentContactId} from '@app-contacts-store/actions/contacts-actions';
-import * as fromRoot from '@app-root-store';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Contact } from '@app/core/models';
+import { Router } from '@angular/router';
+import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
 
 
 @Component({
@@ -17,32 +12,26 @@ import * as fromRoot from '@app-root-store';
 })
 export class ContactsIndexComponent implements OnInit {
 
-  contacts$: Observable<Contact[]>;
+  contacts$ = this.contactsFacade.contacts$;
 
-  constructor(public store: Store<fromRoot.State>, private router: Router, private actR: ActivatedRoute) { }
+  constructor(public contactsFacade: ContactsStoreFacade, private router: Router) { }
 
-  ngOnInit() {
-    // getAllContacts selector from the main store allows us to monitor changes only on id list from the main state
-    // without monitoring the rest of the state
-    this.contacts$ = this.store.pipe(
-      select(fromContacts.getAllContacts)
-    );
-  }
+  ngOnInit() {}
 
   editContact(contact: Contact) {
-    this.store.dispatch(new SetCurrentContactId(contact.id));
+    this.contactsFacade.setCurrentContactId(contact.id);
     this.router.navigate(['/contacts', contact.id, 'edit']);
   }
 
   showContact(contact: Contact) {
-    this.store.dispatch(new SetCurrentContactId(contact.id));
+    this.contactsFacade.setCurrentContactId(contact.id);
     this.router.navigate(['/contacts', contact.id]);
   }
 
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
-      this.store.dispatch(new Delete(contact.id));
+      this.contactsFacade.deleteContact(contact.id);
     }
   }
 

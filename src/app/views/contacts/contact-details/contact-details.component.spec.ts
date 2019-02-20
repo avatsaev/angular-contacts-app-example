@@ -4,14 +4,17 @@ import { ContactDetailsComponent } from './contact-details.component';
 
 import {combineReducers, StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
-import * as fromContacts from '@app-contacts-store';
-import {ContactsEffects} from '../store/effects/contacts-effects';
+import * as fromContacts from '@app/contacts-store';
+import {ContactsEffects} from '../store/contacts-effects';
 import {Actions} from '@ngrx/effects';
-import * as fromRoot from '@app-root-store';
+import * as fromRoot from '@app/root-store';
 
 import {HttpClientModule} from '@angular/common/http';
-import {ContactDetailsContainerComponent} from '@app-core/components/contact-details/contact-details-container.component';
-import {ContactsService} from '@app-core/services/contacts.service';
+import {ContactDetailsContainerComponent} from '@app/core/components/contact-details/contact-details-container.component';
+import {ContactsService} from '@app/core/services/contacts.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
 
 
 describe('ContactDetailsComponent', () => {
@@ -23,16 +26,19 @@ describe('ContactDetailsComponent', () => {
       declarations: [ ContactDetailsComponent, ContactDetailsContainerComponent],
       imports: [
         RouterTestingModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         StoreModule.forRoot({
             ...fromRoot.reducers,
-            'contacts': combineReducers(fromContacts.reducers)
+            contacts: combineReducers(fromContacts.reducers)
         })
       ],
       providers: [
         ContactsEffects,
         Actions,
-        ContactsService
+        ContactsService,
+        ContactsStoreFacade,
+        ContactsSocketService
+
       ]
     })
     .compileComponents();

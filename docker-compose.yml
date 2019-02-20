@@ -7,8 +7,6 @@ services:
   db:
     image: postgres:10
     restart: always
-    ports:
-    - 5432
     volumes:
     - ./data/contacts_dev:/contacts_dev
     environment:

@@ -1,10 +1,10 @@
-import { Contact } from '@app-core/models';
+import { Contact } from '@app/core/models';
 import {EntityState, createEntityAdapter} from '@ngrx/entity';
 
 import {
   ContactsActionTypes,
   All as AllContactsActions
-} from '../actions/contacts-actions';
+} from './contacts-actions';
 
 // This adapter will allow is to manipulate contacts (mostly CRUD operations)
 export const contactsAdapter = createEntityAdapter<Contact>({

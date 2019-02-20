@@ -1,12 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import { Contact } from '@app-core/models';
-import {ActionsSubject, Store} from '@ngrx/store';
-import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
-
-import * as fromRoot from '@app-root-store';
-import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
-import {ofType} from '@ngrx/effects';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import { Contact } from '@app/core/models';
+import { Subscription} from 'rxjs';
+import { Router} from '@angular/router';
+import { ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {ContactsEffects} from '@app/contacts-store/contacts-effects';
+import {CreateSuccess} from '@app/contacts-store/contacts-actions';
 
 @Component({
   selector: 'app-contact-new',
@@ -19,15 +17,14 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
   constructor(
-    private store: Store<fromRoot.State>,
+    private contactsFacade: ContactsStoreFacade,
     private router: Router,
-    private actionsSubject: ActionsSubject
+    private contactsEffects: ContactsEffects
   ) { }
 
   ngOnInit() {
-    this.redirectSub = this.actionsSubject.asObservable().pipe(
-      ofType(ContactsActionTypes.CREATE_SUCCESS)
-    ).subscribe(
+
+    this.redirectSub = this.contactsEffects.create$.subscribe(
       (action: CreateSuccess) => this.router.navigate(['/contacts', action.payload.id])
     );
 
@@ -38,7 +35,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
   }
 
   submitted(contact: Contact) {
-    this.store.dispatch(new Create(contact));
+    this.contactsFacade.createContact(contact);
   }
 
 }

@@ -4,14 +4,16 @@ import { ContactEditComponent } from './contact-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {combineReducers, StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
-import * as fromContacts from '@app-contacts-store';
-import {ActivatedRoute} from '@angular/router';
+import * as fromContacts from '@app/contacts-store';
 import {Actions} from '@ngrx/effects';
-import {ContactsEffects} from '../store/effects/contacts-effects';
+import {ContactsEffects} from '../store/contacts-effects';
 import {HttpClientModule} from '@angular/common/http';
-import {ContactFormComponent} from '@app-core/components/contact-form/contact-form.component';
-import {ContactsService} from '@app-core/services/contacts.service';
-import * as fromRoot from '@app-root-store';
+import {ContactFormComponent} from '@app/core/components/contact-form/contact-form.component';
+import {ContactsService} from '@app/core/services/contacts.service';
+import * as fromRoot from '@app/root-store';
+import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
 
 
 describe('ContactEditComponent', () => {
@@ -25,15 +27,18 @@ describe('ContactEditComponent', () => {
         ReactiveFormsModule,
         StoreModule.forRoot({
           ...fromRoot.reducers,
-          'contacts': combineReducers(fromContacts.reducers)
+          contacts: combineReducers(fromContacts.reducers)
         }),
         RouterTestingModule,
-        HttpClientModule
+        HttpClientTestingModule
       ],
       providers: [
         ContactsEffects,
         Actions,
         ContactsService,
+        ContactsStoreFacade,
+        ContactsSocketService
+
       ]
     })
     .compileComponents();

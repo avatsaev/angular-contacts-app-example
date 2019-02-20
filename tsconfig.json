@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -17,13 +18,14 @@
       "dom"
     ],
     "paths": {
-      "@app-core/*": ["src/app/core/*"],
-      "@angular/*": ["node_modules/@angular/*"],
-      "@app-root-store/*": ["src/app/store/*"],
-      "@app-root-store": ["src/app/store/index"],
 
-      "@app-contacts-store/*": ["src/app/views/contacts/store/*"],
-      "@app-contacts-store": ["src/app/views/contacts/store/index"]
+      "@app/core/*": ["src/app/core/*"],
+
+      "@app/root-store/*": ["src/app/store/*"],
+      "@app/root-store": ["src/app/store/index"],
+
+      "@app/contacts-store/*": ["src/app/views/contacts/store/*"],
+      "@app/contacts-store": ["src/app/views/contacts/store/index"]
     }
   }
 }

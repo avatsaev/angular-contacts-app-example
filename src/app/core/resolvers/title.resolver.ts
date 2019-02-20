@@ -3,7 +3,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import * as fromRoot from '@app-root-store';
+import * as fromRoot from '@app/root-store';
 import * as uiActions from '../../store/actions/ui-actions';
 import {Store} from '@ngrx/store';
 
@@ -17,9 +17,9 @@ export class TitleResolver implements Resolve<string> {
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<string> {
 
-    this.store.dispatch(new uiActions.SetCurrentTitle(route.data['title']));
+    this.store.dispatch(new uiActions.SetCurrentTitle(route.data.title));
 
-    return of(route.data['title']);
+    return of(route.data.title);
 
   }
 }

@@ -6,7 +6,7 @@ import {ToolbarComponent} from '../components/toolbar/toolbar.component';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {FooterComponent} from '@app-core/components/footer/footer.component';
+import {FooterComponent} from '@app/core/components/footer/footer.component';
 
 @NgModule({
   imports: [

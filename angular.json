@@ -10,7 +10,8 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "sass"
+          "styleext": "sass",
+          "changeDetection": "OnPush"
         }
       },
       "architect": {
@@ -122,7 +123,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "styles.scss"
+              "src/styles.sass"
             ],
             "scripts": [],
             "assets": [

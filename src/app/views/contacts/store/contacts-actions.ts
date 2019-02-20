@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import { Contact } from '@app-core/models';
+import { Contact } from '@app/core/models';
 import {Update} from '@ngrx/entity/src/models';
 
 
@@ -92,7 +92,7 @@ export class DeleteSuccess implements Action {
 
 export class Failure implements Action {
   readonly type = ContactsActionTypes.FAILURE;
-  constructor (public payload: {concern: 'CREATE' | 'PATCH', error: any}) {}
+  constructor(public payload: {concern: 'CREATE' | 'PATCH', error: any}) {}
 }
 
 export type All =

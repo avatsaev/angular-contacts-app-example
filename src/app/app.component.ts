@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import * as fromRoot from '@app-root-store';
+import * as fromRoot from '@app/root-store';
 import {select, Store} from '@ngrx/store';
 
 @Component({
