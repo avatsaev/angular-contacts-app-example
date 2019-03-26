@@ -27,4 +27,30 @@ describe('ContactFormComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should call form.patchValue when ngOnChanges calls', () => {
+    spyOn(component.form, 'patchValue');
+    const contact = {
+      id: 1,
+      name: 'test',
+      email: 'test@avatsaev.com'
+    };
+    component.contact = contact;
+    component.ngOnChanges();
+    expect(component.form.patchValue).toHaveBeenCalledWith(contact);
+  });
+
+  it('should call save.emit when submit calls', () => {
+    spyOn(component.save, 'emit');
+    const contact = {
+      id: 1,
+      name: 'test',
+      email: 'test@avatsaev.com',
+      phone: '12345'
+    };
+    component.form.setValue(contact);
+    component.submit();
+    expect(component.save.emit).toHaveBeenCalledWith(contact);
+  });
 });
