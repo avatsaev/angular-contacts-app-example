@@ -1,19 +1,20 @@
 
 
 
-version: '2'
+version: '3'
 
 services:
   db:
-    image: postgres:10
+    image: postgres:11-alpine
     restart: always
     volumes:
-    - ./data/contacts_dev:/contacts_dev
+    - ./volumes/contacts_db:/contacts_db
     environment:
-      POSTGRES_USER: contacts_dev
-      POSTGRES_PASSWORD: contacts_dev_pass
-      POSTGRES_DB: contacts_dev
-      PGDATA: /contacts_dev
+      POSTGRES_USER: contacts_db
+      POSTGRES_PASSWORD: contacts_db_pass
+      POSTGRES_DB: contacts_db
+      PGDATA: /contacts_db
+
 
   api:
     image: avatsaev/angular-contacts-api:dev
@@ -23,7 +24,7 @@ services:
     depends_on:
     - db
     environment:
-      DB_MASTER_URL: postgres://contacts_dev:contacts_dev_pass@db/contacts_dev
+      DB_MASTER_URL: postgres://contacts_db:contacts_db_pass@db/contacts_db
 
   client:
     build:
