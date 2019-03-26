@@ -12,8 +12,8 @@ import { ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
 export class ContactNewComponent implements OnInit, OnDestroy {
 
   constructor(
-    public contactsFacade: ContactsStoreFacade,
-    public router: Router
+    private contactsFacade: ContactsStoreFacade,
+    private router: Router
   ) { }
 
   ngOnInit() {

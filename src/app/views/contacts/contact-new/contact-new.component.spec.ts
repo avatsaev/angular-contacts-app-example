@@ -13,11 +13,14 @@ import * as fromRoot from '@app/root-store';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
 import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
+import { Router } from '@angular/router';
 
 
 describe('ContactNewComponent', () => {
   let component: ContactNewComponent;
   let fixture: ComponentFixture<ContactNewComponent>;
+  let contactsFacade: ContactsStoreFacade;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -48,6 +51,8 @@ describe('ContactNewComponent', () => {
     fixture = TestBed.createComponent(ContactNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    contactsFacade = fixture.debugElement.injector.get(ContactsStoreFacade);
+    router = fixture.debugElement.injector.get(Router);
   });
 
   it('should be created', () => {
@@ -56,15 +61,15 @@ describe('ContactNewComponent', () => {
 
 
   it('should call contactsFacade.createContact and router.navigate when submitted calls', () => {
-    spyOn(component.contactsFacade, 'createContact');
-    spyOn(component.router, 'navigate');
+    spyOn(contactsFacade, 'createContact');
+    spyOn(router, 'navigate');
     const contact = {
       id: 1,
       name: 'test',
       email: 'test@avatsaev.com'
     };
     component.submitted(contact);
-    expect(component.contactsFacade.createContact).toHaveBeenCalledWith(contact);
-    expect(component.router.navigate).toHaveBeenCalledWith(['/contacts']);
+    expect(contactsFacade.createContact).toHaveBeenCalledWith(contact);
+    expect(router.navigate).toHaveBeenCalledWith(['/contacts']);
   });
 });

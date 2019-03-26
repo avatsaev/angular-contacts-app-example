@@ -19,6 +19,7 @@ import {ContactsSocketService} from '@app/core/services/contacts-socket.service'
 describe('ContactEditComponent', () => {
   let component: ContactEditComponent;
   let fixture: ComponentFixture<ContactEditComponent>;
+  let contactsFacade: ContactsStoreFacade;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -48,6 +49,7 @@ describe('ContactEditComponent', () => {
     fixture = TestBed.createComponent(ContactEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    contactsFacade = fixture.debugElement.injector.get(ContactsStoreFacade);
   });
 
   it('should be created', () => {
@@ -56,14 +58,14 @@ describe('ContactEditComponent', () => {
 
 
   it('should call contactsFacade.updateContact when submitted calls', () => {
-    spyOn(component.contactsFacade, 'updateContact');
+    spyOn(contactsFacade, 'updateContact');
     const contact = {
       id: 1,
       name: 'test',
       email: 'test@avatsaev.com'
     };
     component.submitted(contact);
-    expect(component.contactsFacade.updateContact).toHaveBeenCalledWith(contact);
+    expect(contactsFacade.updateContact).toHaveBeenCalledWith(contact);
   });
 
   it('should call redirectSub.unsubscribe when ngOnDestroy calls', () => {

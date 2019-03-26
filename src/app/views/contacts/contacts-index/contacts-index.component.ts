@@ -14,7 +14,7 @@ export class ContactsIndexComponent implements OnInit {
 
   contacts$ = this.contactsFacade.contacts$;
 
-  constructor(public contactsFacade: ContactsStoreFacade, public router: Router) { }
+  constructor(private contactsFacade: ContactsStoreFacade, private router: Router) { }
 
   ngOnInit() {}
 

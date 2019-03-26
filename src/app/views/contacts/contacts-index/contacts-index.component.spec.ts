@@ -7,11 +7,14 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ContactListComponent} from '@app/core/components/contact-list/contact-list.component';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
 import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
+import { Router } from '@angular/router';
 
 
 describe('ContactsIndexComponent', () => {
   let component: ContactsIndexComponent;
   let fixture: ComponentFixture<ContactsIndexComponent>;
+  let contactsFacade: ContactsStoreFacade;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,6 +39,8 @@ describe('ContactsIndexComponent', () => {
     fixture = TestBed.createComponent(ContactsIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    contactsFacade = fixture.debugElement.injector.get(ContactsStoreFacade);
+    router = fixture.debugElement.injector.get(Router);
   });
 
   it('should be created', () => {
@@ -44,27 +49,27 @@ describe('ContactsIndexComponent', () => {
 
 
   it('should call contactsFacade.setCurrentContactId and router.navigate when editContact calls', () => {
-    spyOn(component.contactsFacade, 'setCurrentContactId');
-    spyOn(component.router, 'navigate');
+    spyOn(contactsFacade, 'setCurrentContactId');
+    spyOn(router, 'navigate');
     component.editContact({id: 1, name: 'test', email: 'test@avatsaev.com'});
-    expect(component.contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
-    expect(component.router.navigate).toHaveBeenCalledWith(['/contacts', 1, 'edit']);
+    expect(contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
+    expect(router.navigate).toHaveBeenCalledWith(['/contacts', 1, 'edit']);
   });
 
   it('should call contactsFacade.setCurrentContactId and router.navigate when showContact calls', () => {
-    spyOn(component.contactsFacade, 'setCurrentContactId');
-    spyOn(component.router, 'navigate');
+    spyOn(contactsFacade, 'setCurrentContactId');
+    spyOn(router, 'navigate');
     component.showContact({id: 1, name: 'test', email: 'test@avatsaev.com'});
-    expect(component.contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
-    expect(component.router.navigate).toHaveBeenCalledWith(['/contacts', 1]);
+    expect(contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
+    expect(router.navigate).toHaveBeenCalledWith(['/contacts', 1]);
   });
 
   it('should call contactsFacade.setCurrentContactId when deleteContact calls', () => {
     spyOn(window, 'confirm').and.callFake(() => {
       return true;
     });
-    spyOn(component.contactsFacade, 'deleteContact');
+    spyOn(contactsFacade, 'deleteContact');
     component.deleteContact({id: 1, name: 'test', email: 'test@avatsaev.com'});
-    expect(component.contactsFacade.deleteContact).toHaveBeenCalledWith(1);
+    expect(contactsFacade.deleteContact).toHaveBeenCalledWith(1);
   });
 });
