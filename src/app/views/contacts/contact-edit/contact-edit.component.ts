@@ -21,7 +21,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private contactsFacade: ContactsStoreFacade,
+    public contactsFacade: ContactsStoreFacade,
     private contactsEffects: ContactsEffects
   ) { }
 

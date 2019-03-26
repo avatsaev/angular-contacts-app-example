@@ -19,8 +19,8 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
       private activatedRoute: ActivatedRoute,
-      private router: Router,
-      private contactsFacade: ContactsStoreFacade,
+      public router: Router,
+      public contactsFacade: ContactsStoreFacade,
       private contactsEffects: ContactsEffects
   ) {}
 

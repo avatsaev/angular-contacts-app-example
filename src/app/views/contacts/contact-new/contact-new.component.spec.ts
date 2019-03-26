@@ -53,4 +53,18 @@ describe('ContactNewComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should call contactsFacade.createContact and router.navigate when submitted calls', () => {
+    spyOn(component.contactsFacade, 'createContact');
+    spyOn(component.router, 'navigate');
+    const contact = {
+      id: 1,
+      name: 'test',
+      email: 'test@avatsaev.com'
+    };
+    component.submitted(contact);
+    expect(component.contactsFacade.createContact).toHaveBeenCalledWith(contact);
+    expect(component.router.navigate).toHaveBeenCalledWith(['/contacts']);
+  });
 });

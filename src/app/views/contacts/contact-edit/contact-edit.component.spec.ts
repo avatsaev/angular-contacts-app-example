@@ -53,4 +53,23 @@ describe('ContactEditComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should call contactsFacade.updateContact when submitted calls', () => {
+    spyOn(component.contactsFacade, 'updateContact');
+    const contact = {
+      id: 1,
+      name: 'test',
+      email: 'test@avatsaev.com'
+    };
+    component.submitted(contact);
+    expect(component.contactsFacade.updateContact).toHaveBeenCalledWith(contact);
+  });
+
+  it('should call redirectSub.unsubscribe when ngOnDestroy calls', () => {
+    spyOn(component.redirectSub, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.redirectSub.unsubscribe).toHaveBeenCalled();
+  });
 });
+
