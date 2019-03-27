@@ -15,7 +15,6 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 
 
 ## Get started 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8
 
 You can run the app with docker compose:
 
@@ -30,6 +29,8 @@ The app will be available at: http://localhost:4000
 ![](http://i.imgur.com/J4inaXx.png)
 
 ## Development server
+
+Start the backend server: 
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

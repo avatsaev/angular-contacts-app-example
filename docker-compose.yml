@@ -1,7 +1,7 @@
 
 
 
-version: '3.7'
+version: '3'
 
 services:
   db:
@@ -28,12 +28,17 @@ services:
     - 3000:3000
     depends_on:
     - db
+    - redis
     environment:
-      DB_MASTER_URL: postgres://contacts_db:contacts_db_pass@db/contacts_db
+      SERVER_PORT: 3000
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: contacts_db
+      POSTGRES_PASSWORD: contacts_db_pass
+      POSTGRES_DB: contacts_db
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_ENABLED: 'true'
-
   client:
     build:
       context: .
