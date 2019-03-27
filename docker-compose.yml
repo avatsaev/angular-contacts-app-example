@@ -1,7 +1,7 @@
 
 
 
-version: '3'
+version: '3.7'
 
 services:
   db:
@@ -15,6 +15,11 @@ services:
       POSTGRES_DB: contacts_db
       PGDATA: /contacts_db
 
+  redis:
+    image: redis:5-alpine
+    volumes:
+      - ./volumes/redis:/data
+
 
   api:
     image: avatsaev/angular-contacts-api:dev
@@ -25,6 +30,9 @@ services:
     - db
     environment:
       DB_MASTER_URL: postgres://contacts_db:contacts_db_pass@db/contacts_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_ENABLED: 'true'
 
   client:
     build:
