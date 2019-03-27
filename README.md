@@ -30,7 +30,7 @@ The app will be available at: http://localhost:4000
 
 ## Development server
 
-Start the backend server: 
+Start the backend server: https://github.com/avatsaev/angular-contacts-app-example-api
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
