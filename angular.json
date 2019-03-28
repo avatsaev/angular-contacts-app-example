@@ -26,6 +26,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.json",
               "src/manifest.json"
             ],
             "styles": [
@@ -52,7 +53,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": false
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             },
             "dev": {
               "fileReplacements": [
@@ -129,6 +131,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.json",
               "src/manifest.json"
             ]
           }
