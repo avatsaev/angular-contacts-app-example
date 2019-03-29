@@ -1,12 +1,11 @@
 export const environment = {
   production: true,
   appApi: {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'http://contacts-api.vatsaev.com'
   },
   socketConfig: {
-    url: 'http://localhost:3000',
+    url: 'http://contacts-api.vatsaev.com',
     opts: {
-
     }
   }
 };

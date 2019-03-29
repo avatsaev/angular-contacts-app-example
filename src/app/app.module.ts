@@ -7,11 +7,12 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {SharedModule} from './core/modules/shared.module';
 import * as fromRoot from '@app/root-store';
-import {environment} from '../environments/environment';
+
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {SocketIoModule} from 'ngx-socket-io';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {environment} from '@app/env';
 
 @NgModule({
   declarations: [
