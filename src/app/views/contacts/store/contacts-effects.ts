@@ -12,8 +12,8 @@ import {
 import * as contactsActions from '@app/contacts-store/contacts-actions';
 import { Actions, Effect, ofType} from '@ngrx/effects';
 import { Contact } from '@app/core/models';
-import { ContactsService } from '@app/core/services/contacts.service';
-import { ContactsSocketService } from '@app/core/services/contacts-socket.service';
+import {ContactsService} from '../services/contacts.service';
+import {ContactsSocketService} from '../services/contacts-socket.service';
 
 
 /**
@@ -89,20 +89,20 @@ export class ContactsEffects {
   // Socket Live Events
 
   @Effect()
-  liveCreate$ = this.contactsSocket.fromEvent(contactsActions.ContactsActionTypes.LIVE_CREATED).pipe(
+  liveCreate$ = this.contactsSocket.liveCreated$.pipe(
     map((contact: Contact) => new contactsActions.CreateSuccess(contact))
   );
 
 
   @Effect()
-  liveUpdate$ = this.contactsSocket.fromEvent(contactsActions.ContactsActionTypes.LIVE_UPDATED).pipe(
+  liveUpdate$ = this.contactsSocket.liveUpdated$.pipe(
     map((contact: Contact) => new contactsActions.PatchSuccess({
       id: contact.id, changes: contact
     }))
   );
 
   @Effect()
-  liveDestroy$ = this.contactsSocket.fromEvent(contactsActions.ContactsActionTypes.LIVE_DELETED).pipe(
+  liveDestroy$ = this.contactsSocket.liveDeleted$.pipe(
     map(id => new contactsActions.DeleteSuccess(+id))
   );
 

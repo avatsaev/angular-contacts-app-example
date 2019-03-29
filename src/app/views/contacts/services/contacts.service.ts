@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import { Contact } from '@app/core/models';
-import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {Contact} from '@app/core/models';
+import {environment} from '@app/env';
 
-@Injectable({
-  providedIn: 'root',
-})
+
+@Injectable()
 export class ContactsService {
 
   constructor(private http: HttpClient ) { }

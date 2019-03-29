@@ -6,7 +6,7 @@ import {combineReducers, StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ContactListComponent} from '@app/core/components/contact-list/contact-list.component';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
-import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
+import {ContactsSocketService} from '@app/core/../services/contacts-socket.service';
 import { Router } from '@angular/router';
 
 
