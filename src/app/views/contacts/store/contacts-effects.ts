@@ -27,7 +27,7 @@ export class ContactsEffects {
   @Effect()
   loadAll$ = this.actions$.pipe(
       ofType<contactsActions.LoadAll>(contactsActions.ContactsActionTypes.LOAD_ALL), /* When [Contacts] LOAD ALL action is dispatched */
-      startWith(new contactsActions.LoadAll()),
+      // startWith(new contactsActions.LoadAll()),
       /* Hit the Contacts Index endpoint of our REST API */
       /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
       /* 'Contacts Reducers' will take care of the rest */

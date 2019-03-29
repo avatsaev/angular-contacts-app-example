@@ -41,7 +41,6 @@ export class SetCurrentContactId implements Action {
 
 export class LoadAll implements Action {
   readonly type = ContactsActionTypes.LOAD_ALL;
-  constructor(public payload = null) {}
 }
 
 export class Load implements Action {
