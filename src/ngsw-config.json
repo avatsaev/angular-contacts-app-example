@@ -1,5 +1,20 @@
 {
   "index": "/index.html",
+
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": [
+        "http://contacts-api.vatsaev.com/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "3d",
+        "timeout": "5s"
+      }
+    }
+  ],
   "assetGroups": [
     {
       "name": "app",
