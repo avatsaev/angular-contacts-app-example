@@ -3,7 +3,7 @@
 </p>
 
 
-# Angular CRUD Contacts App Example with NgRx Store and NgRx Effects (HTTP+WebSockets)
+# Full Stack Angular CRUD example app with NgRx Store, Effects (HTTP+WebSockets), Entity & NestJS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
