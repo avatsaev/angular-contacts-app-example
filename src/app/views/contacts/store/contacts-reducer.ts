@@ -35,42 +35,42 @@ export const INIT_STATE: State = contactsAdapter.getInitialState({
 
 export function reducer(
   state: State = INIT_STATE,
-  {type, payload}: AllContactsActions
+  action: AllContactsActions
 ) {
 
-  switch (type) {
+  switch (action.type) {
 
     case ContactsActionTypes.SET_CURRENT_CONTACT_ID : {
       return {
         ...state,
-        currentContactId: payload
+        currentContactId: action.payload
       };
     }
 
     case ContactsActionTypes.LOAD_ALL_SUCCESS : {
-      return contactsAdapter.addAll(payload, state);
+      return contactsAdapter.addAll(action.payload, state);
     }
 
 
     case ContactsActionTypes.LOAD_SUCCESS : {
-      return contactsAdapter.addOne(payload, {
+      return contactsAdapter.addOne(action.payload, {
         ...state,
-        currentContactId: payload.id
+        currentContactId: action.payload.id
       });
     }
 
     case ContactsActionTypes.CREATE_SUCCESS : {
-      return contactsAdapter.addOne(payload, {
+      return contactsAdapter.addOne(action.payload, {
         ...state
       });
     }
 
     case ContactsActionTypes.PATCH_SUCCESS : {
-      return contactsAdapter.updateOne(payload, state);
+      return contactsAdapter.updateOne(action.payload, state);
     }
 
     case ContactsActionTypes.DELETE_SUCCESS : {
-      return contactsAdapter.removeOne(payload, state);
+      return contactsAdapter.removeOne(action.payload, state);
     }
 
     default: return state;
