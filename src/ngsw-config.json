@@ -5,7 +5,7 @@
     {
       "name": "api",
       "urls": [
-        "http://contacts-api.vatsaev.com/**"
+        "https://contacts-api.vatsaev.com/**"
       ],
       "cacheConfig": {
         "strategy": "freshness",
