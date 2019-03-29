@@ -3,7 +3,7 @@
 </p>
 
 
-# Full Stack Angular CRUD example app with NgRx Store, Effects (HTTP+WebSockets), Entity & NestJS
+# Full Stack Angular PWA app with NgRx Store, Effects (HTTP+WebSockets), Entity & NestJS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 

@@ -10,7 +10,7 @@ export const environment = {
   socketConfig: {
     url: 'http://localhost:3000',
     opts: {
-      transports: ['websocket']
+
     }
   }
 };

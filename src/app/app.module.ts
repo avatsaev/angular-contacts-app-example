@@ -11,6 +11,7 @@ import * as fromRoot from '@app/root-store';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {SocketIoModule} from 'ngx-socket-io';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import {environment} from '@app/env';
 
 @NgModule({
@@ -27,6 +28,7 @@ import {environment} from '@app/env';
     StoreModule.forRoot(fromRoot.reducers), /* Initialise the Central Store with Application's main reducer*/
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

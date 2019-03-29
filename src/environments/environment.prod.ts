@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
   appApi: {
-    baseUrl: 'http://contacts-api.vatsaev.com'
+    baseUrl: 'https://contacts-api.vatsaev.com'
   },
   socketConfig: {
-    url: 'http://contacts-api.vatsaev.com',
+    url: 'https://contacts-api.vatsaev.com',
     opts: {
     }
   }
