@@ -35,6 +35,11 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 ![](https://i.imgur.com/jIQ4Rd3.png)
 
 
+## Lighthouse Audit:
+
+![](https://i.imgur.com/UqW3s9M.png)
+
+
 ## Get started 
 
 You can run the app with docker compose:
