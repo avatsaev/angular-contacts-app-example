@@ -22,6 +22,19 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity) is released and available on NPM, @ngrx/entity helps to reduce boilerplate and [manipulate data](https://i.imgur.com/2IGdFRB.jpg) in a fast and easy fashion, you can find @ngrx/entity implementation in Contacts Reducer.
 
 
+# NGRX infrastructure
+
+
+## Ngrx + Effects with a simple REST Service
+
+![](http://i.imgur.com/bpIbJrd.png)
+
+
+## Ngrx + Effects with Socket.IO
+
+![](http://i.imgur.com/F7k2Iyj.png)
+
+
 ## Get started 
 
 You can run the app with docker compose:
