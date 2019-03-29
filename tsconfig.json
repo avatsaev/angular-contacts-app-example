@@ -25,7 +25,9 @@
       "@app/root-store": ["src/app/store/index"],
 
       "@app/contacts-store/*": ["src/app/views/contacts/store/*"],
-      "@app/contacts-store": ["src/app/views/contacts/store/index"]
+      "@app/contacts-store": ["src/app/views/contacts/store/index"],
+
+      "@app/env": ["src/environments/environment"]
     }
   }
 }

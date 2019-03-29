@@ -11,10 +11,10 @@ import * as fromRoot from '@app/root-store';
 
 import {HttpClientModule} from '@angular/common/http';
 import {ContactDetailsContainerComponent} from '@app/core/components/contact-details/contact-details-container.component';
-import {ContactsService} from '@app/core/services/contacts.service';
+import {ContactsService} from '@app/core/../services/contacts.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
-import {ContactsSocketService} from '@app/core/services/contacts-socket.service';
+import {ContactsSocketService} from '@app/core/../services/contacts-socket.service';
 import { Router } from '@angular/router';
 
 
