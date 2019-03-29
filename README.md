@@ -1,4 +1,9 @@
-# Angular CRUD Contacts App Example with NgRx Store and NgRx Effects (HTTP+WebSockets)
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://i.imgur.com/R2NlsFd.png" /></a>
+</p>
+
+
+# Full Stack Angular CRUD example app with NgRx Store, Effects (HTTP+WebSockets), Entity & NestJS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -17,6 +22,19 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity) is released and available on NPM, @ngrx/entity helps to reduce boilerplate and [manipulate data](https://i.imgur.com/2IGdFRB.jpg) in a fast and easy fashion, you can find @ngrx/entity implementation in Contacts Reducer.
 
 
+# NGRX infrastructure
+
+
+## Ngrx + Effects with an HTTP Service
+
+![](https://i.imgur.com/qtjdPbe.png)
+
+
+## Ngrx + Effects with Socket.IO
+
+![](https://i.imgur.com/jIQ4Rd3.png)
+
+
 ## Get started 
 
 You can run the app with docker compose:
@@ -28,7 +46,9 @@ $ docker-compose up --build
 The app will be available at: http://localhost:4000
 
 ![](http://i.imgur.com/TKWwYgQ.png)
+
 ![](http://i.imgur.com/GBBXbuu.png)
+
 ![](http://i.imgur.com/J4inaXx.png)
 
 ## Development server
