@@ -25,14 +25,14 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 # NGRX infrastructure
 
 
-## Ngrx + Effects with a simple REST Service
+## Ngrx + Effects with an HTTP Service
 
-![](http://i.imgur.com/bpIbJrd.png)
+![](https://i.imgur.com/qtjdPbe.png)
 
 
 ## Ngrx + Effects with Socket.IO
 
-![](http://i.imgur.com/F7k2Iyj.png)
+![](https://i.imgur.com/jIQ4Rd3.png)
 
 
 ## Get started 
@@ -46,7 +46,9 @@ $ docker-compose up --build
 The app will be available at: http://localhost:4000
 
 ![](http://i.imgur.com/TKWwYgQ.png)
+
 ![](http://i.imgur.com/GBBXbuu.png)
+
 ![](http://i.imgur.com/J4inaXx.png)
 
 ## Development server
