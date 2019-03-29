@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint angular-contacts",
     "e2e": "ng e2e",
-    "deploy": "surge -d angular-contacts-ngrx.surge.sh -p dist/angular-contacts",
+    "deploy": "surge -d https://angular-contacts-ngrx.surge.sh -p dist/angular-contacts",
     "predeploy": "ng build --prod && cat dist/angular-contacts/index.html > dist/angular-contacts/200.html"
   },
   "private": true,
@@ -23,7 +23,9 @@
     "@angular/http": "7.2.5",
     "@angular/platform-browser": "7.2.5",
     "@angular/platform-browser-dynamic": "7.2.5",
+    "@angular/pwa": "^0.12.4",
     "@angular/router": "7.2.5",
+    "@angular/service-worker": "7.2.5",
     "@ngrx/effects": "7.2.0",
     "@ngrx/entity": "7.2.0",
     "@ngrx/store": "7.2.0",
@@ -37,10 +39,9 @@
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "7.2.5",
     "@angular-devkit/build-angular": "~0.13.0",
-    "typescript": "3.2.4",
     "@angular/cli": "^7.3.2",
+    "@angular/compiler-cli": "^7.2.11",
     "@angular/language-service": "7.2.5",
     "@types/jasmine": "3.3.9",
     "@types/jasminewd2": "~2.0.6",
@@ -48,13 +49,14 @@
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~4.0.0",
+    "karma": "^4.0.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.5",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.2",
     "ts-node": "~8.0.2",
-    "tslint": "~5.12.1"
+    "tslint": "~5.12.1",
+    "typescript": "3.2.4"
   }
 }
