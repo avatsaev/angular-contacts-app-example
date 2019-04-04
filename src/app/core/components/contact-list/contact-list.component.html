@@ -1,39 +1,41 @@
 <table *ngIf="contacts; else loading" class="table table-hover table-responsive-md">
   <thead class="header">
-  <tr>
-    <th>#</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th></th>
-  </tr>
+    <tr>
+      <th>!!!</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
-  <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
-    <th scope="row">{{c.id}}</th>
-    <td>{{c.name}}</td>
-    <td>{{c.email}}</td>
-    <td>{{c.phone}}</td>
-    <td>
+    <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
+      <th scope="row">{{c.id}}</th>
+      <td>{{c.name}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.phone}}</td>
+      <td>
 
-      <span class="float-right">
+        <span class="float-right">
+          <button mat-raised-button>Basic</button>
+          <button mat-raised-button color="primary">Primary</button>
+          <button mat-raised-button color="accent">Accent</button>
+          <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
+            DETAILS
+          </button>
 
-        <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
-          DETAILS
-        </button>
+          <button (click)="editContact(c)" class="btn btn-outline-primary mb-1 btn-sm">
+            EDIT
+          </button>
 
-        <button (click)="editContact(c)" class="btn btn-outline-primary mb-1 btn-sm">
-          EDIT
-        </button>
+          <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
+            DELETE
+          </button>
 
-        <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
-          DELETE
-        </button>
+        </span>
 
-      </span>
-
-    </td>
-  </tr>
+      </td>
+    </tr>
 
   </tbody>
 </table>

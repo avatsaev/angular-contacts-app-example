@@ -1,10 +1,4 @@
 <h1> Contact list</h1>
-
-
-
-
-<app-contact-list [contacts]="contacts$ | async"
-                  (show)="showContact($event)"
-                  (remove)="deleteContact($event)"
-                  (edit)="editContact($event)"
-></app-contact-list>
+<button mat-raised-button color="accent">accent</button>
+<app-contact-list [contacts]="contacts$ | async" (show)="showContact($event)" (remove)="deleteContact($event)"
+    (edit)="editContact($event)"></app-contact-list>
