@@ -1,7 +1,7 @@
-<table *ngIf="contacts; else loading" class="table table-hover table-responsive-md">
+<table *ngIf="contacts; else loading" class="table width-stretch">
   <thead class="header">
     <tr>
-      <th>!!!</th>
+      <th>#</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
@@ -15,28 +15,18 @@
       <td>{{c.email}}</td>
       <td>{{c.phone}}</td>
       <td>
-
         <span class="float-right">
-          <button mat-raised-button>Basic</button>
-          <button mat-raised-button color="primary">Primary</button>
-          <button mat-raised-button color="accent">Accent</button>
-          <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
-            DETAILS
-          </button>
-
-          <button (click)="editContact(c)" class="btn btn-outline-primary mb-1 btn-sm">
-            EDIT
-          </button>
-
-          <button (click)="deleteContact(c)" class="btn btn-outline-danger mb-1 btn-sm">
-            DELETE
-          </button>
-
+          <button (click)="showDetails(c)" mat-stroked-button color="primary">Details</button>
+          <button (click)="editContact(c)" mat-stroked-button color="primary">Edit</button>
+          <button (click)="deleteContact(c)" mat-stroked-button color="warn">Delete</button>
         </span>
-
       </td>
     </tr>
-
+    <tr>
+      <td colspan="5" align="center" *ngIf="contacts.length === 0">
+        <button mat-stroked-button>Add contact</button>
+      </td>
+    </tr>
   </tbody>
 </table>
 

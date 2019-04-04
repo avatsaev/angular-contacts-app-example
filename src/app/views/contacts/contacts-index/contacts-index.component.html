@@ -1,4 +1,11 @@
-<h1> Contact list</h1>
-<button mat-raised-button color="accent">accent</button>
-<app-contact-list [contacts]="contacts$ | async" (show)="showContact($event)" (remove)="deleteContact($event)"
-    (edit)="editContact($event)"></app-contact-list>
+<mat-card class="contact-card">
+    <mat-card-header class="contact-card-title">
+        <mat-card-title>
+            <h2 class="mt0">Contact list</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-contact-list [contacts]="contacts$ | async" (show)="showContact($event)" (remove)="deleteContact($event)"
+            (edit)="editContact($event)"></app-contact-list>
+    </mat-card-content>
+</mat-card>

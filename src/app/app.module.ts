@@ -14,7 +14,6 @@ import { SocketIoModule } from 'ngx-socket-io';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '@app/env';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
     EffectsModule.forRoot([]), /* Start monitoring app's side effects */
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule,
-    MatButtonModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

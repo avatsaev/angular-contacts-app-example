@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import * as fromRoot from '@app/root-store';
-import {select, Store} from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
   template: `
     <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
 
-    <div class="container">
+    <div class="container p12 f-grow-1">
       <router-outlet></router-outlet>
       <app-footer></app-footer>
     </div>
@@ -18,7 +18,7 @@ import {select, Store} from '@ngrx/store';
 export class AppComponent implements OnInit {
 
   currentPageTitle$: Observable<string>;
-  constructor(private store: Store<fromRoot.State>) {}
+  constructor(private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
     this.currentPageTitle$ = this.store.pipe(

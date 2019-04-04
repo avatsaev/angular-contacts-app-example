@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-
+html, body { height: 100%; }
 body
-  padding-top: 5rem
-  font-family: sans-serif
+  margin: 0
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #424242
+  color: #F5F5F5
 
 button
   cursor: pointer
 
+a
+  color: #448AFF
 
 @keyframes fadeIn
   from
@@ -17,3 +21,25 @@ button
 
 .btn
   margin: 3px
+
+.p12
+  padding: 12px
+
+.mt0
+  margin-top: 0
+
+.width-stretch
+  width: 100%
+
+.height-stretch
+  height: 100%
+
+.flex 
+  display: flex;
+  &.f-row
+    flex-direction: row;
+  &.f-col
+    flex-direction: column;
+  .f-grow-1
+    flex-grow: 1;
+     
