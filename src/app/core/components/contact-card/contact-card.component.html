@@ -1,0 +1,20 @@
+<mat-card class="contact-card">
+  <mat-card-header class="contact-card-title">
+    <mat-card-title>
+      <h2 class="mt0">{{contact.name}}</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="contact-card-info">
+    <div class="flex f-align-center mb8">
+      <mat-icon class="mr4">email</mat-icon>{{contact.email}}
+    </div>
+    <div class="flex f-align-center mb8">
+      <mat-icon class="mr4">smartphone</mat-icon>{{contact.phone}}
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="contact-card-action">
+    <button (click)="showDetails(contact)" mat-stroked-button color="primary">Details</button>
+    <button (click)="editContact(contact)" mat-stroked-button color="primary">Edit</button>
+    <button (click)="deleteContact(contact)" mat-stroked-button color="warn">Delete</button>
+  </mat-card-actions>
+</mat-card>

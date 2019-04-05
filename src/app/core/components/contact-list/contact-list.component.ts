@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Contact } from '@app/core/models';
+import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -17,21 +19,25 @@ export class ContactListComponent implements OnInit {
 
   contactsTrackByFn = (index: number, contact: Contact) => contact.id;
 
-  constructor() {}
+  constructor(private contactsFacade: ContactsStoreFacade, private router: Router) { }
 
-  ngOnInit() {}
-
-
-  showDetails(contact: Contact) {
-    this.show.emit(contact);
-  }
+  ngOnInit() { }
 
   editContact(contact: Contact) {
-    this.edit.emit(contact);
+    this.contactsFacade.setCurrentContactId(contact.id);
+    this.router.navigate(['/contacts', contact.id, 'edit']);
+  }
+
+  showContact(contact: Contact) {
+    this.contactsFacade.setCurrentContactId(contact.id);
+    this.router.navigate(['/contacts', contact.id]);
   }
 
   deleteContact(contact: Contact) {
-    this.remove.emit(contact);
+    const r = confirm('Are you sure?');
+    if (r) {
+      this.contactsFacade.deleteContact(contact.id);
+    }
   }
 
 }

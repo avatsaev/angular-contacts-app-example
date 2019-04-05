@@ -1,14 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<nav class="navbar">
+  <div class="navbar-title">
+    <img src="assets/icons/angular_white.png" width="60" />
+    <h1>Angular contacts</h1>
+  </div>
+  <div class="navibar-actions">
+    <button mat-stroked-button *ngIf="pageUrl !== '/contacts'" [routerLink]="['/contacts']">
+      <mat-icon class="mr4">home</mat-icon>Back
+    </button>
+    <button mat-stroked-button *ngIf="pageUrl !== '/contacts/new'" [routerLink]="['/contacts','new']"
+      routerLinkActive="active">
+      <mat-icon class="mr4">add</mat-icon>Add
+    </button>
+  </div>
 
-
-  <a style="min-width: 280px" class="navbar-brand" routerLink="/">
-    Angular contacts
+  <!--  <a style="min-width: 280px" class="navbar-brand" routerLink="/">
     <span class="page title" *ngIf="title">
      - <span class="title-string">{{title}}</span>
-    </span>
-  </a>
+    </span> 
+  </a>-->
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+    aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -17,16 +29,16 @@
       <li class="nav-item " [routerLink]="['/contacts']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
 true}">
 
-        <span class="nav-link" >  <i class="fa fa-list-ul" aria-hidden="true"></i> Index </span>
+        <span class="nav-link"> <i class="fa fa-list-ul" aria-hidden="true"></i> Index </span>
       </li>
 
 
       <li class="nav-item" [routerLink]="['/contacts','new']" routerLinkActive="active">
 
-        <span class="nav-link" > <i class="fa fa-plus-square" aria-hidden="true"></i> New </span>
+        <span class="nav-link"> <i class="fa fa-plus-square" aria-hidden="true"></i> New </span>
       </li>
 
     </ul>
 
-  </div>
+  </div> -->
 </nav>

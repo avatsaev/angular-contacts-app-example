@@ -1,35 +1,9 @@
-<table *ngIf="contacts; else loading" class="table width-stretch">
-  <thead class="header">
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
-      <th scope="row">{{c.id}}</th>
-      <td>{{c.name}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.phone}}</td>
-      <td>
-        <span class="float-right">
-          <button (click)="showDetails(c)" mat-stroked-button color="primary">Details</button>
-          <button (click)="editContact(c)" mat-stroked-button color="primary">Edit</button>
-          <button (click)="deleteContact(c)" mat-stroked-button color="warn">Delete</button>
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="5" align="center" *ngIf="contacts.length === 0">
-        <button mat-stroked-button>Add contact</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div *ngIf="contacts; else loading">
+  <app-contact-card *ngFor="let contact of contacts; trackBy: contactsTrackByFn" [contact]="contact"
+    (show)="showContact($event)" (remove)="deleteContact($event)" (edit)="editContact($event)"></app-contact-card>
+</div>
+<!-- <button mat-stroked-button [routerLink]="['/contacts','new']" *ngIf="contacts.length === 0">Add contact</button>
+ -->
 <ng-template #loading>
   <span>loading contacts...</span>
 </ng-template>

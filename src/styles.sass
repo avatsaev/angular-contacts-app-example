@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
+@import "variables.scss"
+
+html, body
+  height: 100%
+
 body
   margin: 0
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif
   background: #424242
   color: #F5F5F5
 
@@ -10,7 +14,7 @@ button
   cursor: pointer
 
 a
-  color: #448AFF
+  color:  $action_items
 
 @keyframes fadeIn
   from
@@ -25,8 +29,20 @@ a
 .p12
   padding: 12px
 
+.pt24
+  padding-top: 24px
+
+.pb24
+  padding-top: 24px
+
 .mt0
   margin-top: 0
+
+.mr4
+  margin-right: 4px
+
+.mb8
+  margin-bottom: 8px
 
 .width-stretch
   width: 100%
@@ -35,11 +51,13 @@ a
   height: 100%
 
 .flex 
-  display: flex;
+  display: flex
   &.f-row
-    flex-direction: row;
+    flex-direction: row
   &.f-col
-    flex-direction: column;
+    flex-direction: column
   .f-grow-1
-    flex-grow: 1;
+    flex-grow: 1
+  .f-align-center
+    align-items: center
      

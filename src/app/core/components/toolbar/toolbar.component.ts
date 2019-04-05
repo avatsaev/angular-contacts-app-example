@@ -1,4 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,10 +9,14 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent implements OnInit {
-
+  pageUrl: string;
   @Input() title;
 
-  constructor() { }
+
+  constructor(private router: Router) {
+    const routerSubscr = router.events.pipe(filter(event => event instanceof NavigationStart))
+      .subscribe((val: NavigationStart) => this.pageUrl = val.url);
+  }
 
   ngOnInit() {
 
