@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactFormComponent implements OnInit, OnChanges {
   @Input() title: string;
+  @Input() submButtonName: string;
   @Input() contact: Contact = {
     id: undefined,
     name: '',

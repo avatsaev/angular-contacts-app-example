@@ -2,7 +2,7 @@
   <mat-card class="contact-card">
     <mat-card-header class="contact-card-title">
       <mat-card-title>
-        <h2 class="mt0">New contact</h2>
+        <h2 class="mt0">{{title}}</h2>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content class="contact-card-info">
@@ -26,7 +26,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="contact-card-action">
-      <button mat-stroked-button color="primary" [disabled]="!form.valid">Add contact</button>
+      <button mat-stroked-button color="primary" [disabled]="!form.valid">{{submButtonName}}</button>
     </mat-card-actions>
   </mat-card>
 </form>
