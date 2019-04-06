@@ -1,24 +1,22 @@
-
-
-<div class="contact-details-container" *ngIf="contact">
-
-  <div class="card">
-    <div class="card-header">
-      Contact
+<mat-card class="contact-card">
+  <mat-card-header class="contact-card-title">
+    <mat-card-title>
+      <h2 class="mt0">Contact details</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="contact-card-info">
+    <div class="flex f-align-center mb8">
+      <mat-icon class="mr8">person</mat-icon>{{contact.name}}
     </div>
-    <div class="card-body">
-      <p>Name: <span class="badge badge-primary">{{contact.name}}</span></p>
-      <p>Email:  <span class="badge badge-primary">{{contact.email}}</span></p>
-      <p>Phone:  <span class="badge badge-primary">{{contact.phone}}</span></p>
+    <div class="flex f-align-center mb8">
+      <mat-icon class="mr8">email</mat-icon>{{contact.email}}
     </div>
-    <div class="card-footer text-muted">
-      <span class="float-md-right ">
-        <button (click)="edit.emit(contact)" class="btn btn-sm btn-outline-primary"> EDIT</button>
-        <button (click)="remove.emit(contact)" class="btn btn-sm btn-outline-danger"> DELETE</button>
-      </span>
-
+    <div class="flex f-align-center mb8">
+      <mat-icon class="mr8">smartphone</mat-icon>{{contact.phone}}
     </div>
-  </div>
-
-</div>
-
+  </mat-card-content>
+  <mat-card-actions class="contact-card-action">
+    <button (click)="edit.emit(contact)" mat-stroked-button color="primary">Edit</button>
+    <button (click)="remove.emit(contact)" mat-stroked-button color="warn">Delete</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,13 +1,1 @@
-
-
-
-<div class="card">
-  <div class="card-header">
-    Edit Contact
-  </div>
-  <div class="card-body">
-    <app-contact-form [contact]="contact$ | async" (save)="submitted($event)"> </app-contact-form>
-
-  </div>
-
-</div>
+<app-contact-form [contact]="contact$ | async" (save)="submitted($event)" [title]="'Edit contact'"> </app-contact-form>

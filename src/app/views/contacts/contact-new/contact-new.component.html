@@ -1,13 +1,1 @@
-
-<div class="card">
-  <div class="card-header">
-    New Contact
-  </div>
-  <div class="card-body">
-    <app-contact-form (save)="submitted($event)"></app-contact-form>
-  </div>
-
-</div>
-
-
-
+<app-contact-form (save)="submitted($event)" [title]="'New contact'"></app-contact-form>

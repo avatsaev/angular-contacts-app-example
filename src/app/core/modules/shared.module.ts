@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '@app/core/components/footer/footer.component';
-import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material
     ReactiveFormsModule,
     RouterModule,
     MatButtonModule,
+    MatInputModule,
     MatCardModule,
     MatIconModule
   ],
@@ -36,6 +37,7 @@ import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material
     ToolbarComponent,
     FooterComponent,
     MatButtonModule,
+    MatInputModule,
     MatCardModule,
     MatIconModule
   ]

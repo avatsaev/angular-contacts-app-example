@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Contact } from '@app/core/models';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactFormComponent implements OnInit, OnChanges {
-
+  @Input() title: string;
   @Input() contact: Contact = {
     id: undefined,
     name: '',
@@ -37,7 +37,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.contact) {
-      this.form.patchValue({...this.contact});
+      this.form.patchValue({ ...this.contact });
     }
   }
 
