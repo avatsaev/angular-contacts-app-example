@@ -1,21 +1,33 @@
+\:host
+    display: flex
+
 .contact-card
     color: #F5F5F5
     background: #424242
     border: 1px solid #00000033
-    min-width: 250px
-    max-width: 250px
-
+    min-width: 260px
+    max-width: 260px
+    margin-right: 16px
+    margin-bottom: 16px
+    display: flex
+    flex-direction: column
 
 .contact-card-title
     h2
         font-size: 20px
         margin: 0 0 24px -16px
+        word-break: break-all
 
 .contact-card-info
     color: #BDBDBD
-    margin-bottom: 24px
+    padding-bottom: 24px
+    margin: 0
+    flex-grow: 1
 
 .contact-card-action
     display: flex
     justify-content: space-around
+    margin-bottom: 0
+    .mat-stroked-button.mat-primary
+        color: #5E97F8 !important
 

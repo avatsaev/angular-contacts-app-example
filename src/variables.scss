@@ -1,3 +1,8 @@
-  $blue: #448AFF !global;
+  $primary: #5E97F8 !global;
   $purple: #4527A0 !global;
-  $action_items: #64FFDA !global;
+  $action_items: #5E97F8 !global;
+
+  .blade-theme {
+      $primary: #4527A0 !global;
+      $action_items: #64FFDA !global;
+  }
