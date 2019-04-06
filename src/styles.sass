@@ -55,6 +55,9 @@ a
 .height-stretch
   height: 100%
 
+.scroll-content
+  overflow: auto
+
 .flex 
   display: flex
   &.f-row
@@ -65,4 +68,25 @@ a
     flex-grow: 1
   .f-align-center
     align-items: center
-     
+
+@media  screen and  (max-width: 450px)
+  .contact-list
+    justify-content: center !important
+  .contact-card
+    margin-right: 0 !important
+@media  screen and  (max-width: 400px) and (orientation : portrait)
+    .container
+        margin-top: 0 !important
+        padding: 16px 10px !important
+    .navbar-title
+        h1
+          font-size: 20px
+          margin-top: 0
+          margin-bottom: 0
+        img
+          width: 50px
+    .contact-list
+      justify-content: center !important
+    .contact-card
+      margin-right: 0 !important
+      
