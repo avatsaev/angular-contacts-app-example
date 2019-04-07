@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
-  host: { 'class': 'f-grow-1 scroll-content' },
+  // tslint:disable-next-line: use-host-property-decorator
+  host: { class: 'f-grow-1 scroll-content' },
   template: `<router-outlet></router-outlet>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

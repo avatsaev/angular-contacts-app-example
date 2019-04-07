@@ -16,11 +16,13 @@ button
 a
   color:  $action_items
 
-@keyframes fadeIn
-  from
-    opacity: 0
-  to
-    opacity: 1
+.blade-theme
+  a
+    color: $action_green
+  .navbar
+    background: $purple !important
+  .contact-card-action .mat-stroked-button.mat-primary:not([disabled])
+    color: $action_green !important
 
 .btn
   margin: 3px
@@ -89,4 +91,3 @@ a
       justify-content: center !important
     .contact-card
       margin-right: 0 !important
-      
