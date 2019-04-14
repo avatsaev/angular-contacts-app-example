@@ -1,11 +1,10 @@
 <form (submit)="submit()" class="form" [formGroup]="form">
-  <mat-card class="contact-card">
-    <mat-card-header class="contact-card-title">
-      <mat-card-title>
-        <h2 class="mt0">{{title}}</h2>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="contact-card-info">
+  <app-contact-card-view class="contact-card-stretch" [cardTitleTemplate]="cardTitleTemplate"
+    [cardInfoTemplate]="cardInfoTemplate" [cardActionTemplate]="cardActionTemplate">
+    <ng-template #cardTitleTemplate>
+      {{title}}
+    </ng-template>
+    <ng-template #cardInfoTemplate>
       <div class="flex f-align-center mb8">
         <mat-icon class="mr8">person</mat-icon>
         <mat-form-field class="width-stretch">
@@ -24,9 +23,9 @@
           <input matInput type="text" formControlName="phone" />
         </mat-form-field>
       </div>
-    </mat-card-content>
-    <mat-card-actions class="contact-card-action">
+    </ng-template>
+    <ng-template #cardActionTemplate>
       <button mat-stroked-button color="primary" [disabled]="!form.valid">{{submButtonName}}</button>
-    </mat-card-actions>
-  </mat-card>
+    </ng-template>
+  </app-contact-card-view>
 </form>

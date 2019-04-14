@@ -1,0 +1,15 @@
+<mat-card class="contact-card">
+  <mat-card-header class="contact-card-title">
+    <mat-card-title>
+      <h2 class="mt0">
+        <ng-container *ngTemplateOutlet="cardTitleTemplate"></ng-container>
+      </h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="contact-card-info">
+    <span *ngTemplateOutlet="cardInfoTemplate"></span>
+  </mat-card-content>
+  <mat-card-actions class="contact-card-action">
+    <span *ngTemplateOutlet="cardActionTemplate"></span>
+  </mat-card-actions>
+</mat-card>

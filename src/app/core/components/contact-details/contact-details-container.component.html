@@ -1,10 +1,9 @@
-<mat-card class="contact-card">
-  <mat-card-header class="contact-card-title">
-    <mat-card-title>
-      <h2 class="mt0">Contact details</h2>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="contact-card-info">
+<app-contact-card-view class="contact-card-stretch" [cardTitleTemplate]="cardTitleTemplate"
+  [cardInfoTemplate]="cardInfoTemplate" [cardActionTemplate]="cardActionTemplate">
+  <ng-template #cardTitleTemplate>
+    Contact details
+  </ng-template>
+  <ng-template #cardInfoTemplate>
     <div class="flex f-align-center mb8">
       <mat-icon class="mr8">person</mat-icon>{{contact.name}}
     </div>
@@ -14,9 +13,9 @@
     <div class="flex f-align-center mb8">
       <mat-icon class="mr8">smartphone</mat-icon>{{contact.phone}}
     </div>
-  </mat-card-content>
-  <mat-card-actions class="contact-card-action">
+  </ng-template>
+  <ng-template #cardActionTemplate>
     <button (click)="edit.emit(contact)" mat-stroked-button color="primary">Edit</button>
     <button (click)="remove.emit(contact)" mat-stroked-button color="warn">Delete</button>
-  </mat-card-actions>
-</mat-card>
+  </ng-template>
+</app-contact-card-view>

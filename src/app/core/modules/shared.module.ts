@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ContactCardViewComponent } from '../components/contact-card-view/contact-card-view.component';
 import { ContactListComponent } from '../components/contact-list/contact-list.component';
 import { ContactCardComponent } from '../components/contact-card/contact-card.component';
 import { ContactFormComponent } from '../components/contact-form/contact-form.component';
@@ -22,6 +23,7 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
     MatIconModule
   ],
   declarations: [
+    ContactCardViewComponent,
     ContactListComponent,
     ContactCardComponent,
     ContactDetailsContainerComponent,
@@ -30,6 +32,7 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
     FooterComponent
   ],
   exports: [
+    ContactCardViewComponent,
     ContactListComponent,
     ContactCardComponent,
     ContactDetailsContainerComponent,
