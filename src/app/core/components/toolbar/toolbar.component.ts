@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   pageUrl: string;
-  @Input() title;
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router) {

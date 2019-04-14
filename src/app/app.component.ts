@@ -9,7 +9,7 @@ import { AppService } from './app.service';
   host: { '[class.blade-theme]': 'appService.getBladeTheme' },
   styleUrls: ['./app.component.sass'],
   template: `
-    <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
+    <app-toolbar></app-toolbar>
     <div class="container flex f-col f-grow-1">
       <router-outlet></router-outlet>
       <app-footer></app-footer>
