@@ -10,7 +10,6 @@ export class AppService {
     return this.isBladeTheme.getValue();
   }
   set setBladeTheme(val: boolean) {
-    console.log('val', val);
     this.isBladeTheme.next(val);
   }
   constructor() { }

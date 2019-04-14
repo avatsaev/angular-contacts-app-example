@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
-  host: { '[class.blade-theme]': 'isBladeTheme' },
+  host: { '[class.blade-theme]': 'appService.getBladeTheme' },
   styleUrls: ['./app.component.sass'],
   template: `
     <app-toolbar [title]="currentPageTitle$ | async" ></app-toolbar>
@@ -18,18 +18,12 @@ import { AppService } from './app.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  // @HostBinding('class') classes = 'flex f-col';
   currentPageTitle$: Observable<string>;
-  isBladeTheme: boolean = this.appService.getBladeTheme;
-  constructor(private store: Store<fromRoot.State>, public appService: AppService) {
-
-  }
+  constructor(private store: Store<fromRoot.State>, public appService: AppService) { }
 
   ngOnInit() {
     this.currentPageTitle$ = this.store.pipe(
       select(fromRoot.getCurrentTitle)
     );
-    this.appService.isBladeTheme.asObservable().subscribe(val => this.isBladeTheme = val);
-
   }
 }

@@ -12,7 +12,6 @@ export class ToolbarComponent implements OnInit {
   pageUrl: string;
   @Input() title;
 
-
   constructor(private router: Router) {
     const routerSubscr = router.events.pipe(filter(event => event instanceof NavigationStart))
       .subscribe((val: NavigationStart) => this.pageUrl = val.url);
@@ -21,5 +20,4 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
 
   }
-
 }

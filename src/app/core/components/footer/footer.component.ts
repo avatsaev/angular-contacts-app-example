@@ -8,10 +8,8 @@ import { AppService } from 'src/app/app.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-  isBladeTheme: boolean = this.appService.getBladeTheme;
   constructor(public appService: AppService) { }
   changeTheme() {
-    console.log(this.isBladeTheme);
     this.appService.setBladeTheme = !this.appService.getBladeTheme;
   }
 }
