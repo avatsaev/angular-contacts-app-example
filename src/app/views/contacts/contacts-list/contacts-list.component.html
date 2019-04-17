@@ -1,0 +1,7 @@
+<div class="contacts-list" *ngIf="contacts$ | async">
+    <app-contact-card *ngFor="let contact of contacts$ | async; trackBy: contactsTrackByFn" [contact]="contact"
+        (show)="showContact($event)" (remove)="deleteContact($event)" (edit)="editContact($event)"></app-contact-card>
+</div>
+<div class="contacts-list no-results" *ngIf="(contacts$ | async).length === 0">
+    <img src="assets/icons/illustration.png" />
+</div>
