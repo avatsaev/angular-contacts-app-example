@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ContactCardViewComponent } from '../components/contact-card-view/contact-card-view.component';
-import { ContactCardComponent } from '../components/contact-card/contact-card.component';
+import { ContactViewComponent } from '../components/contact-view/contact-view.component';
 import { ContactFormComponent } from '../components/contact-form/contact-form.component';
-import { ContactDetailsContainerComponent } from '../components/contact-details/contact-details-container.component';
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,16 +22,14 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
   ],
   declarations: [
     ContactCardViewComponent,
-    ContactCardComponent,
-    ContactDetailsContainerComponent,
+    ContactViewComponent,
     ContactFormComponent,
     ToolbarComponent,
     FooterComponent
   ],
   exports: [
     ContactCardViewComponent,
-    ContactCardComponent,
-    ContactDetailsContainerComponent,
+    ContactViewComponent,
     ContactFormComponent,
     ToolbarComponent,
     FooterComponent,

@@ -1,5 +1,2 @@
-<app-contact-details-container
-        [contact]="contact$ | async"
-        (edit)="editContact($event)"
-        (remove)="deleteContact($event)"
-></app-contact-details-container>
+<app-contact-view [isInList]="false" [contact]="contact" (edit)="editContact($event)" (remove)="deleteContact($event)">
+</app-contact-view>
