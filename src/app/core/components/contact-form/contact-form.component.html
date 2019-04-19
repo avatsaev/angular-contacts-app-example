@@ -1,5 +1,5 @@
 <form (submit)="submit()" class="form" [formGroup]="form">
-  <app-contact-card-view class="contact-card-stretch" [cardTitleTemplate]="cardTitleTemplate"
+  <app-contact-card class="contact-card-stretch" [cardTitleTemplate]="cardTitleTemplate"
     [cardInfoTemplate]="cardInfoTemplate" [cardActionTemplate]="cardActionTemplate">
     <ng-template #cardTitleTemplate>
       {{title}}
@@ -27,5 +27,5 @@
     <ng-template #cardActionTemplate>
       <button mat-stroked-button color="primary" [disabled]="!form.valid">{{submButtonName}}</button>
     </ng-template>
-  </app-contact-card-view>
+  </app-contact-card>
 </form>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ContactCardViewComponent } from '../components/contact-card-view/contact-card-view.component';
+import { ContactCardComponent } from '../components/contact-card/contact-card.component';
 import { ContactViewComponent } from '../components/contact-view/contact-view.component';
 import { ContactFormComponent } from '../components/contact-form/contact-form.component';
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
@@ -21,14 +21,14 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
     MatIconModule
   ],
   declarations: [
-    ContactCardViewComponent,
+    ContactCardComponent,
     ContactViewComponent,
     ContactFormComponent,
     ToolbarComponent,
     FooterComponent
   ],
   exports: [
-    ContactCardViewComponent,
+    ContactCardComponent,
     ContactViewComponent,
     ContactFormComponent,
     ToolbarComponent,
