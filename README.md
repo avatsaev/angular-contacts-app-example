@@ -17,10 +17,9 @@
 
 This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md) to manage application state, and [@ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md) to manange side effects (http+sockets), It also uses NgRx fractal state management to leverage lazy loading of reducers and effects.
 
-### New:
-
 [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity) is released and available on NPM, @ngrx/entity helps to reduce boilerplate and [manipulate data](https://i.imgur.com/2IGdFRB.jpg) in a fast and easy fashion, you can find @ngrx/entity implementation in Contacts Reducer.
 
+<a href="https://ultimatecourses.com/topic/angular/ref/azero79/" title="Ultimate Courses"><img src="https://ultimatecourses.com/assets/img/banners/ultimate-angular-github.svg" alt="Ultimate Courses" /></a>
 
 # NGRX infrastructure
 
