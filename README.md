@@ -19,7 +19,7 @@ This application uses [@ngrx/store](https://github.com/ngrx/platform/blob/master
 
 [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity) is released and available on NPM, @ngrx/entity helps to reduce boilerplate and [manipulate data](https://i.imgur.com/2IGdFRB.jpg) in a fast and easy fashion, you can find @ngrx/entity implementation in Contacts Reducer.
 
-<a href="https://ultimatecourses.com/topic/angular/ref/azero79/" title="Ultimate Courses"><img src="https://ultimatecourses.com/assets/img/banners/ultimate-angular-github.svg" alt="Ultimate Courses" /></a>
+<a href="https://ultimatecourses.com/courses/angular/ref/azero79/" title="Ultimate Courses"><img src="https://ultimatecourses.com/assets/img/banners/ultimate-angular-github.svg" alt="Ultimate Courses" /></a>
 
 # NGRX infrastructure
 
