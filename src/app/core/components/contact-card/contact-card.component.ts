@@ -2,8 +2,8 @@ import { Component, Input, TemplateRef, ChangeDetectionStrategy, ViewEncapsulati
 
 @Component({
   selector: 'app-contact-card',
-  templateUrl: './contact-cardonent.html',
-  styleUrls: ['./contact-cardonent.sass'],
+  templateUrl: './contact-card.component.html',
+  styleUrls: ['./contact-card.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

@@ -1,6 +1,8 @@
 <form (submit)="submit()" class="form" [formGroup]="form">
-  <app-contact-card class="contact-card-stretch" [cardTitleTemplate]="cardTitleTemplate"
-    [cardInfoTemplate]="cardInfoTemplate" [cardActionTemplate]="cardActionTemplate">
+  <app-contact-card class="contact-card-stretch"
+                    [cardTitleTemplate]="cardTitleTemplate"
+                    [cardInfoTemplate]="cardInfoTemplate"
+                    [cardActionTemplate]="cardActionTemplate">
     <ng-template #cardTitleTemplate>
       {{title}}
     </ng-template>

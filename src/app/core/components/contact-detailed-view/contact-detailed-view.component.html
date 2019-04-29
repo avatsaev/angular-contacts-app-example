@@ -1,5 +1,6 @@
-<app-contact-card [cardTitleTemplate]="cardTitleTemplate" [cardInfoTemplate]="cardInfoTemplate"
-  [cardActionTemplate]="cardActionTemplate">
+<app-contact-card [cardTitleTemplate]="cardTitleTemplate"
+                  [cardInfoTemplate]="cardInfoTemplate"
+                  [cardActionTemplate]="cardActionTemplate">
 
   <ng-template #cardTitleTemplate>
     <span *ngIf="isInList; else title">{{contact.name}}</span>
@@ -23,4 +24,4 @@
     <button (click)="editContact(contact)" mat-stroked-button color="primary">Edit</button>
     <button (click)="deleteContact(contact)" mat-stroked-button color="warn">Delete</button>
   </ng-template>
-</app-contact-card
+</app-contact-card>
