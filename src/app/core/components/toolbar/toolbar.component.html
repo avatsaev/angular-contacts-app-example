@@ -1,14 +1,11 @@
 <nav class="navbar">
-  <div class="navbar-title">
+  <div class="navbar-title" [routerLink]="['/contacts']">
     <img src="assets/icons/angular_white.png" width="60" />
     <h1>Angular contacts</h1>
   </div>
   <div class="navibar-actions">
-    <button mat-stroked-button *ngIf="isShowHome$ | async" [routerLink]="['/contacts']">
-      <mat-icon class="mr4">home</mat-icon>Back
-    </button>
     <button mat-stroked-button *ngIf="isShowAdd$ | async" [routerLink]="['/contacts','new']"
-      routerLinkActive="active">
+            routerLinkActive="active">
       <mat-icon class="mr4">add</mat-icon>Add
     </button>
   </div>

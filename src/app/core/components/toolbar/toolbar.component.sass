@@ -11,13 +11,17 @@
 .navbar-title
   display: flex
   align-items: center
-  flex-grow: 1
+  &:hover
+    cursor: pointer
+  &:focus
+    outline: none
   h1
     margin-left: 16px
 
 .navibar-actions
-  justify-content: space-between
+  justify-content: flex-end
   display: flex
+  flex-grow: 1
   button
     margin: 0 8px
     &:last-child

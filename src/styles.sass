@@ -64,15 +64,12 @@ a
   .f-align-center
     align-items: center
 
-@media  screen and  (max-width: 450px)
-  .contact-list
-    justify-content: center !important
-  .contact-card
-    margin-right: 0 !important
-@media  screen and  (max-width: 400px) and (orientation : portrait)
+@media  screen and  (max-width: 480px) and (orientation : portrait)
     .container
         margin-top: 0 !important
-        padding: 16px 10px !important
+        padding: 16px 0px !important
+    .navbar
+        padding: 8px 10px 8px 4px !important
     .navbar-title
         h1
           font-size: 20px
@@ -80,7 +77,25 @@ a
           margin-bottom: 0
         img
           width: 50px
-    .contact-list
+    .contacts-list
       justify-content: center !important
+      flex-direction: column !important
+      .contact-card
+        background: #525252 !important
+        border-bottom: 1px solid #00000033 !important
     .contact-card
       margin-right: 0 !important
+      margin-bottom: 8px !important
+      padding: 16px 10px !important
+      box-shadow: none !important
+      border: none !important
+      border-radius: 0 !important
+      min-width: auto !important
+      max-width: 100% !important
+      
+    .contact-card-info
+      padding: 0 !important
+
+    .mat-card-header-text
+      height: 38px !important
+    
