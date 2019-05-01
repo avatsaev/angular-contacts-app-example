@@ -1,5 +1,5 @@
 \:host
-    display: flex
+    display: flex !important
 
 .contact-card
     color: #F5F5F5
@@ -38,6 +38,11 @@
 .contact-card-stretch
     display: flex
     justify-content: center
+.contact-card-stretch > *
+    flex-grow: 1
+    display: flex
+    min-width: 260px
+    max-width: 460px
 
     .contact-card
         min-width: 260px
