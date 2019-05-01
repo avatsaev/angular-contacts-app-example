@@ -3,8 +3,9 @@
 
 .contact-card
     color: #F5F5F5
-    background: #424242
-    border: 1px solid #00000033
+    background: #525252
+    box-shadow: none !important
+    border-radius: 6px !important
     min-width: 260px
     max-width: 260px
     margin-right: 16px
@@ -13,9 +14,12 @@
     flex-direction: column
 
 .contact-card-title
+    display: block
+    .mat-card-header-text
+        margin: 0
     h2
         font-size: 20px
-        margin: 0 0 24px -16px
+        margin: 0 0 24px 0
         word-break: break-all
 
 .contact-card-info

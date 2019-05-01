@@ -10,18 +10,10 @@ import { Contact } from '@app/core/models';
 
 export class ContactDetailedViewComponent implements OnInit {
   @Input() contact: Contact;
-  @Input() isInList: boolean;
   @Output() edit = new EventEmitter<Contact>();
-  @Output() show = new EventEmitter<Contact>();
   @Output() remove = new EventEmitter<Contact>();
 
-  ngOnInit() {
-    console.log(this.isInList);
-  }
-
-  showDetails(contact: Contact) {
-    this.show.emit(contact);
-  }
+  ngOnInit() { }
 
   editContact(contact: Contact) {
     this.edit.emit(contact);
@@ -30,6 +22,4 @@ export class ContactDetailedViewComponent implements OnInit {
   deleteContact(contact: Contact) {
     this.remove.emit(contact);
   }
-
-
 }

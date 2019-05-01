@@ -4,9 +4,17 @@
     <h1>Angular contacts</h1>
   </div>
   <div class="navibar-actions">
-    <button mat-stroked-button *ngIf="isShowAdd$ | async" [routerLink]="['/contacts','new']"
-            routerLinkActive="active">
+    <button class="header-add-button"
+            *ngIf="isShowAdd$ | async"
+            mat-stroked-button
+            [routerLink]="['/contacts','new']">
       <mat-icon class="mr4">add</mat-icon>Add
+    </button>
+    <button class="float-add-button"
+            *ngIf="isShowAdd$ | async"
+            mat-fab color="primary"
+            [routerLink]="['/contacts','new']">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
 </nav>

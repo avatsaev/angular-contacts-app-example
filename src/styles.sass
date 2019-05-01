@@ -16,6 +16,9 @@ button
 
 a
   color:  $action_items
+  text-decoration: none
+  &:hover
+    text-decoration: underline
 
 .btn
   margin: 3px
@@ -34,6 +37,9 @@ a
 
 .ml16
   margin-left: 16px
+
+.mr2
+  margin-right: 2px
 
 .mr4
   margin-right: 4px
@@ -67,9 +73,10 @@ a
 @media  screen and  (max-width: 480px) and (orientation : portrait)
     .container
         margin-top: 0 !important
-        padding: 16px 0px !important
+        padding: 8px 0px 16px !important
     .navbar
         padding: 8px 10px 8px 4px !important
+        justify-content: normal !important
     .navbar-title
         h1
           font-size: 20px
@@ -84,18 +91,27 @@ a
         background: #525252 !important
         border-bottom: 1px solid #00000033 !important
     .contact-card
-      margin-right: 0 !important
-      margin-bottom: 8px !important
+      margin: 0 8px 8px !important
       padding: 16px 10px !important
       box-shadow: none !important
       border: none !important
       border-radius: 0 !important
       min-width: auto !important
       max-width: 100% !important
+      .contact-card-title h2
+        font-size: 18px
+        line-height: 18px
       
     .contact-card-info
       padding: 0 !important
 
     .mat-card-header-text
       height: 38px !important
+
+    .footer-item
+      font-size: 12px
+    .float-add-button
+      display: block !important
+    .header-add-button
+      display: none !important
     
