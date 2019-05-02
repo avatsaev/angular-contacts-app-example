@@ -31,6 +31,7 @@ export class ContactsEffects {
       /* Hit the Contacts Index endpoint of our REST API */
       /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
       /* 'Contacts Reducers' will take care of the rest */
+      startWith(new contactsActions.LoadAll()),
       switchMap(() => this.contactsService.index().pipe(
         map( contacts => new contactsActions.LoadAllSuccess(contacts) )
       )),
