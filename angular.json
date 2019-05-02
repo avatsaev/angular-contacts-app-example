@@ -30,8 +30,7 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "src/styles.sass",
-              "node_modules/font-awesome/css/font-awesome.min.css"
+              "src/styles.sass"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
