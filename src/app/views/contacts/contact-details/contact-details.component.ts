@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Contact } from '@app/core/models';
 import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
 import { ContactsEffects } from '@app/contacts-store/contacts-effects';
+import { RouterService } from 'src/app/router.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -19,9 +20,9 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private contactsFacade: ContactsStoreFacade,
-    private contactsEffects: ContactsEffects
+    private contactsEffects: ContactsEffects,
+    public routerService: RouterService
   ) { }
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
       filter(action =>
         action.payload === +this.activatedRoute.snapshot.params.contactId
       )
-    ).subscribe(_ => this.router.navigate(['/contacts']));
+    ).subscribe(_ => this.routerService.navigate(['/contacts']));
     this.subscriptions.add(redirectSub);
 
     const routeSub = this.activatedRoute.params.subscribe(params => {
@@ -45,17 +46,20 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   editContact(contact: Contact) {
     this.contactsFacade.setCurrentContactId(contact.id);
-    this.router.navigate(['/contacts', contact.id, 'edit']);
+    this.routerService.navigate(['/contacts', contact.id, 'edit']);
   }
   showContact(contact: Contact) {
     this.contactsFacade.setCurrentContactId(contact.id);
-    this.router.navigate(['/contacts', contact.id]);
+    this.routerService.navigate(['/contacts', contact.id]);
   }
   deleteContact(contact: Contact) {
     const r = confirm('Are you sure?');
     if (r) {
       this.contactsFacade.deleteContact(contact.id);
     }
+  }
+  goBack() {
+    this.routerService.navigate(['/contacts']);
   }
 
   ngOnDestroy() {

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Contact } from '@app/core/models';
-import { Router} from '@angular/router';
-import { ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
+import { RouterService } from 'src/app/router.service';
 
 @Component({
   selector: 'app-contact-new',
@@ -9,22 +9,23 @@ import { ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
   styleUrls: ['./contact-new.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactNewComponent implements OnInit, OnDestroy {
+export class ContactNewComponent implements OnInit {
 
   constructor(
     private contactsFacade: ContactsStoreFacade,
-    private router: Router
+    public routerService: RouterService
   ) { }
 
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-  }
-
   submitted(contact: Contact) {
     this.contactsFacade.createContact(contact);
-    this.router.navigate(['/contacts']);
+    this.routerService.navigate(['/contacts']);
+  }
+  goToPrevPage() {
+    const prevUrl: string = this.routerService.getPreviousUrl;
+    this.routerService.navigate([prevUrl]);
   }
 
 }

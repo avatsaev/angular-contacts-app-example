@@ -1,2 +1,5 @@
-<app-contact-form [contact]="contact$ | async" (save)="submitted($event)" [title]="'Edit contact'"
-  [submButtonName]="'Save changes'"> </app-contact-form>
+<app-contact-form [contact]="contact$ | async"
+                  (save)="submitted($event)"
+                  (cancel)="goBack()"
+                  [title]="'Edit contact'"
+                  [submButtonName]="'Save'"></app-contact-form>

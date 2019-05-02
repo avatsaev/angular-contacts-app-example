@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import {filter, map, shareReplay} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { RouterService } from 'src/app/router.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,33 +9,14 @@ import {Observable, Subscription} from 'rxjs';
   styleUrls: ['./toolbar.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToolbarComponent implements OnInit, OnDestroy {
-
-  pageUrl$: Observable<string> = this.router.events.pipe(
-    filter(event => event instanceof NavigationStart),
-    map((val: NavigationStart) => val.url),
-    shareReplay(1)
-  );
-
-  isShowHome$ = this.pageUrl$.pipe(
-    map(pageUrl => pageUrl !== '/contacts')
-  );
-
-
+export class ToolbarComponent implements OnInit {
+  pageUrl$: Observable<string> = this.routerService.pageUrl$;
   isShowAdd$ = this.pageUrl$.pipe(
     map(pageUrl => pageUrl !== '/contacts/new')
   );
 
-  private subscriptions: Subscription = new Subscription();
-
-  constructor(private router: Router) {
-
-  }
+  constructor(public routerService: RouterService) { }
 
   ngOnInit() {
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 }

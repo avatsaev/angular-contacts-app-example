@@ -19,7 +19,12 @@
   </ng-template>
 
   <ng-template #cardActionTemplate>
-    <button (click)="editContact(contact)" mat-stroked-button color="primary">Edit</button>
-    <button (click)="deleteContact(contact)" mat-stroked-button color="warn">Delete</button>
+    <button (click)="deleteContact(contact)" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <span style="flex-grow: 1">
+      <button (click)="editContact(contact)" mat-stroked-button color="primary">Edit</button>
+      <button (click)="cancelAction()" mat-stroked-button>Cancel</button>
+    </span>
   </ng-template>
 </app-contact-card>

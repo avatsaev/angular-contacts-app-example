@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactFormComponent implements OnInit, OnChanges {
+  form: FormGroup;
+  previousUrl: string;
   @Input() title: string;
   @Input() submButtonName: string;
   @Input() contact: Contact = {
@@ -18,10 +20,8 @@ export class ContactFormComponent implements OnInit, OnChanges {
     email: '',
     phone: ''
   };
-
   @Output() save = new EventEmitter<Contact>();
-
-  form: FormGroup;
+  @Output() cancel = new EventEmitter();
 
   constructor(public formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -32,10 +32,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() { }
   ngOnChanges() {
     if (this.contact) {
       this.form.patchValue({ ...this.contact });
@@ -46,7 +43,9 @@ export class ContactFormComponent implements OnInit, OnChanges {
     if (this.form.valid) {
       this.save.emit(this.form.value);
     }
-
+  }
+  cancelAction() {
+    this.cancel.emit();
   }
 
 }

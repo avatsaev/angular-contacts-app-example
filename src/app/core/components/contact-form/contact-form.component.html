@@ -27,6 +27,7 @@
       </div>
     </ng-template>
     <ng-template #cardActionTemplate>
+      <button (click)="cancelAction()" mat-stroked-button [routerLink]="previousUrl">Cancel</button>
       <button mat-stroked-button color="primary" [disabled]="!form.valid">{{submButtonName}}</button>
     </ng-template>
   </app-contact-card>

@@ -1,14 +1,13 @@
 .contacts-list
-  display: flex
-  flex-grow: 1
-  flex-wrap: wrap
-  justify-content: stretch
+  display: grid
+  justify-content: center
+  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr))
 
 .no-results
     padding: 24px 0
     justify-content: center
-    flex-grow: 0
     align-items: center
+    grid-template-columns: auto
     img
       max-height: 500px
       max-width: 100%

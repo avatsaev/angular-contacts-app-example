@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/variables.scss"
 @import "assets/customization.sass"
-  
+
+*
+  box-sizing: border-box
+
 html, body
   height: 100%
 
@@ -73,10 +76,13 @@ a
   .f-align-center
     align-items: center
 
+.contacts-list .contact-card
+  justify-content: center
+
 @media  screen and  (max-width: 480px) and (orientation : portrait)
     .container
         margin-top: 0 !important
-        padding: 8px 0px 16px !important
+        padding: 8px 0px 0px !important
     .navbar
         padding: 8px 10px 8px 4px !important
         justify-content: normal !important
@@ -111,9 +117,17 @@ a
 
     .mat-card-header-text
       height: 38px !important
-
+    .footer
+      flex-direction: column
+      align-items: baseline !important
+      padding: 8px 0 !important
+      background: #5E97F8
     .footer-item
       font-size: 12px
+      padding: 2px 16px !important
+      a 
+        color: #F5F5F5
+        margin-left: 4px
     .float-add-button
       display: block !important
     .header-add-button

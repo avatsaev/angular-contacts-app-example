@@ -1,5 +1,6 @@
 <app-contact-detailed-view class="contact-card-stretch"
                            [contact]="contact"
+                           (cancel)="goBack()"
                            (edit)="editContact($event)"
                            (remove)="deleteContact($event)">
 </app-contact-detailed-view>

@@ -12,14 +12,17 @@ export class ContactDetailedViewComponent implements OnInit {
   @Input() contact: Contact;
   @Output() edit = new EventEmitter<Contact>();
   @Output() remove = new EventEmitter<Contact>();
+  @Output() cancel = new EventEmitter();
 
   ngOnInit() { }
 
   editContact(contact: Contact) {
     this.edit.emit(contact);
   }
-
   deleteContact(contact: Contact) {
     this.remove.emit(contact);
+  }
+  cancelAction() {
+    this.cancel.emit();
   }
 }

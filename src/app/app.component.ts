@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppService } from './app.service';
+import { RouterService } from './router.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,7 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   currentPageTitle$: Observable<string>;
-  constructor(public appService: AppService) { }
-
-  @HostBinding('class.blade-theme') get colorTheme(): boolean {
-    return this.appService.getBladeTheme;
+  constructor(public routerService: RouterService) {
+    routerService.loadRouting();
   }
 }
