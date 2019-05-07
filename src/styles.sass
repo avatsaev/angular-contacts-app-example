@@ -64,6 +64,7 @@ a
 
 .scroll-content
   overflow: auto
+  height: 100%
 
 .flex 
   display: flex
@@ -80,6 +81,8 @@ a
   justify-content: center
 
 @media  screen and  (max-width: 480px) and (orientation : portrait)
+    .scroll-content
+      height: auto
     .container
         padding: 8px 0px 0px !important
     .navbar
