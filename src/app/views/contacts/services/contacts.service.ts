@@ -14,13 +14,11 @@ export class ContactsService {
   index(): Observable<Contact[]> {
     return this.http
         .get<Contact[]>(`${environment.appApi.baseUrl}/contacts`);
-
   }
 
   show(conactId: number): Observable<Contact> {
     return this.http
         .get<Contact>(`${environment.appApi.baseUrl}/contacts/${conactId}`);
-
   }
 
   create(contact: Contact): Observable<Contact> {
