@@ -19,7 +19,7 @@ import {
 
 
 
-fdescribe('Contacts Effects', () => {
+describe('Contacts Effects', () => {
   let actions$: Observable<any>;
   let effects: ContactsEffects;
   let contactsService: any;
@@ -45,7 +45,6 @@ fdescribe('Contacts Effects', () => {
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
-    console.log(contactsService.contacts);
     expect(effects.loadAll$).toBeObservable(expected);
   });
 

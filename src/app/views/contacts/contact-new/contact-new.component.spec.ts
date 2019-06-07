@@ -8,12 +8,12 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Actions} from '@ngrx/effects';
 import {ContactsEffects} from '../store/contacts-effects';
 import {ContactFormComponent} from '@app/core/components/contact-form/contact-form.component';
-import {ContactsService} from '@app/core/../services/contacts.service';
 import * as fromRoot from '@app/root-store';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
-import {ContactsSocketService} from '@app/core/../services/contacts-socket.service';
 import { Router } from '@angular/router';
+import {ContactsService} from '../services/contacts.service';
+import {ContactsSocketService} from '../services/contacts-socket.service';
 
 
 describe('ContactNewComponent', () => {

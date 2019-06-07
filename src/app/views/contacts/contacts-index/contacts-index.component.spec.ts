@@ -6,8 +6,9 @@ import {combineReducers, StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ContactListComponent} from '@app/core/components/contact-list/contact-list.component';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
-import {ContactsSocketService} from '@app/core/../services/contacts-socket.service';
+
 import { Router } from '@angular/router';
+import {ContactsSocketService} from '../services/contacts-socket.service';
 
 
 describe('ContactsIndexComponent', () => {
@@ -49,18 +50,17 @@ describe('ContactsIndexComponent', () => {
 
 
   it('should call contactsFacade.setCurrentContactId and router.navigate when editContact calls', () => {
-    spyOn(contactsFacade, 'setCurrentContactId');
+
     spyOn(router, 'navigate');
     component.editContact({id: 1, name: 'test', email: 'test@avatsaev.com'});
-    expect(contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
     expect(router.navigate).toHaveBeenCalledWith(['/contacts', 1, 'edit']);
   });
 
   it('should call contactsFacade.setCurrentContactId and router.navigate when showContact calls', () => {
-    spyOn(contactsFacade, 'setCurrentContactId');
+
     spyOn(router, 'navigate');
     component.showContact({id: 1, name: 'test', email: 'test@avatsaev.com'});
-    expect(contactsFacade.setCurrentContactId).toHaveBeenCalledWith(1);
+
     expect(router.navigate).toHaveBeenCalledWith(['/contacts', 1]);
   });
 
