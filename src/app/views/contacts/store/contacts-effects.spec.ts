@@ -3,21 +3,21 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { ContactsEffects } from './contacts-effects';
-import { ContactsService } from '@app/core/services/contacts.service';
-import { ContactsServiceMock } from 'src/mock-service/contacts-mock';
+
+import { ContactsServiceMock } from 'src/app/views/contacts/services/contacts-mock.service';
+import {ContactsService} from '../services/contacts.service';
+import {ContactsSocketService} from '../services/contacts-socket.service';
 import {
-  LoadAll,
-  LoadAllSuccess,
-  Load,
-  LoadSuccess,
-  Create,
-  CreateSuccess,
-  Delete,
-  DeleteSuccess,
-  Patch,
-  PatchSuccess
-} from './contacts-actions';
-import { ContactsSocketService } from '@app/core/services/contacts-socket.service';
+  create, createSuccess,
+  load,
+  loadAll,
+  loadAllSuccess,
+  loadSuccess,
+  remove,
+  removeSuccess, update, updateSuccess
+} from '@app/contacts-store/contacts-actions';
+
+
 
 fdescribe('Contacts Effects', () => {
   let actions$: Observable<any>;
@@ -40,8 +40,8 @@ fdescribe('Contacts Effects', () => {
 
 
   it('should dispatch LoadAllSuccess Action when the contacts are fetched from server', () => {
-    const actionDispatched = new LoadAll();
-    const actionExpected = new LoadAllSuccess(contactsService.contacts);
+    const actionDispatched = loadAll();
+    const actionExpected = loadAllSuccess({payload: contactsService.contacts});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -50,12 +50,12 @@ fdescribe('Contacts Effects', () => {
   });
 
   it('should dispatch LoadSuccess Action when specific contact is fetched', () => {
-    const actionDispatched = new Load(1);
-    const actionExpected = new LoadSuccess({
+    const actionDispatched = load({payload: 1});
+    const actionExpected = loadSuccess({payload: {
       id: 1,
       name: 'john',
       email: 'john@gmail.com'
-    });
+    }});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -63,8 +63,8 @@ fdescribe('Contacts Effects', () => {
   });
 
   it('should dispatch DeleteSuccess Action when specific contact is deleted', () => {
-    const actionDispatched = new Delete(1);
-    const actionExpected = new DeleteSuccess(1);
+    const actionDispatched = remove({payload: 1});
+    const actionExpected = removeSuccess({payload: 1});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -72,16 +72,16 @@ fdescribe('Contacts Effects', () => {
   });
 
   it('should dispatch CreateSuccess Action when specific contact is created', () => {
-    const actionDispatched = new Create({
+    const actionDispatched = create({payload: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
-    });
-    const actionExpected = new CreateSuccess({
+    }});
+    const actionExpected = createSuccess({payload: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
-    });
+    }});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -89,19 +89,18 @@ fdescribe('Contacts Effects', () => {
   });
 
   it('should dispatch UpdateSuccess Action when specific contact is updated', () => {
-    const actionDispatched = new Patch({
+
+    const actionDispatched = update({payload: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
-    });
-    const actionExpected = new PatchSuccess({
+    }});
+
+    const actionExpected = updateSuccess({payload: {
       id: 4,
-      changes: {
-        id: 4,
-        name: 'john doe',
-        email: 'john@gmail.com'
-      }
-    });
+      name: 'john doe',
+      email: 'john@gmail.com'
+    }});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });

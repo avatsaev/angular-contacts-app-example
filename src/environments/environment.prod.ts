@@ -6,6 +6,7 @@ export const environment = {
   socketConfig: {
     url: 'https://contacts-api.vatsaev.com',
     opts: {
+      transports: ['websocket']
     }
   }
 };

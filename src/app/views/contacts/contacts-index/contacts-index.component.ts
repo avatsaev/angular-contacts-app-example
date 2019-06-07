@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Contact } from '@app/core/models';
 import { Router } from '@angular/router';
-import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
+import { ContactsStoreFacade } from '@app/contacts-store/contacts.store-facade';
 
 
 @Component({
@@ -19,12 +19,10 @@ export class ContactsIndexComponent implements OnInit {
   ngOnInit() {}
 
   editContact(contact: Contact) {
-    this.contactsFacade.setCurrentContactId(contact.id);
     this.router.navigate(['/contacts', contact.id, 'edit']);
   }
 
   showContact(contact: Contact) {
-    this.contactsFacade.setCurrentContactId(contact.id);
     this.router.navigate(['/contacts', contact.id]);
   }
 

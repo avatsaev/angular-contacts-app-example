@@ -11,7 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ContactFormComponent} from '@app/core/components/contact-form/contact-form.component';
 import {ContactsService} from '@app/core/../services/contacts.service';
 import * as fromRoot from '@app/root-store';
-import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsSocketService} from '@app/core/../services/contacts-socket.service';
 

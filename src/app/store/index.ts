@@ -1,4 +1,4 @@
-import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
+import {Action, combineReducers, createFeatureSelector, createSelector} from '@ngrx/store';
 
 import * as fromUi from './reducers/ui-reducer';
 
@@ -7,11 +7,12 @@ export interface State {
   // more state here
 }
 
-export const reducers: ActionReducerMap<State> = {
-  ui: fromUi.reducer
-  // more reducers here
-};
-
+// AOT compatibility
+export function reducers(state: State | undefined, action: Action) {
+  return combineReducers({
+    ui: fromUi.reducer
+  })(state, action)
+}
 
 /// selectors
 export const getUiState = createFeatureSelector<fromUi.UiState>('ui');
