@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactDetailsComponent } from './contact-details.component';
-import {combineReducers, StoreModule} from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
 import * as fromContacts from '@app/contacts-store';
 import {ContactsEffects} from '../store/contacts-effects';
 import {Actions} from '@ngrx/effects';
-import * as fromRoot from '@app/root-store';
 import {ContactDetailsContainerComponent} from '@app/core/components/contact-details/contact-details-container.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import { Router } from '@angular/router';
 import {ContactsService} from '../services/contacts.service';
 import {ContactsSocketService} from '../services/contacts-socket.service';
+import {ROOT_REDUCERS} from '@app/root-store';
 
 
 describe('ContactDetailsComponent', () => {
@@ -26,10 +26,8 @@ describe('ContactDetailsComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        StoreModule.forRoot({
-            ...fromRoot.reducers,
-            contacts: combineReducers(fromContacts.reducers)
-        })
+        StoreModule.forRoot(ROOT_REDUCERS),
+        StoreModule.forFeature('contacts', fromContacts.reducers),
       ],
       providers: [
         ContactsEffects,

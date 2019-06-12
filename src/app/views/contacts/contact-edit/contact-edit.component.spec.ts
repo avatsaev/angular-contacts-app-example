@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactEditComponent } from './contact-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {combineReducers, StoreModule} from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import {RouterTestingModule} from '@angular/router/testing';
 import * as fromContacts from '@app/contacts-store';
 import {Actions} from '@ngrx/effects';
 import {ContactsEffects} from '../store/contacts-effects';
 import {ContactFormComponent} from '@app/core/components/contact-form/contact-form.component';
-import * as fromRoot from '@app/root-store';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ContactsService} from '../services/contacts.service';
 import {ContactsSocketService} from '../services/contacts-socket.service';
+import {ROOT_REDUCERS} from '@app/root-store';
 
 
 
@@ -25,10 +25,8 @@ describe('ContactEditComponent', () => {
       declarations: [ ContactEditComponent, ContactFormComponent ],
       imports: [
         ReactiveFormsModule,
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          contacts: combineReducers(fromContacts.reducers)
-        }),
+        StoreModule.forRoot(ROOT_REDUCERS),
+        StoreModule.forFeature('contacts', fromContacts.reducers),
         RouterTestingModule,
         HttpClientTestingModule
       ],

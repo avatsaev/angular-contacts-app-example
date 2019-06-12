@@ -14,6 +14,7 @@ import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import { Router } from '@angular/router';
 import {ContactsService} from '../services/contacts.service';
 import {ContactsSocketService} from '../services/contacts-socket.service';
+import {ROOT_REDUCERS} from '@app/root-store';
 
 
 describe('ContactNewComponent', () => {
@@ -27,10 +28,8 @@ describe('ContactNewComponent', () => {
       declarations: [ ContactNewComponent, ContactFormComponent ],
       imports: [
         ReactiveFormsModule,
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          contacts: combineReducers(fromContacts.reducers)
-        }),
+        StoreModule.forRoot(ROOT_REDUCERS),
+        StoreModule.forFeature('contacts', fromContacts.reducers),
         RouterTestingModule,
         HttpClientTestingModule
       ],

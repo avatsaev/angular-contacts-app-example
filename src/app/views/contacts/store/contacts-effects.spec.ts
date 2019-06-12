@@ -17,8 +17,6 @@ import {
   removeSuccess, update, updateSuccess
 } from '@app/contacts-store/contacts-actions';
 
-
-
 describe('Contacts Effects', () => {
   let actions$: Observable<any>;
   let effects: ContactsEffects;
