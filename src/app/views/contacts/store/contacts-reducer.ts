@@ -38,16 +38,16 @@ export const reducer = createReducer<State>(
   on(loadAllSuccess, (state, {contacts}) =>
     contactsAdapter.addAll(contacts, state)
   ),
-  on(loadSuccess, (state, {contact: contact}) =>
+  on(loadSuccess, (state, {contact}) =>
     contactsAdapter.upsertOne(contact, state)
   ),
-  on(createSuccess, (state, {contact: contact}) =>
+  on(createSuccess, (state, {contact}) =>
     contactsAdapter.addOne(contact, state)
   ),
-  on(updateSuccess, (state, {contact: contact}) =>
+  on(updateSuccess, (state, {contact}) =>
     contactsAdapter.updateOne({id: contact.id, changes: contact}, state)
   ),
-  on(removeSuccess, (state, {id: id}) =>
+  on(removeSuccess, (state, {id}) =>
     contactsAdapter.removeOne(id, state)
   )
 );
