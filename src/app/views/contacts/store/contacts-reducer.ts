@@ -35,19 +35,19 @@ export const INIT_STATE: State = contactsAdapter.getInitialState({
 
 export const reducer = createReducer<State>(
   INIT_STATE,
-  on(loadAllSuccess, (state, {payload: contacts}) =>
+  on(loadAllSuccess, (state, {contacts}) =>
     contactsAdapter.addAll(contacts, state)
   ),
-  on(loadSuccess, (state, {payload: contact}) =>
+  on(loadSuccess, (state, {contact: contact}) =>
     contactsAdapter.upsertOne(contact, state)
   ),
-  on(createSuccess, (state, {payload: contact}) =>
+  on(createSuccess, (state, {contact: contact}) =>
     contactsAdapter.addOne(contact, state)
   ),
-  on(updateSuccess, (state, {payload: contact}) =>
+  on(updateSuccess, (state, {contact: contact}) =>
     contactsAdapter.updateOne({id: contact.id, changes: contact}, state)
   ),
-  on(removeSuccess, (state, {payload: id}) =>
+  on(removeSuccess, (state, {id: id}) =>
     contactsAdapter.removeOne(id, state)
   )
 );

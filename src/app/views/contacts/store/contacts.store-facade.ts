@@ -18,19 +18,19 @@ export class ContactsStoreFacade {
   constructor(private store: Store<fromRoot.State>) { }
 
   loadContact(contactId: number) {
-    this.store.dispatch(load({payload: contactId}));
+    this.store.dispatch(load({id: contactId}));
   }
 
   createContact(contact: Contact) {
-    this.store.dispatch(create({payload: contact}));
+    this.store.dispatch(create({contact: contact}));
   }
 
   updateContact(contact: Contact) {
-    this.store.dispatch(update({payload: contact}));
+    this.store.dispatch(update({contact: contact}));
   }
 
   deleteContact(contactId: number) {
-    this.store.dispatch(remove({payload: contactId}));
+    this.store.dispatch(remove({id: contactId}));
   }
 
   getContactById(id: number) {

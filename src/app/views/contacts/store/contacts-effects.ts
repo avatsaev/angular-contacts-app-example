@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import {
   catchError,
   exhaustMap,
-  map,
+  map, pluck,
   startWith,
   switchMap
 } from 'rxjs/operators';
@@ -23,7 +23,6 @@ import {
   update,
   updateSuccess
 } from '@app/contacts-store/contacts-actions';
-import {extractPayload, toPayload} from '@app/core/helpers/ngrx.helpers';
 
 
 /**
@@ -42,31 +41,28 @@ export class ContactsEffects {
     /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
     /* 'Contacts Reducers' will take care of the rest */
     switchMap(() => this.contactsService.index().pipe(
-      toPayload(),
-      map(loadAllSuccess)
+      map(contacts => loadAllSuccess({contacts}))
     )),
   ));
 
 
   load$ = createEffect( () => this.actions$.pipe(
     ofType(load),
-    extractPayload(),
+    pluck('id'),
     switchMap( id => this.contactsService.show(id).pipe(
-      toPayload(),
-      map(loadSuccess)
+      map(contact => loadSuccess({contact}))
     ))
   ));
 
 
   create$ = createEffect( () =>this.actions$.pipe(
     ofType(create),
-    extractPayload(),
-    switchMap((contact) => this.contactsService.create(contact).pipe(
-      toPayload(),
-      map(createSuccess),
+    pluck('contact'),
+    switchMap( contact => this.contactsService.create(contact).pipe(
+      map(contact => createSuccess({contact})),
       catchError(err => {
         alert(err.message);
-        return of(failure({payload: {concern: 'CREATE', error: err}}));
+        return of(failure({err: {concern: 'CREATE', error: err}}));
       })
     ))
   ));
@@ -74,20 +70,18 @@ export class ContactsEffects {
 
   update$ = createEffect( () => this.actions$.pipe(
     ofType(update),
-    extractPayload(),
+    pluck('contact'),
     exhaustMap( contact => this.contactsService.update(contact).pipe(
-      toPayload(),
-      map(updateSuccess)
+      map(contact => updateSuccess({contact}))
     ))
   ));
 
   destroy$ = createEffect( () => this.actions$.pipe(
     ofType(remove),
-    extractPayload(),
+    pluck('id'),
     switchMap( id => this.contactsService.destroy(id).pipe(
-      map(res => res.id),
-      toPayload(),
-      map(removeSuccess)
+      pluck('id'),
+      map(id => removeSuccess({id}))
     ))
   ));
 
@@ -95,21 +89,18 @@ export class ContactsEffects {
 
   @Effect()
   liveCreate$ = this.contactsSocket.liveCreated$.pipe(
-    toPayload(),
-    map(createSuccess)
+    map(contact => createSuccess({contact}))
   );
 
 
   @Effect()
   liveUpdate$ = this.contactsSocket.liveUpdated$.pipe(
-    toPayload(),
-    map(updateSuccess)
+    map(contact => updateSuccess({contact}))
   );
 
   @Effect()
   liveDestroy$ = this.contactsSocket.liveDeleted$.pipe(
-    toPayload(),
-    map(removeSuccess)
+    map(id => removeSuccess({id}))
   );
 
   constructor(

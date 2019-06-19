@@ -33,9 +33,9 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     // listen to update$ side effect, after updating redirect to the contact details view
     this.redirectSub = this.contactsEffects.update$.pipe(
       // make sure that the currently edited contact has been update and not some other contact (emitted by sockets)
-      filter( action => action.payload.id === +this.activatedRoute.snapshot.params.contactId)
+      filter( action => action.contact.id === +this.activatedRoute.snapshot.params.contactId)
     ).subscribe(
-      action => this.router.navigate(['/contacts', action.payload.id])
+      action => this.router.navigate(['/contacts', action.contact.id])
     );
 
     this.activatedRoute.params.subscribe(params => {

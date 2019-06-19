@@ -39,7 +39,7 @@ describe('Contacts Effects', () => {
 
   it('should dispatch LoadAllSuccess Action when the contacts are fetched from server', () => {
     const actionDispatched = loadAll();
-    const actionExpected = loadAllSuccess({payload: contactsService.contacts});
+    const actionExpected = loadAllSuccess({contact: contactsService.contacts});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -47,8 +47,8 @@ describe('Contacts Effects', () => {
   });
 
   it('should dispatch LoadSuccess Action when specific contact is fetched', () => {
-    const actionDispatched = load({payload: 1});
-    const actionExpected = loadSuccess({payload: {
+    const actionDispatched = load({id: 1});
+    const actionExpected = loadSuccess({contact: {
       id: 1,
       name: 'john',
       email: 'john@gmail.com'
@@ -60,8 +60,8 @@ describe('Contacts Effects', () => {
   });
 
   it('should dispatch DeleteSuccess Action when specific contact is deleted', () => {
-    const actionDispatched = remove({payload: 1});
-    const actionExpected = removeSuccess({payload: 1});
+    const actionDispatched = remove({id: 1});
+    const actionExpected = removeSuccess({id: 1});
 
     actions$ = hot('--a-', { a: actionDispatched });
     const expected = cold('--b', { b: actionExpected });
@@ -69,12 +69,12 @@ describe('Contacts Effects', () => {
   });
 
   it('should dispatch CreateSuccess Action when specific contact is created', () => {
-    const actionDispatched = create({payload: {
+    const actionDispatched = create({contact: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
     }});
-    const actionExpected = createSuccess({payload: {
+    const actionExpected = createSuccess({contact: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
@@ -87,13 +87,13 @@ describe('Contacts Effects', () => {
 
   it('should dispatch UpdateSuccess Action when specific contact is updated', () => {
 
-    const actionDispatched = update({payload: {
+    const actionDispatched = update({contact: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'
     }});
 
-    const actionExpected = updateSuccess({payload: {
+    const actionExpected = updateSuccess({contact: {
       id: 4,
       name: 'john doe',
       email: 'john@gmail.com'

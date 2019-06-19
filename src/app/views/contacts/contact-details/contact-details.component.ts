@@ -34,7 +34,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
     this.redirectSub = this.contactsEffects.destroy$.pipe(
       filter( action =>
-        action.payload === +this.activatedRoute.snapshot.params.contactId
+        action.id === +this.activatedRoute.snapshot.params.contactId
       )
     ).subscribe(_ => this.router.navigate(['/contacts']));
 
