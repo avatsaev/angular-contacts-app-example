@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-
 import {
   catchError,
   exhaustMap,
-  map,
+  map, pluck,
   startWith,
   switchMap
 } from 'rxjs/operators';
-
-import * as contactsActions from '@app/contacts-store/contacts-actions';
-import { Actions, Effect, ofType} from '@ngrx/effects';
-import { Contact } from '@app/core/models';
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {ContactsService} from '../services/contacts.service';
 import {ContactsSocketService} from '../services/contacts-socket.service';
+import {
+  create,
+  createSuccess,
+  failure,
+  load,
+  loadAll,
+  loadAllSuccess,
+  loadSuccess,
+  remove,
+  removeSuccess,
+  update,
+  updateSuccess
+} from '@app/contacts-store/contacts-actions';
 
 
 /**
@@ -24,86 +33,74 @@ import {ContactsSocketService} from '../services/contacts-socket.service';
 @Injectable()
 export class ContactsEffects {
 
-  @Effect()
-  loadAll$ = this.actions$.pipe(
-      ofType<contactsActions.LoadAll>(contactsActions.ContactsActionTypes.LOAD_ALL), /* When [Contacts] LOAD ALL action is dispatched */
-      // startWith(new contactsActions.LoadAll()),
-      /* Hit the Contacts Index endpoint of our REST API */
-      /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
-      /* 'Contacts Reducers' will take care of the rest */
-      switchMap(() => this.contactsService.index().pipe(
-        map( contacts => new contactsActions.LoadAllSuccess(contacts) )
-      )),
-    );
 
-  @Effect()
-  load$ = this.actions$.pipe(
-    ofType<contactsActions.Load>(contactsActions.ContactsActionTypes.LOAD),
-    map( action => action.payload),
+  loadAll$ = createEffect( () => this.actions$.pipe(
+    ofType(loadAll), /* When action is dispatched */
+    startWith(loadAll()),
+    /* Hit the Contacts Index endpoint of our REST API */
+    /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
+    /* 'Contacts Reducers' will take care of the rest */
+    switchMap(() => this.contactsService.index().pipe(
+      map(contacts => loadAllSuccess({contacts}))
+    )),
+  ));
+
+
+  load$ = createEffect( () => this.actions$.pipe(
+    ofType(load),
+    pluck('id'),
     switchMap( id => this.contactsService.show(id).pipe(
-      map( contact => new contactsActions.LoadSuccess(contact))
+      map(contact => loadSuccess({contact}))
     ))
-  );
+  ));
 
-  @Effect()
-  create$ = this.actions$.pipe(
-    ofType<contactsActions.Create>(contactsActions.ContactsActionTypes.CREATE),
-    map( action => action.payload),
-    exhaustMap((contact) => this.contactsService.create(contact).pipe(
-      map( (createdContact: Contact) => new contactsActions.CreateSuccess(createdContact)),
+
+  create$ = createEffect( () =>this.actions$.pipe(
+    ofType(create),
+    pluck('contact'),
+    switchMap( contact => this.contactsService.create(contact).pipe(
+      map(contact => createSuccess({contact})),
       catchError(err => {
         alert(err.message);
-        return of(new contactsActions.Failure({concern: 'CREATE', error: err}));
+        return of(failure({err: {concern: 'CREATE', error: err}}));
       })
     ))
-  );
+  ));
 
-  @Effect()
-  update$ = this.actions$.pipe(
-    ofType<contactsActions.Patch>(contactsActions.ContactsActionTypes.PATCH),
-    map( action => action.payload ),
+
+  update$ = createEffect( () => this.actions$.pipe(
+    ofType(update),
+    pluck('contact'),
     exhaustMap( contact => this.contactsService.update(contact).pipe(
-      map((updatedContact: Contact) => new contactsActions.PatchSuccess({
-        id: updatedContact.id,
-        changes: updatedContact
-      })),
-      catchError(err => {
-        alert(err.message);
-        return of(new contactsActions.Failure({concern: 'PATCH', error: err}));
-      })
+      map(contact => updateSuccess({contact}))
     ))
+  ));
 
-  );
-
-  @Effect()
-  destroy$ = this.actions$.pipe(
-    ofType<contactsActions.Delete>(contactsActions.ContactsActionTypes.DELETE),
-    map( action => action.payload ),
-    switchMap(
-      id => this.contactsService.destroy(id).pipe(
-        map( () => new contactsActions.DeleteSuccess(id))
-      )
-    )
-  );
+  destroy$ = createEffect( () => this.actions$.pipe(
+    ofType(remove),
+    pluck('id'),
+    switchMap( id => this.contactsService.destroy(id).pipe(
+      pluck('id'),
+      map(id => removeSuccess({id}))
+    ))
+  ));
 
   // Socket Live Events
 
   @Effect()
   liveCreate$ = this.contactsSocket.liveCreated$.pipe(
-    map((contact: Contact) => new contactsActions.CreateSuccess(contact))
+    map(contact => createSuccess({contact}))
   );
 
 
   @Effect()
   liveUpdate$ = this.contactsSocket.liveUpdated$.pipe(
-    map((contact: Contact) => new contactsActions.PatchSuccess({
-      id: contact.id, changes: contact
-    }))
+    map(contact => updateSuccess({contact}))
   );
 
   @Effect()
   liveDestroy$ = this.contactsSocket.liveDeleted$.pipe(
-    map(id => new contactsActions.DeleteSuccess(+id))
+    map(id => removeSuccess({id}))
   );
 
   constructor(

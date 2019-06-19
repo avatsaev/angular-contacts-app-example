@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Socket} from 'ngx-socket-io';
 import {environment} from '@app/env';
-import * as contactsActions from '@app/contacts-store/contacts-actions';
+import {ContactsEventTypes} from '@app/core/models/contact.events';
+import {Contact} from '@app/core/models';
 
 
 @Injectable()
 export class ContactsSocketService extends Socket {
 
-  liveCreated$ = this.fromEvent(contactsActions.ContactsActionTypes.LIVE_CREATED);
-  liveUpdated$ = this.fromEvent(contactsActions.ContactsActionTypes.LIVE_UPDATED);
-  liveDeleted$ = this.fromEvent(contactsActions.ContactsActionTypes.LIVE_DELETED);
+  liveCreated$ = this.fromEvent<Contact>(ContactsEventTypes.LIVE_CREATED);
+  liveUpdated$ = this.fromEvent<Contact>(ContactsEventTypes.LIVE_UPDATED);
+  liveDeleted$ = this.fromEvent<number>(ContactsEventTypes.LIVE_DELETED);
 
   constructor() {
     super({

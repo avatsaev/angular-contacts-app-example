@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as fromRoot from '@app/root-store';
 import * as fromContacts from '@app/contacts-store';
-import * as contactsActions from '@app/contacts-store/contacts-actions';
 import { select, Store } from '@ngrx/store';
 import { shareReplay } from 'rxjs/operators';
 
 import { Contact } from '@app/core/models';
+import {create, load, remove, update} from '@app/contacts-store/contacts-actions';
 
 @Injectable()
 export class ContactsStoreFacade {
@@ -15,30 +15,27 @@ export class ContactsStoreFacade {
     select(fromContacts.getAllContacts)
   );
 
-  currentContact$ = this.store.pipe(
-    shareReplay(1),
-    select(fromContacts.getCurrentContact)
-  );
-
   constructor(private store: Store<fromRoot.State>) { }
 
-  setCurrentContactId(contactId: number) {
-    this.store.dispatch(new contactsActions.SetCurrentContactId(contactId));
-  }
-
   loadContact(contactId: number) {
-    this.store.dispatch(new contactsActions.Load(contactId));
+    this.store.dispatch(load({id: contactId}));
   }
 
   createContact(contact: Contact) {
-    this.store.dispatch(new contactsActions.Create(contact));
+    this.store.dispatch(create({contact: contact}));
   }
 
   updateContact(contact: Contact) {
-    this.store.dispatch(new contactsActions.Patch(contact));
+    this.store.dispatch(update({contact: contact}));
   }
 
   deleteContact(contactId: number) {
-    this.store.dispatch(new contactsActions.Delete(contactId));
+    this.store.dispatch(remove({id: contactId}));
+  }
+
+  getContactById(id: number) {
+    return this.store.pipe(
+      select(fromContacts.getContactById(id))
+    )
   }
 }

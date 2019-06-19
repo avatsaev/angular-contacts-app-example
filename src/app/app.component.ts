@@ -17,12 +17,11 @@ import {select, Store} from '@ngrx/store';
 })
 export class AppComponent implements OnInit {
 
-  currentPageTitle$: Observable<string>;
+  currentPageTitle$ = this.store.pipe(
+    select(fromRoot.getCurrentTitle)
+  );
   constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit() {
-    this.currentPageTitle$ = this.store.pipe(
-      select(fromRoot.getCurrentTitle)
-    );
   }
 }

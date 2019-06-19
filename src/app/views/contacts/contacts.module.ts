@@ -10,7 +10,7 @@ import {ContactsRoutingModule} from './contacts-routing.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {ContactsEffects} from './store/contacts-effects';
-import {ContactsStoreFacade} from '@app/contacts-store/contacts-store.facade';
+import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import {reducers} from '@app/contacts-store';
 import {ContactsSocketService} from './services/contacts-socket.service';
 import {ContactsService} from './services/contacts.service';
