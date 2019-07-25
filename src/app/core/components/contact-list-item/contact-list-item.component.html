@@ -1,27 +1,41 @@
-<app-contact-card [cardTitleTemplate]="cardTitleTemplate"
-                  [cardInfoTemplate]="cardInfoTemplate"
-                  [cardActionTemplate]="cardActionTemplate">
+<mat-card class="contact-card">
+  <mat-card-header class="contact-card-header">
+    <mat-card-title class="contact-card-title" >
+        <mat-icon>account_circle</mat-icon>
+        <span>{{contact.name}}</span>
 
-  <ng-template #cardTitleTemplate>
-    {{contact.name}}
-  </ng-template>
+    </mat-card-title>
 
-  <ng-template #cardInfoTemplate>
+
+    <div class="menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="show.emit(contact)" mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>DETAILS</span>
+        </button>
+        <button (click)="edit.emit(contact)" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>EDIT</span>
+        </button>
+        <button (click)="remove.emit(contact)"  color="warn" mat-menu-item >
+          <mat-icon>delete</mat-icon>
+          <span>DELETE</span>
+        </button>
+
+      </mat-menu>
+    </div>
+
+  </mat-card-header>
+  <mat-card-content class="contact-card-info">
     <div class="flex f-align-center mb8">
       <mat-icon class="mr8">email</mat-icon>{{contact.email}}
     </div>
     <div class="flex f-align-center mb8">
       <mat-icon class="mr8">smartphone</mat-icon>{{contact.phone}}
     </div>
-  </ng-template>
+  </mat-card-content>
 
-  <ng-template #cardActionTemplate>
-    <button (click)="deleteContact(contact)" mat-icon-button>
-      <mat-icon>delete</mat-icon>
-    </button>
-    <span style="flex-grow: 1">
-      <button (click)="editContact(contact)" mat-stroked-button color="primary">Edit</button>
-      <button (click)="showDetails(contact)" mat-stroked-button color="primary">Details</button>
-    </span>
-  </ng-template>
-</app-contact-card>
+</mat-card>

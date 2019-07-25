@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { RouterService } from './router.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +7,8 @@ import { RouterService } from './router.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  currentPageTitle$: Observable<string>;
-  constructor(public routerService: RouterService) {
-    routerService.loadRouting();
+
+  constructor() {
+
   }
 }

@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '@app/core/components/footer/footer.component';
-import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
+import {MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   declarations: [
     ContactCardComponent,
@@ -39,7 +40,8 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatIconModule } from '@
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }

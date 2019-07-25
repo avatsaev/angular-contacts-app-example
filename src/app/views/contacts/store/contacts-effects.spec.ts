@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { ContactsEffects } from './contacts-effects';
 import { ContactsService } from '@app/core/services/contacts.service';
-import { ContactsServiceMock } from 'src/mock-service/contacts-mock';
+import { ContactsServiceMock } from 'src/app/views/contacts/services/contacts-mock';
 import {
   LoadAll,
   LoadAllSuccess,

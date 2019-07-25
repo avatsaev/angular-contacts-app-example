@@ -2,11 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Subscription } from 'rxjs';
 import { Contact } from '@app/core/models';
 import { ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { ContactsStoreFacade } from '@app/contacts-store/contacts-store.facade';
-import { ContactsEffects } from '@app/contacts-store/contacts-effects';
-import { PatchSuccess } from '@app/contacts-store/contacts-actions';
-import { RouterService } from 'src/app/router.service';
 
 @Component({
   selector: 'app-contact-edit',
@@ -22,23 +18,9 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private contactsFacade: ContactsStoreFacade,
-    private contactsEffects: ContactsEffects,
-    public routerService: RouterService
   ) { }
 
   ngOnInit() {
-    // listen to update$ side effect, after updating redirect to the contact details view
-    this.redirectSub = this.contactsEffects.update$.pipe(
-      // make sure that the currently edited contact has been update and not some other contact (emitted by sockets)
-      filter((action: PatchSuccess) => action.payload.id === +this.activatedRoute.snapshot.params.contactId)
-    ).subscribe(
-      action => this.routerService.navigate(['/contacts', action.payload.id])
-    );
-
-    this.activatedRoute.params.subscribe(params => {
-      // update our id from the backend in case it was modified by another client
-      this.contactsFacade.loadContact(+params.contactId);
-    });
   }
 
   ngOnDestroy() {
@@ -48,9 +30,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   submitted(contact: Contact) {
     this.contactsFacade.updateContact(contact);
   }
-  goBack() {
-    const prevUrl = this.routerService.getPreviousUrl;
-    this.routerService.navigate([prevUrl]);
-  }
+
 
 }

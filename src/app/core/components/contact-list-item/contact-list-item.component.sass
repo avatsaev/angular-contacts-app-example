@@ -1,0 +1,57 @@
+@import '../../../../color-palette'
+
+.contact-card
+  color: $light-2
+  background: $dark-2
+  box-shadow: none !important
+  border-radius: 6px !important
+  max-width: 90%
+  margin: 0 auto 16px
+  display: flex !important
+  flex-direction: column
+
+
+.contact-card-header
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+
+  .contact-card-title
+    display: flex
+    flex-direction: row
+    align-items: center
+    span
+      margin-left: 10px
+
+.contact-card-info
+
+  padding-bottom: 24px
+  margin: 0
+  flex-grow: 1
+
+.contact-card-action
+  display: flex !important
+  justify-content: flex-end
+  flex-direction: row-reverse
+  margin-bottom: 0 !important
+  button
+    margin: 0 8px
+
+.contact-card-stretch
+  display: flex
+  justify-content: center
+.contact-card-stretch > *
+  flex-grow: 1
+  display: flex
+  min-width: 260px
+  max-width: 460px
+
+  .contact-card
+    min-width: 260px
+    max-width: 460px
+    flex-grow: 1
+
+  .contact-card-info
+    flex-grow: 1
