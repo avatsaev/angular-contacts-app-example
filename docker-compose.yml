@@ -38,6 +38,7 @@ services:
       POSTGRES_DB: contacts_db
       REDIS_HOST: redis
       REDIS_PORT: 6379
+
   client:
     build:
       context: .
