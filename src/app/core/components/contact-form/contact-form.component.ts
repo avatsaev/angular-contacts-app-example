@@ -12,10 +12,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ContactFormComponent implements OnInit, OnChanges {
 
   @Input() contact: Contact = {
-    id: undefined,
-    name: '',
+    id: null,
+    first_name: '',
+    last_name: '',
     email: '',
-    phone: ''
+    avatar: ''
   };
 
   @Output() save = new EventEmitter<Contact>();
@@ -25,9 +26,10 @@ export class ContactFormComponent implements OnInit, OnChanges {
   constructor(public formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       id: [this.contact.id],
-      name: [this.contact.name, Validators.required],
+      firstName: [this.contact.first_name, Validators.required],
+      lastName: [this.contact.last_name],
       email: [this.contact.email, Validators.required],
-      phone: [this.contact.phone]
+      avatar: [this.contact.avatar]
     });
   }
 
@@ -37,7 +39,15 @@ export class ContactFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.contact) {
-      this.form.patchValue({...this.contact});
+   this.form.patchValue(
+     {
+       id: this.contact.id,
+       firstName:  this.contact.first_name,
+       lastName:  this.contact.last_name,
+       email:  this.contact.email,
+       avatar: this.contact.avatar
+     }
+   );
     }
   }
 

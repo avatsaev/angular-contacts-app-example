@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from '@app/core/components/footer/footer.component';
+import {HighLightTextPipe} from "@app/core/pipes/high-light-text.pipe";
 
 @NgModule({
   imports: [
@@ -19,14 +20,16 @@ import {FooterComponent} from '@app/core/components/footer/footer.component';
     ContactDetailsContainerComponent,
     ContactFormComponent,
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    HighLightTextPipe
   ],
   exports: [
     ContactListComponent,
     ContactDetailsContainerComponent,
     ContactFormComponent,
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    HighLightTextPipe
   ]
 })
 export class SharedModule { }

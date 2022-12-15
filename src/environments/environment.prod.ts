@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   appApi: {
-    baseUrl: 'https://contacts-api.vatsaev.com'
+    baseUrl: 'https://reqres.in/api'
   },
   socketConfig: {
     url: 'https://contacts-api.vatsaev.com',

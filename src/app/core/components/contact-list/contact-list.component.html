@@ -4,16 +4,23 @@
     <th>#</th>
     <th>Name</th>
     <th>Email</th>
-    <th>Phone</th>
+    <th>Avatar</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
   <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
     <th scope="row">{{c.id}}</th>
-    <td>{{c.name}}</td>
-    <td>{{c.email}}</td>
-    <td>{{c.phone}}</td>
+    <td>
+      <span [innerHtml]="c.first_name | highLightText:keyword"></span>
+      <span>&nbsp; </span>
+      <span [innerHtml]="c.last_name | highLightText:keyword"> </span>
+    </td>
+
+
+    <td [innerHtml]="c.email | highLightText:keyword">
+    </td>
+    <td class="avatar"><img [src]="c.avatar"></td>
     <td>
 
       <span class="float-right">
