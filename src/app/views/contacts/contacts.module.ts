@@ -14,6 +14,8 @@ import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import {reducers} from '@app/contacts-store';
 import {ContactsSocketService} from './services/contacts-socket.service';
 import {ContactsService} from './services/contacts.service';
+import { ContactSearchComponent } from './contact-search/contact-search.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -22,15 +24,17 @@ import {ContactsService} from './services/contacts.service';
     SharedModule,
     ContactsRoutingModule,
     StoreModule.forFeature('contacts', reducers),
-    EffectsModule.forFeature([ContactsEffects])
+    EffectsModule.forFeature([ContactsEffects]),
+    ReactiveFormsModule
   ],
   declarations: [
     ContactsComponent,
     ContactDetailsComponent,
     ContactEditComponent,
     ContactNewComponent,
-    ContactsIndexComponent
+    ContactsIndexComponent,
+    ContactSearchComponent
   ],
-  providers: [ContactsService, ContactsSocketService, ContactsStoreFacade]
+  providers: [ContactsService,  ContactsStoreFacade]
 })
 export class ContactsModule { }
