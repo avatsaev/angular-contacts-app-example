@@ -15,6 +15,8 @@ export class ContactListComponent implements OnInit {
   @Output() show = new EventEmitter<Contact>();
   @Output() remove = new EventEmitter<Contact>();
 
+  @Input() keyword = '';
+
   contactsTrackByFn = (index: number, contact: Contact) => contact.id;
 
   constructor() {}
