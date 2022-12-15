@@ -26,6 +26,7 @@ export class ContactsIndexComponent implements OnInit {
   }
 
 
+  //filter contact logic
   filterContact(keyword: string): void {
     if (!keyword) {
       this.hightLightText = '';

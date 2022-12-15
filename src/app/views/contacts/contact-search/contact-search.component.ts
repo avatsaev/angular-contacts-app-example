@@ -41,26 +41,5 @@ export class ContactSearchComponent implements OnInit {
   }
 
 
-  // searchKeyword(): void{
-  //   this.searchResult$ = this.search.valueChanges.pipe(
-  //     switchMap(keyword =>
-  //       this.http.get<any>(`https://swapi.dev/api/people/?search=${keyword}`)
-  //     ),
-  //     map(response =>
-  //       response.count > 0 ? response.results[0] : { name: "No results" }
-  //     ),
-  //     map(
-  //       response =>
-  //         ({
-  //           name: response.name,
-  //           birthYear: response.birth_year,
-  //           height: Number(response.height),
-  //           weight: Number(response.mass),
-  //           eyeColor: response.eye_color
-  //         } as PeopleData)
-  //     )
-  //   );
-  // }
-
 
 }
