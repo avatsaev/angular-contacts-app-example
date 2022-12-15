@@ -1,10 +1,13 @@
-<h1> Contact list</h1>
+<h3> Search </h3>
+<app-contact-search  (searchText)="filterContact($event)"></app-contact-search>
 
-
-
-
-<app-contact-list [contacts]="contacts$ | async"
+<h3>Contact list</h3>
+<app-contact-list [contacts]="newContacts$ | async"
+                  [keyword] ="hightLightText"
                   (show)="showContact($event)"
                   (remove)="deleteContact($event)"
                   (edit)="editContact($event)"
 ></app-contact-list>
+
+
+

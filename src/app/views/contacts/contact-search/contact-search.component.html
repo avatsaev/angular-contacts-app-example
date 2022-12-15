@@ -1,0 +1,4 @@
+<div  [formGroup]="searchFormGroup" class="form-group">
+<input  class="form-control"  type="text"  formControlName="search">
+  <span *ngIf="searchKeyword$ | async as searchKeyword"> {{searchKeyword}} </span>
+</div>
