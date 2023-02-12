@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from "@angular/core";
 import { fromEvent, Observable, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators";
 
@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators"
     `
 })
 export class FilterInputComponent implements AfterViewInit, OnDestroy{
+    @Input() filterText: string = '';
     @Output() onFilter: EventEmitter<string> = new EventEmitter<string>();
     @ViewChild('filterInput', { static: true }) input: ElementRef;
 
@@ -26,6 +27,9 @@ export class FilterInputComponent implements AfterViewInit, OnDestroy{
     private sub:Subscription;
 
     ngAfterViewInit(){
+        /** Init input with initial filter text */
+        this.input.nativeElement.value = this.filterText;
+
         this.search$ = fromEvent<any>(this.input.nativeElement, 'keyup').pipe(
             map((event) => event.target.value),
             debounceTime(500),

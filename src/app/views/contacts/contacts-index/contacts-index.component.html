@@ -15,7 +15,7 @@
     </button>
   </div>
 </div>
-<filter-input class="mt-4" (onFilter)="filterContacts($event)"></filter-input>
+<filter-input class="mt-4" [filterText]="filter$ | async" (onFilter)="filterContacts($event)"></filter-input>
 <app-contact-list
   [contacts]="filteredContacts$ | async"
   [highlightText]="filter$ | async"
