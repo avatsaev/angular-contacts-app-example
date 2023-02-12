@@ -40,7 +40,7 @@ export class ContactsEffects {
     /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
     /* 'Contacts Reducers' will take care of the rest */
     switchMap(() => this.contactsService.index().pipe(
-      map(contacts => loadAllSuccess({contacts}))
+      map(responseList => loadAllSuccess({response: responseList}))
     )),
   ));
 
@@ -49,7 +49,7 @@ export class ContactsEffects {
     ofType(load),
     pluck('id'),
     switchMap( id => this.contactsService.show(id).pipe(
-      map(contact => loadSuccess({contact}))
+      map(response => loadSuccess({contact: response.data}))
     ))
   ));
 
@@ -79,8 +79,7 @@ export class ContactsEffects {
     ofType(remove),
     pluck('id'),
     switchMap( id => this.contactsService.destroy(id).pipe(
-      pluck('id'),
-      map(id => removeSuccess({id}))
+      map(() => removeSuccess({id}))
     ))
   ));
 

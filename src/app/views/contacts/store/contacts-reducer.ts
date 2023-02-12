@@ -27,17 +27,29 @@ export const contactsAdapter = createEntityAdapter<Contact>({
 
 export interface State extends EntityState<Contact> {
   // additional props here
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
 }
 
 export const INIT_STATE: State = contactsAdapter.getInitialState({
   // additional props default values here
+  page: 1,
+  per_page: 6,
+  total: 0,
+  total_pages: 0,
 });
 
 export const reducer = createReducer<State>(
   INIT_STATE,
-  on(loadAllSuccess, (state, {contacts}) =>
-    contactsAdapter.addAll(contacts, state)
-  ),
+  on(loadAllSuccess, (state, {response}) => {
+    //extract metadata and contacts
+    
+    const {page, per_page, total , total_pages, data} = response;
+    const s = {...state, page, per_page, total , total_pages};
+    return contactsAdapter.addAll(data, s);
+  }),
   on(loadSuccess, (state, {contact}) =>
     contactsAdapter.upsertOne(contact, state)
   ),

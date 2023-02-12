@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Contact, ResponseList} from '@app/core/models';
+import {Contact, ResponseList, Response} from '@app/core/models';
 import {environment} from '@app/env';
 
 
@@ -16,9 +16,9 @@ export class ContactsService {
         .get<ResponseList<Contact>>(`${environment.appApi.baseUrl}/api/users`);
   }
 
-  show(conactId: number): Observable<Contact> {
+  show(contactId: number): Observable<Response<Contact>> {
     return this.http
-        .get<Contact>(`${environment.appApi.baseUrl}/api/users/${conactId}`);
+        .get<Response<Contact>>(`${environment.appApi.baseUrl}/api/users/${contactId}`);
   }
 
   create(contact: Contact): Observable<Contact> {
