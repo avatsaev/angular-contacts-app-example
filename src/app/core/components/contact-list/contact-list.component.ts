@@ -11,6 +11,7 @@ export class ContactListComponent implements OnInit {
 
 
   @Input() contacts: Contact[];
+  @Input() highlightText: string = '';
   @Output() edit = new EventEmitter<Contact>();
   @Output() show = new EventEmitter<Contact>();
   @Output() remove = new EventEmitter<Contact>();

@@ -12,10 +12,10 @@
   <tbody>
   <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
     <th scope="row">{{c.id}}</th>
-    <td>{{c.first_name}}</td>
-    <td>{{c.last_name}}</td>
-    <td>{{c.email}}</td>
-    <td>{{c.avatar}}</td>
+    <td [innerHTML]="c.first_name | highlighter: highlightText"></td>
+    <td [innerHTML]="c.last_name | highlighter: highlightText"></td>
+    <td [innerHTML]="c.email | highlighter: highlightText"></td>
+    <td [innerHTML]="c.avatar | highlighter: highlightText"></td>
     <td>
 
       <span class="float-right">
