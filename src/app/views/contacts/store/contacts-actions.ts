@@ -28,7 +28,12 @@ export const remove = createAction(
 export const pageChange = createAction(
   '[Contacts] Page Change',
   props<{page: number}>()
-)
+);
+
+export const filterContacts = createAction(
+  '[Contacts] Contacts filter',
+  props<{filter: string}>()
+);
 
 export const loadAllSuccess = createAction(
   '[Contacts] Load all success',
