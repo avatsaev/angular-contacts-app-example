@@ -7,6 +7,8 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from '@app/core/components/footer/footer.component';
+import { FilterInputComponent } from '../components/filter-input.component';
+import { HighlightPipe } from '../pipes/highlight.pipe';
 
 @NgModule({
   imports: [
@@ -15,18 +17,23 @@ import {FooterComponent} from '@app/core/components/footer/footer.component';
     RouterModule
   ],
   declarations: [
+    HighlightPipe,
     ContactListComponent,
     ContactDetailsContainerComponent,
     ContactFormComponent,
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    FilterInputComponent,
+    
   ],
   exports: [
     ContactListComponent,
     ContactDetailsContainerComponent,
     ContactFormComponent,
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    FilterInputComponent,
+    HighlightPipe
   ]
 })
 export class SharedModule { }
