@@ -8,7 +8,6 @@ import {EffectsModule} from '@ngrx/effects';
 import {SharedModule} from './core/modules/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {SocketIoModule} from 'ngx-socket-io';
 import {ServiceWorkerModule } from '@angular/service-worker';
 import {environment} from '@app/env';
 import {ROOT_REDUCERS} from '@app/root-store';
