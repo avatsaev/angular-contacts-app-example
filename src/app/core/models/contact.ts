@@ -1,6 +1,19 @@
+export interface ResponseList<T>{
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data:T[];
+}
+
+export interface Response<T>{
+  data:T;
+}
+
 export interface Contact {
   id?: number;
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  phone?: string;
+  avatar?: string;
 }

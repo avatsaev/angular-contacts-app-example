@@ -1,8 +1,13 @@
 <form (submit)="submit()"  class="form" [formGroup]="form">
 
   <div class="form-group">
-    <label for="name-input">Name:</label>
-    <input id="name-input" type="text" class="form-control" formControlName="name">
+    <label for="name-input">First Name:</label>
+    <input id="name-input" type="text" class="form-control" formControlName="first_name">
+  </div>
+
+  <div class="form-group">
+    <label for="name-input">Last Name:</label>
+    <input id="name-input" type="text" class="form-control" formControlName="last_name">
   </div>
 
   <div class="form-group">
@@ -10,13 +15,10 @@
     <input id="email-input" type="email" class="form-control" formControlName="email">
   </div>
 
-
-
   <div class="form-group">
-    <label for="phone-input">Phone:</label>
-    <input id="phone-input" type="tel" class="form-control" formControlName="phone">
+    <label for="email-input">Avatar:</label>
+    <input id="email-input" type="email" class="form-control" formControlName="avatar">
   </div>
-
 
   <div class="form-group">
     <button

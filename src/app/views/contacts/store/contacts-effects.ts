@@ -1,15 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import {
-  catchError,
-  exhaustMap,
-  map, pluck,
-  startWith,
-  switchMap
-} from 'rxjs/operators';
-import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
-import {ContactsService} from '../services/contacts.service';
-import {ContactsSocketService} from '../services/contacts-socket.service';
 import {
   create,
   createSuccess,
@@ -18,11 +7,22 @@ import {
   loadAll,
   loadAllSuccess,
   loadSuccess,
+  pageChange,
   remove,
   removeSuccess,
   update,
   updateSuccess
 } from '@app/contacts-store/contacts-actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import {
+  catchError,
+  exhaustMap,
+  map, pluck,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
+import { ContactsService } from '../services/contacts.service';
 
 
 /**
@@ -41,8 +41,16 @@ export class ContactsEffects {
     /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
     /* 'Contacts Reducers' will take care of the rest */
     switchMap(() => this.contactsService.index().pipe(
-      map(contacts => loadAllSuccess({contacts}))
+      map(responseList => loadAllSuccess({response: responseList}))
     )),
+  ));
+
+  pageChange$ = createEffect( () => this.actions$.pipe(
+    ofType(pageChange),
+    pluck('page'),
+    switchMap( page => this.contactsService.index(page).pipe(
+      map( responseList => loadAllSuccess({response: responseList}))
+    ))
   ));
 
 
@@ -50,7 +58,7 @@ export class ContactsEffects {
     ofType(load),
     pluck('id'),
     switchMap( id => this.contactsService.show(id).pipe(
-      map(contact => loadSuccess({contact}))
+      map(response => loadSuccess({contact: response.data}))
     ))
   ));
 
@@ -80,33 +88,31 @@ export class ContactsEffects {
     ofType(remove),
     pluck('id'),
     switchMap( id => this.contactsService.destroy(id).pipe(
-      pluck('id'),
-      map(id => removeSuccess({id}))
+      map(() => removeSuccess({id}))
     ))
   ));
 
   // Socket Live Events
 
-  @Effect()
-  liveCreate$ = this.contactsSocket.liveCreated$.pipe(
-    map(contact => createSuccess({contact}))
-  );
+  // @Effect()
+  // liveCreate$ = this.contactsSocket.liveCreated$.pipe(
+  //   map(contact => createSuccess({contact}))
+  // );
 
 
-  @Effect()
-  liveUpdate$ = this.contactsSocket.liveUpdated$.pipe(
-    map(contact => updateSuccess({contact}))
-  );
+  // @Effect()
+  // liveUpdate$ = this.contactsSocket.liveUpdated$.pipe(
+  //   map(contact => updateSuccess({contact}))
+  // );
 
-  @Effect()
-  liveDestroy$ = this.contactsSocket.liveDeleted$.pipe(
-    map(id => removeSuccess({id}))
-  );
+  // @Effect()
+  // liveDestroy$ = this.contactsSocket.liveDeleted$.pipe(
+  //   map(id => removeSuccess({id}))
+  // );
 
   constructor(
     private actions$: Actions,
-    private contactsService: ContactsService,
-    private contactsSocket: ContactsSocketService
+    private contactsService: ContactsService
   ) {}
 
 }

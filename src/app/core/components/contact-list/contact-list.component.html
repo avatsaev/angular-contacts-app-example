@@ -2,18 +2,20 @@
   <thead class="header">
   <tr>
     <th>#</th>
-    <th>Name</th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Email</th>
-    <th>Phone</th>
+    <th>Avatar</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
   <tr class="contact-row" *ngFor="let c of contacts; trackBy: contactsTrackByFn">
     <th scope="row">{{c.id}}</th>
-    <td>{{c.name}}</td>
+    <td>{{c.first_name}}</td>
+    <td>{{c.last_name}}</td>
     <td>{{c.email}}</td>
-    <td>{{c.phone}}</td>
+    <td>{{c.avatar}}</td>
     <td>
 
       <span class="float-right">

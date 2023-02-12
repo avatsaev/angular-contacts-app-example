@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import { Contact } from '@app/core/models';
+import { Contact, ResponseList } from '@app/core/models';
 
 export const loadAll = createAction(
   '[Contacts] Load all'
@@ -25,9 +25,14 @@ export const remove = createAction(
   props<{id: number}>()
 );
 
+export const pageChange = createAction(
+  '[Contacts] Page Change',
+  props<{page: number}>()
+)
+
 export const loadAllSuccess = createAction(
   '[Contacts] Load all success',
-  props<{contacts: Contact[]}>()
+  props<{response:ResponseList<Contact>}>()
 );
 
 export const loadSuccess = createAction(

@@ -33,8 +33,10 @@ describe('ContactFormComponent', () => {
     spyOn(component.form, 'patchValue');
     const contact = {
       id: 1,
-      name: 'test',
-      email: 'test@avatsaev.com'
+      first_name: 'test',
+      last_name: 'last name',
+      email: 'test@avatsaev.com',
+      avatar: ''
     };
     component.contact = contact;
     component.ngOnChanges();
@@ -45,9 +47,10 @@ describe('ContactFormComponent', () => {
     spyOn(component.save, 'emit');
     const contact = {
       id: 1,
-      name: 'test',
+      first_name: 'test',
+      last_name: 'last name',
       email: 'test@avatsaev.com',
-      phone: '12345'
+      avatar: ''
     };
     component.form.setValue(contact);
     component.submit();

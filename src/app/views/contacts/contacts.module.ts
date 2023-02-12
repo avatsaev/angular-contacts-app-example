@@ -12,7 +12,6 @@ import {EffectsModule} from '@ngrx/effects';
 import {ContactsEffects} from './store/contacts-effects';
 import {ContactsStoreFacade} from '@app/contacts-store/contacts.store-facade';
 import {reducers} from '@app/contacts-store';
-import {ContactsSocketService} from './services/contacts-socket.service';
 import {ContactsService} from './services/contacts.service';
 
 
@@ -31,6 +30,6 @@ import {ContactsService} from './services/contacts.service';
     ContactNewComponent,
     ContactsIndexComponent
   ],
-  providers: [ContactsService, ContactsSocketService, ContactsStoreFacade]
+  providers: [ContactsService, ContactsStoreFacade]
 })
 export class ContactsModule { }
