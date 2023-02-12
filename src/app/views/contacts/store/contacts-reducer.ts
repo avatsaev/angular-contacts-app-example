@@ -3,9 +3,10 @@ import {EntityState, createEntityAdapter} from '@ngrx/entity';
 import {createReducer, on} from '@ngrx/store';
 import {
   createSuccess,
+  filterContacts,
   loadAllSuccess,
   loadSuccess, removeSuccess,
-  updateSuccess
+  updateSuccess, 
 } from '@app/contacts-store/contacts-actions';
 
 // This adapter will allow is to manipulate contacts (mostly CRUD operations)
@@ -31,6 +32,7 @@ export interface State extends EntityState<Contact> {
   per_page: number;
   total: number;
   total_pages: number;
+  filter: string;
 }
 
 export const INIT_STATE: State = contactsAdapter.getInitialState({
@@ -39,13 +41,13 @@ export const INIT_STATE: State = contactsAdapter.getInitialState({
   per_page: 6,
   total: 0,
   total_pages: 0,
+  filter: ''
 });
 
 export const reducer = createReducer<State>(
   INIT_STATE,
   on(loadAllSuccess, (state, {response}) => {
     //extract metadata and contacts
-    
     const {page, per_page, total , total_pages, data} = response;
     const s = {...state, page, per_page, total , total_pages};
     return contactsAdapter.addAll(data, s);
@@ -61,7 +63,8 @@ export const reducer = createReducer<State>(
   ),
   on(removeSuccess, (state, {id}) =>
     contactsAdapter.removeOne(id, state)
-  )
+  ),
+  on(filterContacts, (state, {filter}) => ({...state, filter}))
 );
 
 export const getContactById = (id: number) => (state: State) => state.entities[id];
