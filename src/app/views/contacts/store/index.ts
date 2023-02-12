@@ -45,3 +45,9 @@ export const selectContactsPageInfo = createSelector(
     return {page, per_page, total, total_pages};
   }
 )
+
+/** get current filter string */
+export const selectContactsFilter = createSelector(
+  selectContactsState,
+  ({contacts}) => contacts.filter
+)

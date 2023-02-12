@@ -4,7 +4,7 @@ import * as fromContacts from '@app/contacts-store';
 import { select, Store } from '@ngrx/store';
 
 import { Contact } from '@app/core/models';
-import {create, load, pageChange, remove, update} from '@app/contacts-store/contacts-actions';
+import {create, filterContacts, load, pageChange, remove, update} from '@app/contacts-store/contacts-actions';
 
 @Injectable()
 export class ContactsStoreFacade {
@@ -15,7 +15,11 @@ export class ContactsStoreFacade {
 
   contactsPageInfo$ = this.store.pipe(
     select(fromContacts.selectContactsPageInfo)
-  )
+  );
+
+  filter$ = this.store.pipe(
+    select(fromContacts.selectContactsFilter)
+  );
 
   constructor(private store: Store<fromRoot.State>) { }
 
@@ -37,6 +41,10 @@ export class ContactsStoreFacade {
 
   pageChange(page: number){
     this.store.dispatch(pageChange({page}));
+  }
+
+  filterContacts(filter: string){
+    this.store.dispatch(filterContacts({filter}));
   }
 
   getContactById(id: number) {
