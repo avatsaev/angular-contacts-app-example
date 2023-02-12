@@ -6,6 +6,10 @@ export interface ResponseList<T>{
   data:T[];
 }
 
+export interface Response<T>{
+  data:T;
+}
+
 export interface Contact {
   id?: number;
   first_name: string;
