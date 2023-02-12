@@ -6,11 +6,13 @@ export class ContactsServiceMock {
 
   contacts = [{
     id: 1,
-    name: 'john',
+    first_name: 'john',
+    last_name: 'doe',
     email: 'john@gmail.com'
   }, {
     id: 2,
-    name: 'adam',
+    first_name: 'adam',
+    last_name: 'eve',
     email: 'adam@gmail.com'
   }];
 
@@ -21,15 +23,18 @@ export class ContactsServiceMock {
   show(conactId: number): Observable<Contact> {
     return of({
       id: 1,
-      name: 'john',
-      email: 'john@gmail.com'
+      first_name: 'john',
+      last_name: 'doe',
+      email: 'test@avatsaev.com',
+      avatar: ''
     });
   }
 
   create(contact: Contact) {
     return of({
       id: 4,
-      name: 'john doe',
+      first_name: 'john',
+      last_name: 'doe',
       email: 'john@gmail.com'
     });
   }
