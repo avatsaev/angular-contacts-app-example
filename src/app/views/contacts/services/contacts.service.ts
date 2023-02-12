@@ -11,9 +11,9 @@ export class ContactsService {
   constructor(private http: HttpClient ) { }
 
 
-  index(): Observable<ResponseList<Contact>> {
+  index(page: number = 1): Observable<ResponseList<Contact>> {
     return this.http
-        .get<ResponseList<Contact>>(`${environment.appApi.baseUrl}/api/users`);
+        .get<ResponseList<Contact>>(`${environment.appApi.baseUrl}/api/users?page=${page}`);
   }
 
   show(contactId: number): Observable<Response<Contact>> {

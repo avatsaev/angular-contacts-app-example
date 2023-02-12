@@ -1,14 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import {
-  catchError,
-  exhaustMap,
-  map, pluck,
-  startWith,
-  switchMap
-} from 'rxjs/operators';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {ContactsService} from '../services/contacts.service';
 import {
   create,
   createSuccess,
@@ -17,11 +7,22 @@ import {
   loadAll,
   loadAllSuccess,
   loadSuccess,
+  pageChange,
   remove,
   removeSuccess,
   update,
   updateSuccess
 } from '@app/contacts-store/contacts-actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
+import {
+  catchError,
+  exhaustMap,
+  map, pluck,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
+import { ContactsService } from '../services/contacts.service';
 
 
 /**
@@ -42,6 +43,14 @@ export class ContactsEffects {
     switchMap(() => this.contactsService.index().pipe(
       map(responseList => loadAllSuccess({response: responseList}))
     )),
+  ));
+
+  pageChange$ = createEffect( () => this.actions$.pipe(
+    ofType(pageChange),
+    pluck('page'),
+    switchMap( page => this.contactsService.index(page).pipe(
+      map( responseList => loadAllSuccess({response: responseList}))
+    ))
   ));
 
 

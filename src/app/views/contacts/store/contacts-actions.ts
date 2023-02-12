@@ -25,6 +25,11 @@ export const remove = createAction(
   props<{id: number}>()
 );
 
+export const pageChange = createAction(
+  '[Contacts] Page Change',
+  props<{page: number}>()
+)
+
 export const loadAllSuccess = createAction(
   '[Contacts] Load all success',
   props<{response:ResponseList<Contact>}>()

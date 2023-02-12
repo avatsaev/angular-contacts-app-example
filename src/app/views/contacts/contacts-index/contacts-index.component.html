@@ -1,10 +1,24 @@
-<h1> Contact list</h1>
+<div class="d-flex flex-row justify-content-between align-items-end">
+  <h1>Contact list</h1>
+  <div class="d-flex" *ngIf="pages$ | async as pages">
+    <button
+      *ngFor="let i of pages"
+      type="button"
+      class="btn"
+      [ngClass]="{
+        'btn-primary': (current_page$ | async) === i,
+        'btn-secondary': (current_page$ | async) !== i
+      }"
+      (click)="changePage(i)"
+    >
+      Page {{ i }}
+    </button>
+  </div>
+</div>
 
-
-
-
-<app-contact-list [contacts]="contacts$ | async"
-                  (show)="showContact($event)"
-                  (remove)="deleteContact($event)"
-                  (edit)="editContact($event)"
+<app-contact-list
+  [contacts]="contacts$ | async"
+  (show)="showContact($event)"
+  (remove)="deleteContact($event)"
+  (edit)="editContact($event)"
 ></app-contact-list>

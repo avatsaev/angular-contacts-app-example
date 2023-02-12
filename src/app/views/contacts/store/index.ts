@@ -33,3 +33,15 @@ export const getContactById = (id: number) => createSelector(
   getContactsEntitiesState,
   fromContacts.getContactById(id)
 );
+
+/** Get feature selector */
+export const selectContactsState = createFeatureSelector<ContactsState>("contacts");
+
+/** Get page infos */
+export const selectContactsPageInfo = createSelector(
+  selectContactsState,
+  ({contacts}) => {
+    const {page, per_page, total, total_pages} = contacts;
+    return {page, per_page, total, total_pages};
+  }
+)
